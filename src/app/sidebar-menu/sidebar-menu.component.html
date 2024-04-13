@@ -1,0 +1,24 @@
+<nav class="container">
+  <div class="col nav-content-container">
+
+    <!--Top logo area-->
+    <div class="logo-container">
+      <img class="col-12" src="../../assets/corzent-logo-white.png" alt="" width="">
+    </div>
+
+    <!--nav link area-->
+    <div class="col">
+      <div class="nav-links">
+        <ul class="sidenav-nav">
+          <li class="sidenav-nav-item" *ngFor="let item of navs">
+            <a class="sidenav-nav-item-link" [routerLink]="['/' ,item.routeLink]"
+            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <i class="sidenav-nav-icon" [class]="item.icon"></i>
+              <span class="sidenav-nav-item-text">{{item.label}}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

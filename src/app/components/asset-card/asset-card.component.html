@@ -1,0 +1,43 @@
+<div class="e-card p-3">
+  <div class="e-card-image text-center">
+    <img class="img-responsive" [src]="imgUrl" alt="" width="80%">
+  </div>
+  <div class="e-card-title p-0" style="line-height:1.5em">{{name}}</div>
+  <div class="e-card-content p-0" style="line-height:2.25em">
+    <table style="width: 100%;">
+      <tr>
+          <td>
+              <div style="text-align: left;font-weight: 500;"> Id </div>
+          </td>
+          <td>
+              <div style="text-align: left;width: 120px;white-space:wrap">{{id}}</div>
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <div style="text-align: left;font-weight: 500;">Model</div>
+          </td>
+          <td>
+              <div style="text-align: left;white-space:wrap">{{model}}</div>
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <div style="text-align: left;font-weight: 500;">Year</div>
+          </td>
+          <td>
+              <div style="text-align: left;">{{year}}</div>
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <div class="e-card-actions p-0 mt-2">
+                  <button id="showassetdata" class="btn btn-secondary" (click)="viewAssetInfo()">
+                      View more
+                  </button>
+              </div>
+          </td>
+      </tr>
+  </table>
+  </div>
+</div>

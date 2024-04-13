@@ -1,0 +1,18 @@
+@import '../../../node_modules/@syncfusion/ej2-base/styles/material.css';
+@import '../../../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+@import '../../theme.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.row:first-child {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.e-menu-icon {
+  font-size: 18px !important;
+  margin: 0 !important;
+}

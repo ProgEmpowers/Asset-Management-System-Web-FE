@@ -1,0 +1,18 @@
+@import '../../../theme.scss';
+
+app-asset-card {
+  margin-right: 28px;
+}
+
+.section-header {
+  justify-content: space-between;
+  align-items: center;
+
+  h5 {
+    margin: 0;
+  }
+
+  button {
+    margin-left: 6px;
+  }
+}
