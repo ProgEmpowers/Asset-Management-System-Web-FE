@@ -24,6 +24,13 @@ import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http'
 import { EmployeeTableComponent } from './components/tables/employee-table/employee-table.component';
 import { VendorsTableComponent } from './components/tables/vendors-table/vendors-table.component';
 import { NotificationsTableComponent } from './components/tables/notifications-table/notifications-table.component';
+import { NewAssetComponent } from './forms/new-asset/new-asset.component';
+import { NewEmployeeComponent } from './forms/new-employee/new-employee.component';
+import { NewVendorComponent } from './forms/new-vendor/new-vendor.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgToastModule } from 'ng-angular-popup';
+import { ToastrModule } from 'ngx-toastr';
+import { UploadComponent } from './components/upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +51,11 @@ import { NotificationsTableComponent } from './components/tables/notifications-t
     AssetTableComponent,
     EmployeeTableComponent,
     VendorsTableComponent,
-    NotificationsTableComponent
+    NotificationsTableComponent,
+    NewAssetComponent,
+    NewEmployeeComponent,
+    NewVendorComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +65,10 @@ import { NotificationsTableComponent } from './components/tables/notifications-t
     SidebarModule,
     GridModule,
     PagerModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgToastModule,
+    ToastrModule.forRoot()
   ],
   providers: [PageService, SortService, PdfExportService],
   bootstrap: [AppComponent]

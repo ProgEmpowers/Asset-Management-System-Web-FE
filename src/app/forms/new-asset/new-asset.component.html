@@ -1,0 +1,65 @@
+<!-- Modal -->
+<div class="modal fade" id="assetModal" tabindex="-1" aria-labelledby="assetModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+          <h1 class="modal-title fs-5" id="assetModalLabel">Add new asset</h1>
+          <span class="form-text">Please fill the form and submit</span>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="assetForm" name="newAssetForm" (ngSubmit)="submit()" #newAssetForm>
+
+          <div class="form-group row justify-content-center mb-3">
+            <div class="col-6 img-wrapper" aria-label="asset image" title="Click here to upload asset image">
+              <img class="img-fluid" [src]="imgPath" alt="" >
+            </div>
+            <app-upload class="d-flex" (onUploadFinished)="onUploadFinished($event)" style="width: unset;align-items: center;"></app-upload>
+            <input formControlName="imageUrl" type="text" class="form-control" id="assetImage" name="assetImage" [value]="imgPath" *ngIf="false">
+          </div>
+
+
+          <div class="row g-2">
+            <div class="col-md">
+              <div class="form-floating">
+                <!-- Max chars allowed is 5 -->
+                <input formControlName="name" type="text" class="form-control" id="assetName" name="assetName" required maxlength="5" placeholder="Keyboard">
+                <label for="assetName">Asset name</label>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="form-floating">
+                <select formControlName="assetType" class="form-select" name="assetType" id="assetType">
+                  <option selected value="default">-Select type-</option>
+                  <option value="{{type}}" *ngFor="let type of assetTypes">
+                    {{type}}
+                  </option>
+                </select>
+                <label for="assetType">Asset type</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-floating  mt-2">
+            <textarea formControlName="description" class="form-control" name="description" id="description" cols="30" rows="4" placeholder="Type here..." required style="height: 100px"></textarea>
+            <label for="description">Description</label>
+          </div>
+
+          <div class="form-floating  mt-2">
+            <input formControlName="assetValue" type="number" class="form-control" name="buyingPrice" id="buyingPrice" placeholder="i.e. 500.00" required>
+            <label for="buyingPrice">Buying price</label>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!assetForm.valid" (click)="submit()" data-bs-dismiss="modal">Save</button>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="row justify-content-center">
+  <div class="col img-wrapper" aria-label="asset image" title="Click here to upload asset image">
+    <!-- <img class="img-fluid" [src]="imageUrl" alt="" (click)="file.click()"> -->
+    <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+    <button class="btn btn-secondary" target="_self" [disabled]="clicked" (click)="default($event);file.click();">Choose</button>
+    <span> {{fileName}}</span>
+  </div>
+</div>

@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DataStateChangeEventArgs } from '@syncfusion/ej2-angular-grids';
 import { Observable, Subject, count, map } from 'rxjs';
 import { Asset } from '../Models/asset';
 
@@ -8,34 +7,35 @@ import { Asset } from '../Models/asset';
 @Injectable({
   providedIn: 'root'
 })
-export class AssetStockService extends Subject<DataStateChangeEventArgs> {
+export class AssetStockService {
 
   apiurl = "https://localhost:7095/api/Assets";
 
 
 
-  constructor(private http:HttpClient) { super();}
+  constructor(private http:HttpClient) { }
 
 
-  // public execute(state:any): void {
-  //   this.getAssets(state).subscribe(
-  //     x => super.next(x as DataStateChangeEventArgs)
-  //     );
-  // }
-
-  // get assets list
+  // Get all assets from server
   getAssetList() : Observable<Asset[]> {
     return this.http.get<Asset[]>(this.apiurl + '')
   }
 
 
-  // getAssets(state?:any):Observable<any[]> {
-  //   return this.http.get<any[]>(this.apiurl).pipe(
-  //     map((response:any) => (<any>{
-  //       result:state.take > 0 ? response.slice(0, state.take) : response,
-  //       count: response.length
-  //     }))
-  //   );
-  // }
+  // Submit new asset to server
+  createAsset(asset: FormData) : Observable<any> {
+    return this.http.post(this.apiurl, asset);
+  }
+
+  // delete an asset
+  deleteAsset(id: number) : Observable<any> {
+    return this.http.delete(this.apiurl + '/' + id);
+  }
+
+  // update an asset
+  updateAsset(id: number, asset: Asset) : Observable<any> {
+    return this.http.put(this.apiurl + '/' + id, asset);
+  }
+
 
 }

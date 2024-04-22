@@ -21,8 +21,8 @@
       <ng-template #template let-data>
         <td>
           <div>
-            <button class="btn btn-info btn-sm m-1" [routerLink]="[data.id]">Edit</button>
-            <button class="btn btn-danger btn-sm m-1" [routerLink]="[data.id]">Delete</button>
+            <button class="btn btn-outline btn-sm m-1" >Edit</button>
+            <button class="btn btn-outline-danger btn-sm m-1" (click)="deleteAsset(data.id)">Delete</button>
           </div>
         </td>
       </ng-template>
