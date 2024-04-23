@@ -1,0 +1,72 @@
+<!-- Send Contract Modal -->
+
+<div class="modal fade" id="contractModal" tabindex="-1" aria-labelledby="contractModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <h1 class="modal-title fs-5" id="contractModalLabel">Send Contract</h1>
+                    <span class="form-text">Please, fill the form to send the contract details.</span>
+                </div>
+                <button type="button" class="btn-close" #closeModal data-bs-dismiss="modal" aria-label="close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" class="" [formGroup]="contractForm" name="newContractForm" (ngSubmit)="submit()"
+                    #newContractForm>
+                    <div class="row g-3 mt-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" name="contract_title" id="contract_title" class="form-control"
+                                    formControlName="contract_title"
+                                    [class.is-valid]="contractForm.controls['contract_title'].valid"
+                                    [class.is-invalid]="contractForm.controls['contract_title'].invalid && (contractForm.controls['contract_title'].touched || contractForm.controls['contract_title'].dirty)"
+                                    placeholder="">
+                                <label for="contract_title">Title of the contract</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <select name="contract_assets" id="contract_assets" class="form-select"
+                                    formControlName="contract_assets"
+                                    [class.is-valid]="contractForm.controls['contract_assets'].valid"
+                                    [class.is-invalid]="contractForm.controls['contract_assets'].invalid && contractForm.controls['contract_assets'].touched">
+                                    <option selected disabled value="">- Select the asset type -</option>
+                                    <option value="{{type}}" *ngFor="let type of supplyAssetTypes">{{type}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md g-3 mt-2">
+                        <div class="form-floating">
+                            <textarea name="description" id="description" cols="30" rows="10" class="form-control"
+                                formControlName="description" placeholder="About the contract....."
+                                [class.is-valid]="contractForm.controls['description'].valid"
+                                [class.is-invalid]="contractForm.controls['description'].invalid && (contractForm.controls['description'].touched || contractForm.controls['description'].dirty)"></textarea>
+                            <label for="description">Description</label>
+                        </div>
+                    </div>
+                    <div class="row g-3 mt-1">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <select name="contract_vendors" id="contract_vendors" class="form-select"
+                                    formControlName="contract_vendors"
+                                    [class.is-valid]="contractForm.controls['contract_vendors'].valid"
+                                    [class.is-invalid]="contractForm.controls['contract_vendors'].invalid && contractForm.controls['contract_vendors'].touched">
+                                    <option selected disabled value="">- Select the vendor -</option>
+                                    <option value="{{vendor}}" *ngFor="let vendor of vendorList">{{vendor}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md"></div>
+                    </div>
+                    <button type="submit" #submitBtn style="display: none;">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="contractForm.reset()">Cancel</button>
+                <button type="submit" class="btn btn-primary" [disabled]="contractForm.invalid"
+                    data-bs-dismiss="modal" (click)="contractForm.reset()">Send</button>
+            </div>
+        </div>
+    </div>
+</div>

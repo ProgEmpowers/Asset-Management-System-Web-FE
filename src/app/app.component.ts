@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Frontend';
+
+  modelOpened = true;
+
+  closeModel() {
+    this.modelOpened = false
+  }
 }
