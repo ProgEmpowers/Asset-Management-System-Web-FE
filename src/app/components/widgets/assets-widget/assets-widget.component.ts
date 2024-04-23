@@ -1,24 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { WidgetService } from '../widget.service';
+import { Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-assets-widget',
   templateUrl: './assets-widget.component.html',
   styleUrl: './assets-widget.component.scss'
 })
-export class AssetsWidgetComponent implements OnInit{
+export class AssetsWidgetComponent{
 
-  public total!:number;
-  public available!:number;
-  public inUse!:number;
+  @Input("totalCount") total:number = 0;
+  @Input("availableCount") available:number = 0;
+  @Input("inUseCount") inUse:number = 0;
 
   constructor(){
-
   }
 
-  ngOnInit(): void {
-    this.total = 10;
-    this.available = 5;
-    this.inUse = 4;
-  }
 }

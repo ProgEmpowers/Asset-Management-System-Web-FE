@@ -3,6 +3,8 @@ import { DataStateChangeEventArgs, PageSettingsModel } from '@syncfusion/ej2-ang
 import { Observable, skip, take } from 'rxjs';
 import { AssetStockService } from '../../../services/asset-stock.service';
 import { Asset } from '../../../Models/asset';
+import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-asset-table',
@@ -11,22 +13,19 @@ import { Asset } from '../../../Models/asset';
 })
 export class AssetTableComponent implements OnInit{
 
-  // public assets: Observable<DataStateChangeEventArgs>;
   assetList?: Asset[];
 
   public pageSetting:PageSettingsModel = {
     pageSize:6
   }
 
-  constructor(private assetService:AssetStockService){
-    // this.assets = assetService;
-
-  }
+  constructor(
+    private assetService:AssetStockService,
+    private router: Router,
+    private toastr: NgToastService
+    ){}
 
   ngOnInit(): void {
-    // const state:any = { skip: 0, take: 6};
-    // this.assetService.execute(state);
-    // console.log(this.assets);
     this.getAssets();
   }
 
@@ -35,6 +34,16 @@ export class AssetTableComponent implements OnInit{
     .subscribe(
       (list) => {
         this.assetList = list;
+      }
+    )
+  }
+
+  deleteAsset(id:number): void{
+    this.assetService.deleteAsset(id)
+    .subscribe(
+      (res) => {
+        this.toastr.success({detail:"Asset deleted", summary:"Asset is deleted successfully.", duration:5000});
+        this.getAssets();
       }
     )
   }

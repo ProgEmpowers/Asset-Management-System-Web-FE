@@ -10,10 +10,11 @@ $info-desc-text: #5D6679;
 $primary:#1366D9;
 $secondary:#5D6679;
 $font-secondary:#4F5B67;
-$success: #5FBC62;
+$success: #198754;
 $failed: #FF1E34;
 $success-bg: #5FBC6230;
 $failed-bg: #FF1E3430;
+$border:#acb0b8;
 
 
 .btn {
@@ -21,9 +22,7 @@ $failed-bg: #FF1E3430;
 }
 
 .cta {
-  font-size: 14px;
-  border: 1px solid $bg-dark;
-  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .16);
+  min-width: 120px !important;
 }
 
 .btn.btn-primary
@@ -31,15 +30,18 @@ $failed-bg: #FF1E3430;
   border: 1px solid $bg-dark;
   background-color: $bg-dark;
   border-color: $bg-dark;
+  min-width: 100px;
 }
 
 .btn.btn-primary:hover
 {
-  background-color: $bg-dark-hover;
-  border-color: $bg-dark-hover;
+  color: $bg-dark;
+  background-color: transparent;
+  border-color: $bg-dark;
 }
 
 .btn.btn-primary:active {
+  color: $text-white;
   background-color: $bg-dark-hover;
 }
 
