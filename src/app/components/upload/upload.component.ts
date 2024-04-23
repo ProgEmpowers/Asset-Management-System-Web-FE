@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { UploadService } from './upload.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -9,7 +9,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class UploadComponent implements OnInit {
 
-  fileName = "an image";
+  @ViewChild('file') file!: ElementRef;
+
+  fileName = "an image to upload";
   imageUrl =  "";
   clicked = false;
   @Output() public onUploadFinished = new EventEmitter();

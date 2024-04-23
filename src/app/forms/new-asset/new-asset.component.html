@@ -7,32 +7,40 @@
           <h1 class="modal-title fs-5" id="assetModalLabel">Add new asset</h1>
           <span class="form-text">Please fill the form and submit</span>
         </div>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button #closeModel type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="assetForm" name="newAssetForm" (ngSubmit)="submit()" #newAssetForm>
+        <form class="" [formGroup]="assetForm" name="newAssetForm" (ngSubmit)="submit()" #newAssetForm>
 
-          <div class="form-group row justify-content-center mb-3">
-            <div class="col-6 img-wrapper" aria-label="asset image" title="Click here to upload asset image">
-              <img class="img-fluid" [src]="imgPath" alt="" >
+          <div class="form-group d-flex justify-content-center mb-3">
+            <div class="col-6 img-wrapper" [class.success]="isChanged" aria-label="asset image" title="Click here to upload asset image">
+              <img class="img-fluid" [src]="imgPath" alt="" (change)="isChanged= true"
+              (click)="triggerButtonClick()">
             </div>
-            <app-upload class="d-flex" (onUploadFinished)="onUploadFinished($event)" style="width: unset;align-items: center;"></app-upload>
+            <app-upload #uploadComponent class="d-flex p-3" (onUploadFinished)="onUploadFinished($event)" style="width: unset;align-items: center;"></app-upload>
             <input formControlName="imageUrl" type="text" class="form-control" id="assetImage" name="assetImage" [value]="imgPath" *ngIf="false">
           </div>
-
 
           <div class="row g-2">
             <div class="col-md">
               <div class="form-floating">
                 <!-- Max chars allowed is 5 -->
-                <input formControlName="name" type="text" class="form-control" id="assetName" name="assetName" required maxlength="5" placeholder="Keyboard">
+                <input formControlName="name" type="text" class="form-control"
+                [class.is-valid]="assetForm.controls['name'].valid"
+                [class.is-invalid]="assetForm.controls['name'].invalid && (assetForm.controls['name'].touched || assetForm.controls['name'].dirty)"
+                id="assetName" name="assetName" placeholder="Keyboard">
                 <label for="assetName">Asset name</label>
               </div>
             </div>
+
             <div class="col-md">
               <div class="form-floating">
-                <select formControlName="assetType" class="form-select" name="assetType" id="assetType">
-                  <option selected value="default">-Select type-</option>
+                <select formControlName="assetType" class="form-select"
+                [class.is-valid]="assetForm.controls['assetType'].valid"
+                name="assetType" id="assetType"
+
+                required>
+                  <option selected disabled value="">-Select type-</option>
                   <option value="{{type}}" *ngFor="let type of assetTypes">
                     {{type}}
                   </option>
@@ -40,24 +48,33 @@
                 <label for="assetType">Asset type</label>
               </div>
             </div>
+
           </div>
 
           <div class="form-floating  mt-2">
-            <textarea formControlName="description" class="form-control" name="description" id="description" cols="30" rows="4" placeholder="Type here..." required style="height: 100px"></textarea>
+            <textarea formControlName="description" class="form-control"
+            name="description" id="description" cols="30" rows="4" placeholder="Type here..." style="height: 100px"
+            [class.is-valid]="assetForm.controls['name'].valid"
+                [class.is-invalid]="assetForm.controls['description'].invalid && (assetForm.controls['description'].touched || assetForm.controls['description'].dirty)"
+            ></textarea>
             <label for="description">Description</label>
           </div>
 
           <div class="form-floating  mt-2">
-            <input formControlName="assetValue" type="number" class="form-control" name="buyingPrice" id="buyingPrice" placeholder="i.e. 500.00" required>
+            <input formControlName="assetValue" type="number" class="form-control" min="0"
+            [class.is-valid]="assetForm.controls['assetValue'].valid && assetForm.controls['assetValue'].touched"
+            [class.is-invalid]="assetForm.controls['assetValue'].invalid && (assetForm.controls['assetValue'].touched || assetForm.controls['assetValue'].dirty)"
+            name="buyingPrice" id="buyingPrice" placeholder="i.e. 500.00">
             <label for="buyingPrice">Buying price</label>
           </div>
 
+          <button type="submit" #submitBtn style="display: none;">Submit</button>
         </form>
       </div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-primary" [disabled]="!assetForm.valid" (click)="submit()" data-bs-dismiss="modal">Save</button>
+        <button type="submit" class="btn btn-primary" [disabled]="assetForm.invalid" (click)="submitBtn.click()" data-bs-dismiss="modal">Save</button>
       </div>
 
     </div>

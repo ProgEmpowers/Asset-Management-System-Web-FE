@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AssetStockService } from '../../services/asset-stock.service';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { Asset } from '../../Models/asset';
+import { UploadComponent } from '../../components/upload/upload.component';
 
 @Component({
   selector: 'app-new-asset',
@@ -12,26 +13,32 @@ import { Asset } from '../../Models/asset';
 })
 export class NewAssetComponent implements OnInit {
 
+  @ViewChild('uploadComponent') uploadComponent!: UploadComponent;
+
   defaultUrl = "https://localhost:7095/Uploads/Images/Assets/upload.png";
-  imgPath = this.defaultUrl;
+  imgPath: string;
+  isChanged = false;
 
   // Asset types
   assetTypes:string[] = [];
 
   // Create FormGroup for new asset form
-  assetForm:FormGroup = new FormGroup({
-    name: new FormControl(""),
-    assetType: new FormControl("default"),
-    imageUrl: new FormControl(this.imgPath),
-    description: new FormControl(""),
-    assetValue: new FormControl(""),
-  })
+  assetForm:FormGroup;
 
   constructor(
     private assetService: AssetStockService,
     private router: Router,
     private toastr: NgToastService
-  ){}
+  ){
+    this.imgPath = this.defaultUrl;
+    this.assetForm = new FormGroup({
+      name: new FormControl("", Validators.required),
+      assetType: new FormControl("", Validators.required),
+      imageUrl: new FormControl(this.imgPath, Validators.required),
+      description: new FormControl("", Validators.required),
+      assetValue: new FormControl("", Validators.required),
+    })
+  }
 
 
   ngOnInit(): void {
@@ -47,10 +54,14 @@ export class NewAssetComponent implements OnInit {
   onUploadFinished(event: any) {
     this.imgPath = event;
     console.log(this.imgPath);
+    this.isChanged = true;
     this.assetForm.get("imageUrl")?.setValue(this.imgPath);
   }
 
   submit() : void {
+    if (this.assetForm.valid == false) {
+      return;
+    }
     this.assetService.createAsset(
       this.assetForm.value
     ).subscribe(
@@ -60,6 +71,7 @@ export class NewAssetComponent implements OnInit {
           this.assetForm.reset();
           this.imgPath = this.defaultUrl;
           this.reloadComponent(true);
+          this.isChanged=false;
         }
       }, err => {
         this.toastr.error({detail:"Asset creation failed", summary:"New asset is not created.", duration:5000});
@@ -76,6 +88,11 @@ export class NewAssetComponent implements OnInit {
         console.log(`After navigation I am on:${this.router.url}`)
       })
     })
+  }
+
+  triggerButtonClick() {
+    // Programmatically trigger click on the button in ChildComponent
+    this.uploadComponent.file.nativeElement.click();
   }
 
 }
