@@ -1,0 +1,76 @@
+<!-- Edit Vendor Modal -->
+
+<div class="modal fade" id="vendorEditModal" tabindex="-1" aria-labelledby="vendorEditModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <h1 class="modal-title fs-5" id="vendorEditModalLabel"> Edit Vendor </h1>
+                    <span class="form-text">Edit the specific details and submit.</span>
+                </div>
+                <button type="button" class="btn-close" #closeModal data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" [formGroup]="vendorEditForm" name="editVendorForm" (ngSubmit)="updateRecord()"
+                    #editVendorForm>
+                    <div class="row g-3 mt-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" name="vendorName" id="vendorName" class="form-control"
+                                    formControlName="name" [class.is-valid]="vendorEditForm.controls['name'].valid"
+                                    [class.is-invalid]="vendorEditForm.controls['name'].invalid" placeholder="">
+                                <label for="vendorName"> Vendor Name </label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="number" name="vendorMobileNo" class="form-control" id="vendorMobileNo"
+                                    formControlName="mobileNo"
+                                    [class.is-valid]="vendorEditForm.controls['mobileNo'].valid"
+                                    [class.is-invalid]="vendorEditForm.controls['mobileNo'].invalid" placeholder="">
+                                <label for="vendorMobileNo">Mobile Number</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating mt-4">
+                        <input type="text" name="vendorAddress" id="vendorAddress" class="form-control"
+                            formControlName="address" [class.is-valid]="vendorEditForm.controls['address'].valid"
+                            [class.is-invalid]="vendorEditForm.controls['address'].invalid" placeholder="">
+                        <label for="vendorAddress"> Vendor Address</label>
+                    </div>
+                    <div class="row g-4 mt-1">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <select name="supplyAssetType" id="supplyAssetType" class="form-select"
+                                    formControlName="supplyAssetType"
+                                    [class.is-valid]="vendorEditForm.controls['supplyAssetType'].valid">
+                                    <option selected disabled value="">-Select Supply Asset Type-</option>
+                                    <option value="{{type}}" *ngFor="let type of supplyAssetTypes">
+                                        {{type}}
+                                    </option>
+                                </select>
+                                <label for="supplyAssetType"> Supply Asset Type</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" name="vendorEmail" id="vendorEmail" class="form-control"
+                                    formControlName="email" [class.is-valid]="vendorEditForm.controls['email'].valid"
+                                    [class.is-invalid]="vendorEditForm.controls['email'].invalid" placeholder="">
+                                <label for="vendorEmail"> Vendor Email </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" [disabled]="vendorEditForm.invalid"
+                    (click)="updateRecord()" data-bs-dismiss="modal"> Edit </button>
+            </div>
+        </div>
+    </div>
+</div>
