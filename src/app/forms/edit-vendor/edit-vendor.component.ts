@@ -85,10 +85,10 @@ export class EditVendorComponent implements OnInit {
     
   }
 
-  reloadComponent(self: boolean, urlNavigator ?: string) {
+  reloadComponent(self: boolean, urlNavigator?: string) {
     console.log("Current route I am on:", this.router.url);
     const url = self ? this.router.url : urlNavigator;
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {       //skipLocatingChange: true - means 'don't update the url when navigating.'
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {       //skipLocatingChange: true - means 'don't update the url when navigating.'
       this.router.navigate([`/${url}`]).then(() => {
         console.log(`After navigation I am on: ${this.router.url}`)
       })
