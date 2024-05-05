@@ -16,6 +16,7 @@ export class EditVendorComponent implements OnInit {
   supplyAssetTypes: string[] = [];
   vendorEditForm: FormGroup;
 
+
   constructor(
     private vendorService: VendorService,
     private router: Router,
