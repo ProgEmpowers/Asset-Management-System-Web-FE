@@ -48,7 +48,7 @@ export class EditVendorComponent implements OnInit {
 
     console.log(this.vendorEditForm.value);
     console.log("Vendor ID: ", this.vendorEdit_ID);
-    
+
     if (this.vendorEditForm.valid == false) {
       return;
     }
@@ -67,11 +67,19 @@ export class EditVendorComponent implements OnInit {
     this.vendorService.updateVendor(this.vendorEdit_ID, this.vendorEditForm.value).subscribe(
       (data) => {
         if (data) {
-          this.toastServ.success({ detail: "Vendor is updated successfully.", summary: "Vendor is updated and saved to the system successfully.", duration: 5000 });
-          this.reloadComponent(true);
+          this.toastServ.success({
+            detail: "Vendor is updated successfully.",
+            summary: "Vendor is updated and saved to the system successfully.",
+            duration: 5000
+          });
+        } else {
+          this.toastServ.error({
+            detail: "Vendor is not updated.",
+            summary: "Vendor is not updated and saved to the system.",
+            duration: 5000
+          });
         }
-      }, err => {
-        this.toastServ.error({ detail: "Vendor is not updated.", summary: "Vendor is not updated and saved to the system.", duration: 5000 });
+        this.reloadComponent(true);
       }
     );
     this.vendorEditForm = new FormGroup({
@@ -82,17 +90,17 @@ export class EditVendorComponent implements OnInit {
       supplyAssetType: new FormControl("")
     });
 
-    
+
   }
 
-  reloadComponent(self: boolean, urlNavigator ?: string) {
+  reloadComponent(self: boolean, urlNavigator?: string) {
     console.log("Current route I am on:", this.router.url);
     const url = self ? this.router.url : urlNavigator;
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {       //skipLocatingChange: true - means 'don't update the url when navigating.'
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {       //skipLocatingChange: true - means 'don't update the url when navigating.'
       this.router.navigate([`/${url}`]).then(() => {
-        console.log(`After navigation I am on: ${this.router.url}`)
-      })
-    })
+        console.log(`After navigation I am on: ${this.router.url}`);
+      });
+    });
   }
 
 }

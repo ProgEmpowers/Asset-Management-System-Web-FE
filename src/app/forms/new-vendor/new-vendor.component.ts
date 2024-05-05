@@ -55,7 +55,7 @@ export class NewVendorComponent implements OnInit {
   //   this.vendorForm.get("imageUrl")?.setValue(this.imagePath);
   // }
 
-  submit() : void {
+  submit(): void {
     if (this.vendorForm.valid == false) {
       return;
     }
@@ -64,29 +64,36 @@ export class NewVendorComponent implements OnInit {
     ).subscribe(
       (e) => {
         if (e) {
-          this.toastServ.success({detail:"New Vendor created Successfully.", summary:"New vendor is added to the system successfully.", duration: 5000});
-          this.vendorForm.reset();
-          this.reloadComponent(true);
+          this.toastServ.success({
+            detail: "New Vendor created Successfully.",
+            summary: "New vendor is added to the system successfully.",
+            duration: 5000
+          });
           // this.imagePath = this.defaultUrl;
           // this.isChanged = false;
+        } else {
+          this.toastServ.error({
+            detail: "New Vendor is not added.",
+            summary: "Adding Vendor to the system failed.",
+            duration: 5000
+          });
+          console.log("Bad Request");
         }
-      }, err => {
-        this.toastServ.error({detail:"New Vendor is not added.", summary:"Adding Vendor to the system failed.", duration: 5000});
         this.vendorForm.reset();
-        console.log("Bad Request");
+        this.reloadComponent(true);
       }
-    )
+    );
   }
 
   //
-  reloadComponent(self: boolean, urlNavigator ?: string) {
+  reloadComponent(self: boolean, urlNavigator?: string) {
     console.log("Current route I am on:", this.router.url);
     const url = self ? this.router.url : urlNavigator;
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {       //skipLocatingChange: true - means 'don't update the url when navigating.'
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {       //skipLocatingChange: true - means 'don't update the url when navigating.'
       this.router.navigate([`/${url}`]).then(() => {
         console.log(`After navigation I am on: ${this.router.url}`)
       })
-    })
+    });
   }
 
   // triggerButtonClick() {
