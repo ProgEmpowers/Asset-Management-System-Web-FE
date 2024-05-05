@@ -54,7 +54,7 @@ export class VendorsTableComponent implements OnInit {
 
   updateVendor(id: number): void {
     this.vendorService.sendData(id);
-    console.log("vendor id to delete: " + this.vendorService.data$);
+    console.log("vendor id to edit: " + this.vendorService.data$);
   }
 
   // sendDataToOtherComponent() {
