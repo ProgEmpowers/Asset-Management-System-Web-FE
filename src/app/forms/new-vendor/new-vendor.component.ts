@@ -73,8 +73,8 @@ export class NewVendorComponent implements OnInit {
           // this.isChanged = false;
         } else {
           this.toastServ.error({
-            detail: "New Vendor is not added.",
-            summary: "Adding Vendor to the system failed.",
+            detail: "Failed to add the new vendor.",
+            summary: "There is already an existing vendor with the same mobile number and email address. Please, check the details and try again.",
             duration: 5000
           });
           console.log("Bad Request");

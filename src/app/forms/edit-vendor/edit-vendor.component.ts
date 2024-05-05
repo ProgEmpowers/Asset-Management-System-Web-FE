@@ -16,6 +16,7 @@ export class EditVendorComponent implements OnInit {
   supplyAssetTypes: string[] = [];
   vendorEditForm: FormGroup;
 
+
   constructor(
     private vendorService: VendorService,
     private router: Router,
@@ -80,6 +81,12 @@ export class EditVendorComponent implements OnInit {
           });
         }
         this.reloadComponent(true);
+      }, Error => {
+        this.toastServ.error({
+          detail: "Update Failed due to data existence.",
+          summary: "The same mobile number and the email is already exist in the system. Please, try again with different mobile number or email.",
+          duration: 5000
+        });
       }
     );
     this.vendorEditForm = new FormGroup({
