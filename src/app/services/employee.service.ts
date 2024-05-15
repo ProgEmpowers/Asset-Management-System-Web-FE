@@ -10,8 +10,11 @@ import { Employee } from '../Models/employee';
 export class EmployeeService  {
 
    apiurl = "https://localhost:7229/api/User";
+   apiurl2 = "https://localhost:7229/api/Auth/register";
 
    constructor(private http:HttpClient) { }
+
+
 
    // Get all employees from server
    getEmployeeList() : Observable<Employee[]> {
@@ -21,6 +24,12 @@ export class EmployeeService  {
    // delete employee by id
   deleteEmployee(id: string) : Observable<any> {
     return this.http.delete(this.apiurl + '/' + id);
+  }
+
+  // Submit new employee to server
+  createEmployee(employee: FormData) : Observable<any> {
+    console.log(employee);
+    return this.http.post(this.apiurl2, employee);
   }
 
 }

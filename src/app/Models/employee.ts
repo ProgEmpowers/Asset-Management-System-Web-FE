@@ -4,7 +4,7 @@ export interface Employee {
     phoneNumber?:string;
     firstName?:string;
     lastName?:string;
-    dob?:Date;
+    dob?:string;
     nic?:string;
     address?:string;
     jobPost?:string;

@@ -1,1 +1,102 @@
-<p>new-employee works!</p>
+<!-- Modal -->
+<div class="modal fade" id="employeeModal" tabindex="-1" aria-labelledby="employeeModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="row">
+            <h1 class="modal-title fs-5" id="employeeModalLabel">Add new asset</h1>
+            <span class="form-text">Please fill the form and submit</span>
+          </div>
+          <button #closeModel type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="" [formGroup]="employeeForm" name="newEmployeeForm" (ngSubmit)="submit()" #newEmployeeForm>
+  
+            <div class="row g-2 mb-2">
+              <div class="col-md">
+                <div class="form-floating">
+                  <input formControlName="firstName" type="text" class="form-control"
+                  [class.is-valid]="employeeForm.controls['firstName'].valid"
+                  [class.is-invalid]="employeeForm.controls['firstName'].invalid && (employeeForm.controls['firstName'].touched || employeeForm.controls['firstName'].dirty)"
+                  id="firstName" name="firstName" placeholder="First Name">
+                  <label for="firstName">First name</label>
+                </div>
+                <div class="form-text text-danger"
+                *ngIf="employeeForm.controls['firstName'].invalid && (employeeForm.controls['firstName'].touched || employeeForm.controls['firstName'].dirty)">
+                  This is required
+                </div>
+              </div>
+  
+              <div class="col-md">
+                <div class="form-floating">
+                  <input formControlName="lastName" type="text" class="form-control"
+                  [class.is-valid]="employeeForm.controls['lastName'].valid"
+                  [class.is-invalid]="employeeForm.controls['lastName'].invalid && (employeeForm.controls['lastName'].touched || employeeForm.controls['lastName'].dirty)"
+                  id="lastName" name="lastName" placeholder="lastName">
+                  <label for="lastName">Last Name</label>
+                </div>
+                <div class="form-text text-danger"
+                *ngIf="employeeForm.controls['lastName'].invalid && (employeeForm.controls['lastName'].touched || employeeForm.controls['lastName'].dirty)">
+                  This is required
+                </div>
+              </div>
+            </div>
+  
+            <div class="row g-2">
+              <div class="col-md">
+                <div class="form-floating">
+                  <input formControlName="email" type="email" class="form-control"
+                  [class.is-valid]="employeeForm.controls['email'].valid"
+                  [class.is-invalid]="employeeForm.controls['email'].invalid && (employeeForm.controls['email'].touched || employeeForm.controls['email'].dirty)"
+                  id="email" name="email" placeholder="Email">
+                  <label for="email">Email</label>
+                </div>
+                <div class="form-text text-danger"
+                *ngIf="employeeForm.controls['email'].invalid && (employeeForm.controls['email'].touched || employeeForm.controls['email'].dirty)">
+                  This is required
+                </div>
+              </div>
+            </div>
+  
+            <div class="form-floating  mt-2">
+              <input formControlName="password" type="password" class="form-control"
+              [class.is-valid]="employeeForm.controls['password'].valid && employeeForm.controls['password'].touched"
+              [class.is-invalid]="employeeForm.controls['password'].invalid && (employeeForm.controls['password'].touched || employeeForm.controls['password'].dirty)"
+              name="password" id="password" placeholder="password">
+              <label for="password">Password</label>
+            </div>
+            <div class="form-text text-danger"
+                *ngIf="employeeForm.controls['password'].invalid && (employeeForm.controls['password'].touched || employeeForm.controls['password'].dirty)">
+                  This is required
+            </div>
+  
+            <div class="col-md mt-2">
+              <div class="form-floating">
+                <select formControlName="role" class="form-select"
+                [class.is-valid]="employeeForm.controls['role'].valid"
+                name="role" id="role"
+                required>
+                  <option selected disabled value="">-Select role-</option>
+                  <option value="{{role}}" *ngFor="let role of Roles">
+                    {{role}}
+                  </option>
+                </select>
+                <label for="role">Role</label>
+              </div>
+            </div>
+  
+            <button type="submit" #submitBtn style="display: none;">Submit</button>
+          </form>
+        </div>
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid" (click)="submitBtn.click()" data-bs-dismiss="modal">
+            <i class="fas fa-save"></i>
+            Save</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  

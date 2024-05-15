@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataStateChangeEventArgs, PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { Observable } from 'rxjs';
 import { Employee } from '../../../Models/employee';
 import { EmployeeService } from '../../../services/employee.service';
 import { NgToastService } from 'ng-angular-popup';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-employee-table',
@@ -14,10 +15,8 @@ import { Router } from '@angular/router';
 export class EmployeeTableComponent implements OnInit {
 
   employeeList?: Employee[];
+  employeeIdToDelete?: string;
 
-  /**
-   *
-   */
   constructor(
     private employeeService:EmployeeService,
     private router: Router,
@@ -39,18 +38,20 @@ export class EmployeeTableComponent implements OnInit {
     )
   }
   
-  deleteEmployee(id:string): void{
-    this.employeeService.deleteEmployee(id)
-    .subscribe(
-      (res) => {
-        this.toaster.success({detail:"Employee deleted", summary:"Asset is deleted successfully.", duration:5000});
-        this.getAllEmployee();
-      }
-    )
-  }
+   deleteEmployee(id:string): void{
+     this.employeeService.deleteEmployee(id)
+     .subscribe(
+       (res) => {
+         this.toaster.success({detail:"Employee deleted", summary:"Asset is deleted successfully.", duration:5000});
+         this.getAllEmployee();
+       }
+     )
+   }
+ 
 
   public pageSetting:PageSettingsModel = {
-    pageSize:6
+    pageSize:7
   }
 
 }
+

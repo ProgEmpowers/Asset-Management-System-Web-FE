@@ -1,6 +1,6 @@
 <!-- Define grid columns -->
 <ejs-grid [dataSource]="employeeList" [allowPaging]="true" [pageSettings]="pageSetting"
-          [allowSorting]="true" [allowPdfExport]="true" [allowFiltering]="true" >
+          [allowSorting]="true" [allowPdfExport]="true"  >
   <e-columns>
     <e-column field='id' headerText='ID' textAlign='Left' width=60></e-column>
 
@@ -11,24 +11,31 @@
       </ng-template>
     </e-column>
 
-    <e-column field='address' headerText='Address' textAlign='Left' format='C2' width=90></e-column>
-    <e-column field='phoneNumber' headerText='Mobile No' textAlign='Left' format='C2' width=90></e-column>
+    <e-column field='address' headerText='Address' textAlign='Left'  width=90></e-column>
+    <e-column field='phoneNumber' headerText='Mobile No' textAlign='Left'  width=90></e-column>
     <e-column field='nic' headerText='NIC' textAlign='Left' width=100></e-column>
-    <e-column field='email' headerText='E mail' textAlign='Left' format='C2' width=100></e-column>
-    <!-- <e-column field='dob' headerText='DOB' textAlign='Left'  width=60></e-column> -->
-     <e-column field='jobPost' headerText='Job Post' textAlign='Left' format='yMd' width=60></e-column> 
+    <e-column field='email' headerText='E mail' textAlign='Left'  width=100></e-column>
+     <e-column field='jobPost' headerText='Job Post' textAlign='Left'  width=80></e-column> 
     
     <e-column headerText='' width='100' textAlign='Right'>
       <ng-template #template let-data>
         <td>
           <div>
             <button class="btn btn-outline btn-sm m-1" >Edit</button>
-            <button class="btn btn-outline-danger btn-sm m-1" (click)="deleteEmployee(data.id)" >Delete</button>
+             
+             <button class="btn btn-outline-danger btn-sm m-1" (click)="deleteEmployee(data.id)">Delete</button>
+
           </div>
         </td>
       </ng-template>
     </e-column>
 </e-columns>
 </ejs-grid>
+
+
+
+
+
+
 
 
