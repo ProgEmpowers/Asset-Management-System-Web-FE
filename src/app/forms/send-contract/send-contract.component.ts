@@ -4,6 +4,7 @@ import { ContractService } from '../../services/contract.service';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { VendorService } from '../../services/vendor.service';
+import { Vendor } from '../../Models/vendor';
 
 @Component({
   selector: 'app-send-contract',
@@ -13,7 +14,7 @@ import { VendorService } from '../../services/vendor.service';
 export class SendContractComponent implements OnInit {
 
   supplyAssetTypes: string[] = [];
-  vendorList: string[] = [];
+  vendorList?: Vendor[];
 
   contractForm: FormGroup;
 
@@ -24,10 +25,11 @@ export class SendContractComponent implements OnInit {
     private toastServ: NgToastService
   ) {
     this.contractForm = new FormGroup({
-      contract_title: new FormControl("", Validators.required),
-      description: new FormControl("", Validators.required),
-      contract_assets: new FormControl("", Validators.required),
-      contract_vendors: new FormControl("")
+      subject: new FormControl("", Validators.required),
+      message: new FormControl(""),
+      supplyAssetType: new FormControl("", Validators.required),
+      idOfVendor: new FormControl("", Validators.required),
+      vendorName: new FormControl("")
     })
   }
 
@@ -40,8 +42,8 @@ export class SendContractComponent implements OnInit {
         'Scanner',
         'Multiple Devices'
       ];
-      this.vendorServ.getVendorList().subscribe(names => {
-        this.vendorList = names;
+      this.vendorServ.getVendorList().subscribe(vendor => {
+        this.vendorList = vendor ?? [];
       });
   }
 
@@ -49,6 +51,7 @@ export class SendContractComponent implements OnInit {
     if(this.contractForm.valid == false) {
       return;
     }
+    console.log(this.contractForm.value);
     this.contractServ.createContract(this.contractForm.value).subscribe(
       (data) => {
         if(data) {

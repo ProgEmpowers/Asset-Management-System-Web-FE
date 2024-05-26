@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class ContractsComponent {
 
+  submitConsole() {
+    console.log("Submit button clicked");
+  }
 }

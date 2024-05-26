@@ -25,7 +25,7 @@ export class VendorsTableComponent implements OnInit {
   apiUrl = this.vendorService.apiurl;
 
   public pageSetting: PageSettingsModel = {
-    pageSize: 6
+    pageSize: 10
   }
 
   constructor(

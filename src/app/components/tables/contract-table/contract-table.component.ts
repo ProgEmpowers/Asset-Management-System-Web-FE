@@ -16,7 +16,7 @@ export class ContractTableComponent implements OnInit{
 
   apiUrl = this.contractServ.apiUrl;
   public pageSetting: PageSettingsModel = {
-    pageSize: 6
+    pageSize: 10
   }
 
   constructor(
@@ -24,6 +24,17 @@ export class ContractTableComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
+    this.getAllContracts();
   }
+
+  getAllContracts(): void {
+    this.contractServ.getAllContracts().subscribe(
+      (list) => {
+        this.contracts = list ?? [];
+      }
+    )
+  }
+
+
 
 }

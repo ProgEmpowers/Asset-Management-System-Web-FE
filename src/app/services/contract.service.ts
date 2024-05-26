@@ -20,12 +20,12 @@ export class ContractService {
     return this.http.post(this.apiUrl, contract);
   }
 
-  updateContract(id: number, contract: FormData) : Observable<any> {
-    return this.http.put(this.apiUrl + '/' + id, contract);
-  }
+  // updateContract(id: number, contract: FormData) : Observable<any> {
+  //   return this.http.put(this.apiUrl + '/' + id, contract);
+  // }
 
-  deleteContract(id: number) : Observable<any> {
-    return this.http.delete(this.apiUrl + '/' + id);
-  }
+  // deleteContract(id: number) : Observable<any> {
+  //   return this.http.delete(this.apiUrl + '/' + id);
+  // }
 
 }

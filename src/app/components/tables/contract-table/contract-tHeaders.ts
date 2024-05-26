@@ -8,45 +8,52 @@ interface table_options {
 
 export const Contract_tHeaders: table_options[] = [
     {
-        field: 'contract_id',
+        field: 'id',
         headerText: 'ID',
         textAlign: 'Left',
         type: 'string',
         width: 30
     },
     {
-        field: 'contract_date',
+        field: 'assignedDate',
         headerText: 'Contract Date',
         textAlign: '',
         type: 'Date',
         width: 60
     },
     {
-        field: 'title',
-        headerText: 'Title',
+        field: 'subject',
+        headerText: 'Subject',
         textAlign: '',
         type: 'string',
         width: 60
     },
     {
-        field: 'description',
-        headerText: 'Description',
+        field: 'message',
+        headerText: 'Message',
         textAlign: 'Left',
         type: 'string',
         width: 90
     },
     {
-        field: 'contract_assets',
-        headerText: 'Contract Assets',
+        field: 'supplyAssetType',
+        headerText: 'Supply Asset Type',
         textAlign: 'Left',
-        type: 'string[]',
+        type: 'string',
         width: 60
     },
     {
-        field: 'contract_vendors',
-        headerText: 'Contract Vendors',
+        field: 'idOfVendor',
+        headerText: 'Contract Vendor Id',
         textAlign: 'Left',
-        type: 'string[]',
+        type: 'string',
+        width: 60
+    },
+    {
+        field: 'vendorName',
+        headerText: 'Contract Vendor Name',
+        textAlign: 'Left',
+        type: 'string',
         width: 60
     }
 ]
