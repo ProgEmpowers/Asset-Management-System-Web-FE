@@ -6,6 +6,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { VendorsComponent } from './vendors/vendors.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { NewAssetComponent } from './forms/new-asset/new-asset.component';
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
   { path:"", redirectTo: "dashboard", pathMatch:'full' },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path:"assets", component: AssetsComponent },
   { path:"employees", component: EmployeesComponent },
   { path:"vendors", component: VendorsComponent },
-  { path:"notifications", component:NotificationsComponent }
+  { path:"notifications", component:NotificationsComponent },
+  { path:"login", component:LoginComponent}
 ];
 
 @NgModule({

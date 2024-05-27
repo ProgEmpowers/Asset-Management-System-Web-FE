@@ -1,0 +1,32 @@
+<div class="container ">
+  <div class="mt-5">
+    <div class="col-12 col-md-6 col-lg-4 mx-auto">
+      <h1>Login</h1>
+
+      <form [formGroup]="model" (ngSubmit)="onFormSubmit()">
+
+        <div class="mt-3">
+          <label for="email" class="form-label">E-mail</label>
+          <input formControlName="email" type="email" class="form-control" id="email" name="email"
+
+          [class.is-valid]="model.controls['email'].valid && model.controls['email'].touched"
+          [class.is-invalid]="model.controls['email'].invalid && (model.controls['email'].touched || model.controls['email'].dirty)">
+
+        </div>
+
+        <div class="mt-3">
+          <label for="password" class="form-label">Password</label>
+          <input formControlName="password" type="password" class="form-control" id="password" name="password"
+
+          [class.is-valid]="model.controls['password'].valid && model.controls['password'].touched"
+          [class.is-invalid]="model.controls['password'].invalid && (model.controls['password'].touched || model.controls['password'].dirty)">
+        </div>
+
+        <div class="mt-3">
+          <button type="submit" class="btn btn-primary " [disabled]="model.invalid">Login</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -2,5 +2,15 @@
   <div class="e-section-control col-6 text-end">
     <!-- To Render Menu. -->
   <ejs-menu class="top-nav-menu text-end" [items]='menuItems'></ejs-menu>
+
+  <ng-container *ngIf="user === undefined;else showLogout">
+    <a [routerLink]="['/login']" class="btn btn-primary ">Login</a>
+  </ng-container>
+
+  <ng-template #showLogout>
+    <span>{{user?.email}}</span>
+    <button class="btn btn-primary ms-3" (click)="onLogout()">Logout</button>
+  </ng-template>
+
   </div>
 </div>

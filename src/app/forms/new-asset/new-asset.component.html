@@ -38,7 +38,7 @@
                 <select formControlName="assetType" class="form-select"
                 [class.is-valid]="assetForm.controls['assetType'].valid"
                 name="assetType" id="assetType"
-
+                
                 required>
                   <option selected disabled value="">-Select type-</option>
                   <option value="{{type}}" *ngFor="let type of assetTypes">
