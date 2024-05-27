@@ -27,11 +27,16 @@ import { NotificationsTableComponent } from './components/tables/notifications-t
 import { NewAssetComponent } from './forms/new-asset/new-asset.component';
 import { NewEmployeeComponent } from './forms/new-employee/new-employee.component';
 import { NewVendorComponent } from './forms/new-vendor/new-vendor.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgToastModule } from 'ng-angular-popup';
 import { ToastrModule } from 'ngx-toastr';
 import { UploadComponent } from './components/upload/upload.component';
 import { DeleteRecordComponent } from './forms/delete-record/delete-record.component';
+import { LoginComponent } from './auth/login/login.component';
+import { Sidebar2Component } from './sidebar2/sidebar2.component';
+import { SentReportsComponent } from './sent-reports/sent-reports.component';
+import { SentRequestsComponent } from './sent-requests/sent-requests.component';
+
 
 @NgModule({
   declarations: [
@@ -58,6 +63,11 @@ import { DeleteRecordComponent } from './forms/delete-record/delete-record.compo
     NewVendorComponent,
     UploadComponent,
     DeleteRecordComponent
+    LoginComponent,
+    Sidebar2Component,
+    SentReportsComponent,
+    SentRequestsComponent
+
   ],
   imports: [
     BrowserModule,
@@ -69,6 +79,7 @@ import { DeleteRecordComponent } from './forms/delete-record/delete-record.compo
     PagerModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     NgToastModule,
     ToastrModule.forRoot()
   ],

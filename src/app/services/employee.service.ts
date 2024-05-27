@@ -1,8 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+
 import { Observable, Subject } from 'rxjs';
 import { Employee } from '../Models/employee';
+
+import { DataStateChangeEventArgs } from '@syncfusion/ej2-angular-grids';
+
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +35,6 @@ export class EmployeeService  {
     console.log(employee);
     return this.http.post(this.apiurl2, employee);
   }
-
 }
 
 

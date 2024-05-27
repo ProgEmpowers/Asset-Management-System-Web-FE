@@ -33,7 +33,9 @@ export class NewEmployeeComponent implements OnInit {
   ngOnInit(): void {
     this.Roles = [
       'Admin',
-      'Employee'
+      'AssetManeger',
+      'VendorManeger',
+      'NormalUser'
     ];
   }
 

@@ -11,8 +11,6 @@ export class AssetStockService {
 
   apiurl = "https://localhost:7095/api/Assets";
 
-
-
   constructor(private http:HttpClient) { }
 
 
