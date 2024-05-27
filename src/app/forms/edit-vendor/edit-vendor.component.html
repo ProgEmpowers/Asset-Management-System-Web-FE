@@ -15,31 +15,40 @@
                     #editVendorForm>
                     <div class="row g-3 mt-2">
                         <div class="col-md">
+                            <label for="vendorName"> Vendor Name</label>
                             <div class="form-floating">
                                 <input type="text" name="vendorName" id="vendorName" class="form-control"
                                     formControlName="name" [class.is-valid]="vendorEditForm.controls['name'].valid"
                                     [class.is-invalid]="vendorEditForm.controls['name'].invalid" placeholder="">
-                                <label for="vendorName"> Vendor Name </label>
+                                <label for="vendorName">{{selectedVendor?.name}}</label>
                             </div>
                         </div>
                         <div class="col-md">
+                            <label for="vendorMobileNo"> Vendor Mobile No.</label>
                             <div class="form-floating">
                                 <input type="number" name="vendorMobileNo" class="form-control" id="vendorMobileNo"
                                     formControlName="mobileNo"
                                     [class.is-valid]="vendorEditForm.controls['mobileNo'].valid"
                                     [class.is-invalid]="vendorEditForm.controls['mobileNo'].invalid" placeholder="">
-                                <label for="vendorMobileNo">Mobile Number</label>
+                                <label for="vendorMobileNo">{{selectedVendor?.mobileNo}}</label>
                             </div>
                         </div>
                     </div>
-                    <div class="form-floating mt-4">
-                        <input type="text" name="vendorAddress" id="vendorAddress" class="form-control"
-                            formControlName="address" [class.is-valid]="vendorEditForm.controls['address'].valid"
-                            [class.is-invalid]="vendorEditForm.controls['address'].invalid" placeholder="">
-                        <label for="vendorAddress"> Vendor Address</label>
+                    <div class="row g-3 mt-2">
+                        <div class="col-md">
+                            <label for="vendorAddress"> Address of Vendor</label>
+                            <div class="form-floating mt-4">
+                                <input type="text" name="vendorAddress" id="vendorAddress" class="form-control"
+                                    formControlName="address"
+                                    [class.is-valid]="vendorEditForm.controls['address'].valid"
+                                    [class.is-invalid]="vendorEditForm.controls['address'].invalid" placeholder="">
+                                <label for="vendorAddress"> {{selectedVendor?.address}}</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="row g-4 mt-1">
                         <div class="col-md">
+                            <label for="supplyAssetType"> Supplied Asset Type</label>
                             <div class="form-floating">
                                 <select name="supplyAssetType" id="supplyAssetType" class="form-select"
                                     formControlName="supplyAssetType"
@@ -49,15 +58,16 @@
                                         {{type}}
                                     </option>
                                 </select>
-                                <label for="supplyAssetType"> Supply Asset Type</label>
+                                <label for="supplyAssetType"> {{selectedVendor?.supplyAssetType}}</label>
                             </div>
                         </div>
                         <div class="col-md">
+                            <label for="vendorEmail"> Vendor Email</label>
                             <div class="form-floating">
                                 <input type="text" name="vendorEmail" id="vendorEmail" class="form-control"
                                     formControlName="email" [class.is-valid]="vendorEditForm.controls['email'].valid"
                                     [class.is-invalid]="vendorEditForm.controls['email'].invalid" placeholder="">
-                                <label for="vendorEmail"> Vendor Email </label>
+                                <label for="vendorEmail"> {{selectedVendor?.email}}</label>
                             </div>
                         </div>
                     </div>

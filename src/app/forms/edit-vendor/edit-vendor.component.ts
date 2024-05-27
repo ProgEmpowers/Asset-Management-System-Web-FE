@@ -1,3 +1,4 @@
+import { Vendor } from './../../Models/vendor';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { VendorService } from '../../services/vendor.service';
@@ -15,6 +16,7 @@ export class EditVendorComponent implements OnInit {
 
   supplyAssetTypes: string[] = [];
   vendorEditForm: FormGroup;
+  selectedVendor: Vendor | undefined;
 
 
   constructor(
@@ -31,7 +33,10 @@ export class EditVendorComponent implements OnInit {
     });
     this.vendorService.data$.subscribe(data => {
       this.vendorEdit_ID = data;
-    })
+      this.vendorService.getVendorById(this.vendorEdit_ID).subscribe(vendor => {
+        this.selectedVendor = vendor;
+      });
+    });
   }
 
   ngOnInit(): void {
@@ -43,6 +48,8 @@ export class EditVendorComponent implements OnInit {
       'Scanner',
       'Multiple Devices'
     ];
+
+    
   }
 
   updateRecord(): void {
