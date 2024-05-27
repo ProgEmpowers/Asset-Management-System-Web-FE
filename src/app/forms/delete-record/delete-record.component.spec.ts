@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewAlertComponent } from './new-alert.component';
+import { DeleteRecordComponent } from './delete-record.component';
 
-describe('NewAlertComponent', () => {
-  let component: NewAlertComponent;
-  let fixture: ComponentFixture<NewAlertComponent>;
+describe('DeleteRecordComponent', () => {
+  let component: DeleteRecordComponent;
+  let fixture: ComponentFixture<DeleteRecordComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NewAlertComponent]
+      declarations: [DeleteRecordComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(NewAlertComponent);
+    fixture = TestBed.createComponent(DeleteRecordComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

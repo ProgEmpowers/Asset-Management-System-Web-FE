@@ -5,6 +5,7 @@ import { Employee } from '../../../Models/employee';
 import { EmployeeService } from '../../../services/employee.service';
 import { NgToastService } from 'ng-angular-popup';
 import { Router } from '@angular/router';
+import { DeleteRecordService } from '../../../services/delete-record.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class EmployeeTableComponent implements OnInit {
   constructor(
     private employeeService:EmployeeService,
     private router: Router,
-    private toaster: NgToastService
+    private toaster: NgToastService,
+    private deleteService: DeleteRecordService
   ) {}
     
   
@@ -36,22 +38,34 @@ export class EmployeeTableComponent implements OnInit {
         this.employeeList = list;
       }
     )
+    
   }
   
-   deleteEmployee(id:string): void{
-     this.employeeService.deleteEmployee(id)
-     .subscribe(
-       (res) => {
-         this.toaster.success({detail:"Employee deleted", summary:"Asset is deleted successfully.", duration:5000});
-         this.getAllEmployee();
-       }
-     )
-   }
+  //  deleteEmployee(id:string): void{
+  //    this.employeeService.deleteEmployee(id)
+  //    .subscribe(
+  //      (res) => {
+  //        this.toaster.success({detail:"Employee deleted", summary:"Asset is deleted successfully.", duration:5000});
+  //        this.getAllEmployee();
+  //      }
+  //    )
+  //  }
+
+  deleteEmployee(id: string, type: string): void {
+    this.deleteService.sendId(id);
+    this.deleteService.sendType(type);
+
+    console.log(type);
+  }
+
  
 
   public pageSetting:PageSettingsModel = {
     pageSize:7
   }
+
+
+  
 
 }
 

@@ -31,7 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgToastModule } from 'ng-angular-popup';
 import { ToastrModule } from 'ngx-toastr';
 import { UploadComponent } from './components/upload/upload.component';
-import { NewAlertComponent } from './forms/new-alert/new-alert.component';
+import { DeleteRecordComponent } from './forms/delete-record/delete-record.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +57,7 @@ import { NewAlertComponent } from './forms/new-alert/new-alert.component';
     NewEmployeeComponent,
     NewVendorComponent,
     UploadComponent,
-    NewAlertComponent
+    DeleteRecordComponent
   ],
   imports: [
     BrowserModule,
