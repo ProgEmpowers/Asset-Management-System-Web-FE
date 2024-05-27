@@ -20,7 +20,7 @@
                                 <input type="text" name="vendorName" id="vendorName" class="form-control"
                                     formControlName="name" [class.is-valid]="vendorEditForm.controls['name'].valid"
                                     [class.is-invalid]="vendorEditForm.controls['name'].invalid" placeholder="">
-                                <label for="vendorName">{{selectedVendor?.name}}</label>
+                                <label for="vendorName" class="hidden-text">{{selectedVendor?.name}}</label>
                             </div>
                         </div>
                         <div class="col-md">
@@ -30,7 +30,7 @@
                                     formControlName="mobileNo"
                                     [class.is-valid]="vendorEditForm.controls['mobileNo'].valid"
                                     [class.is-invalid]="vendorEditForm.controls['mobileNo'].invalid" placeholder="">
-                                <label for="vendorMobileNo">{{selectedVendor?.mobileNo}}</label>
+                                <label for="vendorMobileNo" class="hidden-text">{{selectedVendor?.mobileNo}}</label>
                             </div>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                                     formControlName="address"
                                     [class.is-valid]="vendorEditForm.controls['address'].valid"
                                     [class.is-invalid]="vendorEditForm.controls['address'].invalid" placeholder="">
-                                <label for="vendorAddress"> {{selectedVendor?.address}}</label>
+                                <label for="vendorAddress" class="hidden-text"> {{selectedVendor?.address}}</label>
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                                         {{type}}
                                     </option>
                                 </select>
-                                <label for="supplyAssetType"> {{selectedVendor?.supplyAssetType}}</label>
+                                <label for="supplyAssetType" class="hidden-text"> {{selectedVendor?.supplyAssetType}}</label>
                             </div>
                         </div>
                         <div class="col-md">
@@ -67,7 +67,7 @@
                                 <input type="text" name="vendorEmail" id="vendorEmail" class="form-control"
                                     formControlName="email" [class.is-valid]="vendorEditForm.controls['email'].valid"
                                     [class.is-invalid]="vendorEditForm.controls['email'].invalid" placeholder="">
-                                <label for="vendorEmail"> {{selectedVendor?.email}}</label>
+                                <label for="vendorEmail" class="hidden-text"> {{selectedVendor?.email}}</label>
                             </div>
                         </div>
                     </div>
