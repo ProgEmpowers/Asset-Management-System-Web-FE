@@ -9,7 +9,7 @@ import { Asset } from '../Models/asset';
 })
 export class AssetStockService {
 
-  apiurl = "https://localhost:7095/api/Assets";
+  apiurl = "http://localhost:5240/api/Assets"; 
 
 
 

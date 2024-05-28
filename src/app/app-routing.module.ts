@@ -6,12 +6,14 @@ import { EmployeesComponent } from './employees/employees.component';
 import { VendorsComponent } from './vendors/vendors.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { NewAssetComponent } from './forms/new-asset/new-asset.component';
+import { DisposalsComponent } from './disposals/disposals.component';
 
 const routes: Routes = [
   { path:"", redirectTo: "dashboard", pathMatch:'full' },
   { path:"dashboard", component: DashboardComponent },
   { path:"assets/new", component: NewAssetComponent},
   { path:"assets", component: AssetsComponent },
+  {path:"disposals",component: DisposalsComponent},
   { path:"employees", component: EmployeesComponent },
   { path:"vendors", component: VendorsComponent },
   { path:"notifications", component:NotificationsComponent }

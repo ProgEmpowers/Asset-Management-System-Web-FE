@@ -31,6 +31,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgToastModule } from 'ng-angular-popup';
 import { ToastrModule } from 'ngx-toastr';
 import { UploadComponent } from './components/upload/upload.component';
+import { DisposalsComponent } from './disposals/disposals.component';
+import { DisposalsTableComponent } from './components/tables/disposals-table/disposals-table.component';
+import { NewsellingAssetComponent } from './forms/newselling-asset/newselling-asset.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,10 @@ import { UploadComponent } from './components/upload/upload.component';
     NewAssetComponent,
     NewEmployeeComponent,
     NewVendorComponent,
-    UploadComponent
+    UploadComponent,
+    DisposalsComponent,
+    DisposalsTableComponent,
+    NewsellingAssetComponent
   ],
   imports: [
     BrowserModule,
