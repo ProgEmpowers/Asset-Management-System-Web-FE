@@ -54,4 +54,4 @@ export const navbarData = [
   //     icon: 'fal fa-door-open',
   //     label: 'Log Out'
   // }
-] 
+]
