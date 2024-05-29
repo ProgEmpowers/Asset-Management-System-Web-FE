@@ -1,0 +1,85 @@
+<nav class="container">
+  <div class="col nav-content-container">
+
+    <!--Top logo area-->
+    <div class="logo-container">
+      <img class="col-12" src="../../assets/corzent-logo-white.png" alt="" width="">
+    </div>
+
+    <!--nav link area-->
+
+    <div class="col">
+      <div class="nav-links">
+        <ul class="sidenav-nav">
+
+          <ng-container *ngIf="user !== undefined && ( user?.roles?.includes('NormalUser') || user?.roles?.includes('Admin') || user?.roles?.includes('AssetManeger') || user?.roles?.includes('VendorManeger'))">
+            <li class="sidenav-nav-item">
+              <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','dashboard']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">Dashboard</span></a>
+            </li>
+          </ng-container>
+
+          <ng-container *ngIf="user !== undefined && ( user?.roles?.includes('AssetManeger') || user?.roles?.includes('Admin') || user?.roles?.includes('NormalUser') )">
+            <li class="sidenav-nav-item">
+              <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','assets']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">Assets</span></a>
+            </li>
+          </ng-container>
+
+          <ng-container *ngIf="user !== undefined && ( user?.roles?.includes('AssetManeger') || user?.roles?.includes('Admin') || user?.roles?.includes('VendorManeger') )">
+            <li class="sidenav-nav-item">
+              <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','disposals']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">Disposals</span></a>
+            </li>
+          </ng-container>
+
+          <ng-container *ngIf="user !== undefined && ( user?.roles?.includes('AssetManeger') || user?.roles?.includes('Admin') )">
+            <li class="sidenav-nav-item">
+              <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','employees']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">Employees</span></a>
+            </li>
+          </ng-container>
+
+          <ng-container *ngIf="user !== undefined && ( user?.roles?.includes('VendorManeger') || user?.roles?.includes('Admin') )">
+            <li class="sidenav-nav-item">
+              <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','vendors']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">Vendors</span></a>
+            </li>
+          </ng-container>
+
+          <ng-container *ngIf="user !== undefined && ( user?.roles?.includes('VendorManeger') || user?.roles?.includes('Admin') )">
+            <li class="sidenav-nav-item">
+              <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','contracts']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">Contracts</span></a>
+            </li>
+          </ng-container>
+
+          <ng-container *ngIf="user !== undefined && ( user?.roles?.includes('NormalUser') || user?.roles?.includes('Admin') || user?.roles?.includes('AssetManeger') || user?.roles?.includes('VendorManeger') )">
+            <li class="sidenav-nav-item">
+              <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','notifications']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">Notifications</span></a>
+            </li>
+          </ng-container>
+
+          <ng-container *ngIf="user !== undefined && ( user?.roles?.includes('AssetManeger') || user?.roles?.includes('Admin') )">
+            <li class="sidenav-nav-item">
+              <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','requests']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">R-Requests</span></a>
+            </li>
+          </ng-container>
+
+          <ng-container *ngIf="user !== undefined && user?.roles?.includes('NormalUser')">
+            <li class="sidenav-nav-item">
+              <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','sentrequests']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">S-Requests</span></a>
+            </li>
+          </ng-container>
+
+          <ng-container *ngIf="user !== undefined && ( user?.roles?.includes('AssetManeger') || user?.roles?.includes('Admin') )">
+            <li class="sidenav-nav-item">
+              <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','reports']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">R-Reports</span></a>
+            </li>
+          </ng-container>
+
+          <ng-container ng-container *ngIf="user !== undefined && user?.roles?.includes('NormalUser')">
+            <li class="sidenav-nav-item">
+              <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','sentreports']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">S-Reports</span></a>
+            </li>
+          </ng-container>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

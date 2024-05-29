@@ -71,7 +71,7 @@ export class VendorsTableComponent implements OnInit {
   //     )
   // }
 
-  deleteVendor(id: number, type: string): void {
+  deleteVendor(id: string, type: string): void {
     this.deleteService.sendId(id);
     this.deleteService.sendType(type);
 

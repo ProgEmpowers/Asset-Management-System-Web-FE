@@ -46,7 +46,7 @@ export class VendorService extends Subject<DataStateChangeEventArgs> {
   }
 
   // Delete a vendor
-  deleteVendor(id: number) : Observable<any> {
+  deleteVendor(id: string) : Observable<any> {
     return this.http.delete(this.apiurl + '/' + id);
   }
 }

@@ -27,12 +27,16 @@ import { NotificationsTableComponent } from './components/tables/notifications-t
 import { NewAssetComponent } from './forms/new-asset/new-asset.component';
 import { NewEmployeeComponent } from './forms/new-employee/new-employee.component';
 import { NewVendorComponent } from './forms/new-vendor/new-vendor.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgToastModule } from 'ng-angular-popup';
 import { ToastrModule } from 'ngx-toastr';
 import { UploadComponent } from './components/upload/upload.component';
-import { EditVendorComponent } from './forms/edit-vendor/edit-vendor.component';
 import { DeleteRecordComponent } from './forms/delete-record/delete-record.component';
+import { LoginComponent } from './auth/login/login.component';
+import { Sidebar2Component } from './sidebar2/sidebar2.component';
+import { SentReportsComponent } from './sent-reports/sent-reports.component';
+import { SentRequestsComponent } from './sent-requests/sent-requests.component';
+import { EditVendorComponent } from './forms/edit-vendor/edit-vendor.component';
 import { ContractsComponent } from './contracts/contracts.component';
 import { ContractTableComponent } from './components/tables/contract-table/contract-table.component';
 import { SendContractComponent } from './forms/send-contract/send-contract.component';
@@ -61,6 +65,12 @@ import { SendContractComponent } from './forms/send-contract/send-contract.compo
     NewEmployeeComponent,
     NewVendorComponent,
     UploadComponent,
+    DeleteRecordComponent,
+    LoginComponent,
+    Sidebar2Component,
+    SentReportsComponent,
+    SentRequestsComponent,
+    UploadComponent,
     EditVendorComponent,
     DeleteRecordComponent,
     ContractsComponent,
@@ -77,6 +87,7 @@ import { SendContractComponent } from './forms/send-contract/send-contract.compo
     PagerModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     NgToastModule,
     ToastrModule.forRoot()
   ],

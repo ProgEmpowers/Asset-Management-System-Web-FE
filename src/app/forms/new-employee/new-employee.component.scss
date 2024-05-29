@@ -1,0 +1,17 @@
+@import '../../../theme.scss';
+
+.img-wrapper {
+  width: 120px;
+  height: 120px;
+  border: 2px dashed $border;
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+.img-wrapper:hover {
+  cursor: pointer;
+}
+
+.success {
+  border-color: $success;
+}
