@@ -13,10 +13,8 @@ import { Router } from '@angular/router';
 export class DeleteRecordComponent implements OnInit {
 
   delete_type: string = '';
-  delete_id: number = 0;
+  delete_id: string = '';
   public vendors?: Vendor[];
-
-
 
   constructor(
     private toastServ: NgToastService,
@@ -42,11 +40,11 @@ export class DeleteRecordComponent implements OnInit {
     }
     console.log("delete-id: " + this.delete_id);
     console.log("delete-type: " + this.delete_type);
-    this.delete_id = 0;
+    this.delete_id = '';
     this.delete_type = '';
   }
 
-  deleteVendor(id: number): void {
+  deleteVendor(id: string): void {
     this.vendorService.deleteVendor(id).subscribe(
       () => {
         this.toastServ.success({ detail: "Vendor deleted successfully.", summary: "Vendor is deleted successfully from the system.", duration: 5000 });

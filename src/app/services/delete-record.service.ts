@@ -14,7 +14,7 @@ export class DeleteRecordService {
 
   constructor() { }
 
-  sendId(id: number) {
+  sendId(id: string) {
     this.deleteRecord_id.next(id);
   }
 
