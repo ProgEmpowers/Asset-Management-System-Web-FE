@@ -1,12 +1,42 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+
+import { Observable, Subject } from 'rxjs';
+import { Employee } from '../Models/employee';
+
 import { DataStateChangeEventArgs } from '@syncfusion/ej2-angular-grids';
-import { Subject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService extends Subject<DataStateChangeEventArgs>  {
+export class EmployeeService  {
 
-  constructor(private http:HttpClient) { super(); }
+   apiurl = "https://localhost:7229/api/User";
+   apiurl2 = "https://localhost:7229/api/Auth/register";
+
+   constructor(private http:HttpClient) { }
+
+
+
+   // Get all employees from server
+   getEmployeeList() : Observable<Employee[]> {
+     return this.http.get<Employee[]>(this.apiurl + '')
+   }
+
+   // delete employee by id
+  deleteEmployee(id: string) : Observable<any> {
+    return this.http.delete(this.apiurl + '/' + id);
+  }
+
+  // Submit new employee to server
+  createEmployee(employee: FormData) : Observable<any> {
+    console.log(employee);
+    return this.http.post(this.apiurl2, employee);
+  }
 }
+
+
+
+
