@@ -36,7 +36,10 @@ import { LoginComponent } from './auth/login/login.component';
 import { Sidebar2Component } from './sidebar2/sidebar2.component';
 import { SentReportsComponent } from './sent-reports/sent-reports.component';
 import { SentRequestsComponent } from './sent-requests/sent-requests.component';
-
+import { EditVendorComponent } from './forms/edit-vendor/edit-vendor.component';
+import { ContractsComponent } from './contracts/contracts.component';
+import { ContractTableComponent } from './components/tables/contract-table/contract-table.component';
+import { SendContractComponent } from './forms/send-contract/send-contract.component';
 
 @NgModule({
   declarations: [
@@ -62,12 +65,17 @@ import { SentRequestsComponent } from './sent-requests/sent-requests.component';
     NewEmployeeComponent,
     NewVendorComponent,
     UploadComponent,
-    DeleteRecordComponent
+    DeleteRecordComponent,
     LoginComponent,
     Sidebar2Component,
     SentReportsComponent,
-    SentRequestsComponent
-
+    SentRequestsComponent,
+    UploadComponent,
+    EditVendorComponent,
+    DeleteRecordComponent,
+    ContractsComponent,
+    ContractTableComponent,
+    SendContractComponent
   ],
   imports: [
     BrowserModule,

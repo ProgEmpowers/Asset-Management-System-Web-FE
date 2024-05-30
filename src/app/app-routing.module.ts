@@ -7,6 +7,7 @@ import { VendorsComponent } from './vendors/vendors.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { NewAssetComponent } from './forms/new-asset/new-asset.component';
 import { LoginComponent } from './auth/login/login.component';
+import { ContractsComponent } from './contracts/contracts.component';
 
 const routes: Routes = [
   { path:"", redirectTo: "dashboard", pathMatch:'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path:"assets/new", component: NewAssetComponent},
   { path:"assets", component: AssetsComponent },
   { path:"employees", component: EmployeesComponent },
+  { path:"contracts", component: ContractsComponent },
   { path:"vendors", component: VendorsComponent },
   { path:"notifications", component:NotificationsComponent },
   { path:"login", component:LoginComponent}

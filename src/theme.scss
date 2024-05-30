@@ -15,6 +15,7 @@ $failed: #FF1E34;
 $success-bg: #5FBC6230;
 $failed-bg: #FF1E3430;
 $border:#acb0b8;
+$hidden-text:#4d9fb8;
 
 
 .btn {
@@ -29,7 +30,7 @@ $border:#acb0b8;
 .btn.btn-primary
 {
   border: 1px solid $bg-dark;
-  background-color: $bg-dark;
+  background-color: #198754;
   border-color: $bg-dark;
   min-width: 100px;
 }
@@ -49,6 +50,7 @@ $border:#acb0b8;
 .btn.btn-secondary {
   background-color: transparent;
   color: $bg-dark;
+  border-color: $bg-dark;
 }
 
 .btn.btn-secondary:active {

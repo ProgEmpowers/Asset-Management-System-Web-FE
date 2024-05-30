@@ -1,0 +1,18 @@
+<!-- Define grid columns of contract table -->
+<ejs-grid [dataSource]="contracts" [allowPaging]="true" [pageSettings]="pageSetting" [allowSorting]="true"
+    [allowPdfExport]="true">
+    <e-columns>
+        <e-column *ngFor="let tHeader of contract_tHeaders" field="{{tHeader.field}}"
+            headerText="{{tHeader.headerText}}" textAlign="{{tHeader.textAlign}}" type="{{tHeader.type}}"
+            width="{{tHeader.width}}"></e-column>
+            <e-column textAlign="Right" width="80">
+                <ng-template #template let-data>
+                    <td>
+                        <div>
+                            <button type="button" class="btn btn-sm m-1" data-bs-toggle="modal">Further Request</button>
+                        </div>
+                    </td>
+                </ng-template>
+            </e-column>
+    </e-columns>
+</ejs-grid>
