@@ -6,7 +6,7 @@
       <ng-template #template let-data>
         <td>
           <div class="image">
-            <img src="{{data.imageUrl}}" alt="{{data.imageUrl}}" width="32px" />
+            <img src="{{data.imageUrl}}" alt="{{data.imageUrl}}" width="40rem" height="40rem" class="asset-img rounded" />
           </div>
         </td>
       </ng-template>
@@ -21,7 +21,11 @@
         <td>
           <div>
             <button class="btn btn-outline btn-sm m-1">Edit</button>
-            <button class="btn btn-outline-danger btn-sm m-1" (click)="deleteAsset(data.id)">Delete</button>
+            <button class="btn btn-outline-info btn-sm m-1"
+            (click)="sendData(data)"
+            [routerLink]="[data.id]"
+            >View</button>
+            <button class="btn btn-outline-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#delete-record" (click)="deleteAsset(data.id, 'asset')">Delete</button>
           </div>
         </td>
       </ng-template>

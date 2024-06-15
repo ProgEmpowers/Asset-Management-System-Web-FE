@@ -1,7 +1,7 @@
 export interface Asset {
   id?:number;
   imageUrl?: string;
-  assetName?: string | undefined;
+  name?: string | undefined;
   assetType?:string;
   description?:string;
   qrCode?:string;
