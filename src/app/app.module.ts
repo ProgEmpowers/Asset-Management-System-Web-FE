@@ -40,6 +40,7 @@ import { EditVendorComponent } from './forms/edit-vendor/edit-vendor.component';
 import { ContractsComponent } from './contracts/contracts.component';
 import { ContractTableComponent } from './components/tables/contract-table/contract-table.component';
 import { SendContractComponent } from './forms/send-contract/send-contract.component';
+import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { SendContractComponent } from './forms/send-contract/send-contract.compo
     DeleteRecordComponent,
     ContractsComponent,
     ContractTableComponent,
-    SendContractComponent
+    SendContractComponent,
+    ViewAssetComponent
   ],
   imports: [
     BrowserModule,

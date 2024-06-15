@@ -1,0 +1,22 @@
+@import '../../../theme.scss';
+
+
+.form-control {
+  max-width: 400px;
+}
+
+.nav-item {
+  cursor: pointer;
+}
+
+.nav-link {
+  color: $text-default;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.isHidden {
+  display: none;
+}

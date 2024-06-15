@@ -10,7 +10,7 @@
     <div class="card-group mt-4">
       <app-asset-card *ngFor="let item of assetList | slice: (page-1) * pageSize : page * pageSize; "
       [id]="item.id"
-      [name]="item.assetName"
+      [name]="item.name"
       [model]="item.assetType"
       [year]="item.year"
       [imgUrl]="item.imageUrl"
