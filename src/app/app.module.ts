@@ -80,7 +80,7 @@ import { ViewEmployeeComponent } from './forms/view-employee/view-employee.compo
     ContractTableComponent,
     SendContractComponent,
     ViewAssetComponent,
-    AssignAssetsComponent
+    AssignAssetsComponent,
     ViewAssetComponent,
     ViewEmployeeComponent
   ],
