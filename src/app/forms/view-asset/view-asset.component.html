@@ -5,7 +5,15 @@
       <button type="button" class="btn btn-outline-secondary cta">
         Dispose
       </button>
-      <button type="button" class="btn btn-primary cta">Check in</button>
+      <button
+        type="button"
+        class="btn btn-primary cta"
+        data-bs-toggle="modal"
+        data-bs-target="#assignAssetModal"
+        (click)="onCheckIn()"
+      >
+        Check in
+      </button>
     </div>
   </div>
 </div>
@@ -18,7 +26,7 @@
             <div class="d-flex">
               <img
                 [src]="item.imageUrl"
-                class="object-fill-cover border p-4 rounded"
+                class="object-fit-cover border p-4 rounded"
                 style="object-position: center"
                 width="150rem"
                 height="150rem"
@@ -34,15 +42,20 @@
                   <span>Availability :</span>
                 </div>
                 <div class="col-6">
-                  <span>{{ item.isActive }}</span>
+                  <span
+                    class="badge rounded-pill d-inline-block"
+                    style="min-width: 70px;"
+                    [ngClass]="getStatus(statusCode!).class"
+                    >{{ getStatus(statusCode!).text }}</span
+                  >
                 </div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="statusCode == 2">
                 <div class="col-4">
                   <span>Assigned to :</span>
                 </div>
                 <div class="col-6">
-                  <span>Current user</span>
+                  <span>{{ item.userId }}</span>
                 </div>
               </div>
             </div>
@@ -50,13 +63,28 @@
         </div>
         <ul class="nav nav-tabs my-4">
           <li class="nav-item">
-            <a class="nav-link" [ngClass]="{'active': isTab1Open()}" (click)="onTab1Click()">Primary Info</a>
+            <a
+              class="nav-link"
+              [ngClass]="{ active: isTab1Open() }"
+              (click)="onTab1Click()"
+              >Primary Info</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link" [ngClass]="{'active': isTab2Open()}" (click)="onTab2Click()">Vendor</a>
+            <a
+              class="nav-link"
+              [ngClass]="{ active: isTab2Open() }"
+              (click)="onTab2Click()"
+              >Vendor</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link" [ngClass]="{'active': isTab3Open()}" (click)="onTab3Click()">View log</a>
+            <a
+              class="nav-link"
+              [ngClass]="{ active: isTab3Open() }"
+              (click)="onTab3Click()"
+              >View log</a
+            >
           </li>
         </ul>
         <div class="row w-50 mt-4 px-4" [class.isHidden]="!isTab1Open()">
@@ -64,7 +92,9 @@
           <div class="my-4">
             <form [formGroup]="editForm">
               <div class="mb-3 row">
-                <label for="name" class="col-sm-4 col-form-label">Name</label>
+                <label for="name" class="col-sm-4 col-form-label fw-bold"
+                  >Name</label
+                >
                 <div class="col-sm-8">
                   <input
                     formControlName="name"
@@ -77,7 +107,9 @@
                 </div>
               </div>
               <div class="mb-3 row">
-                <label for="id" class="col-sm-4 col-form-label">Id</label>
+                <label for="id" class="col-sm-4 col-form-label fw-bold"
+                  >Id</label
+                >
                 <div class="col-sm-8">
                   <input
                     formControlName="id"
@@ -90,7 +122,7 @@
                 </div>
               </div>
               <div class="mb-3 row">
-                <label for="assetType" class="col-sm-4 col-form-label"
+                <label for="assetType" class="col-sm-4 col-form-label fw-bold"
                   >Type</label
                 >
                 <div class="col-sm-8">
@@ -107,7 +139,7 @@
                 </div>
               </div>
               <div class="mb-3 row">
-                <label for="description" class="col-sm-4 col-form-label"
+                <label for="description" class="col-sm-4 col-form-label fw-bold"
                   >Description</label
                 >
                 <div class="col-sm-8">
@@ -126,7 +158,14 @@
           </div>
           <div class="my-4 row pe-0">
             <div class="gap-2 text-end pe-0">
-              <button type="button" class="btn btn-primary cta" (click)="onSave()" [disabled]="!isDirty">Save changes</button>
+              <button
+                type="button"
+                class="btn btn-primary cta"
+                (click)="onSave()"
+                [disabled]="!isDirty"
+              >
+                Save changes
+              </button>
             </div>
           </div>
         </div>
@@ -151,9 +190,7 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
   </div>
 </div>

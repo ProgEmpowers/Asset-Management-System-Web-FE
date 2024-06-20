@@ -1,5 +1,5 @@
 <!-- Define grid columns -->
-<ejs-grid [dataSource]="assetList" [allowPaging]="true" [pageSettings]="pageSetting" [allowSorting]="true">
+<!-- <ejs-grid [dataSource]="assetList" [allowPaging]="true" [pageSettings]="pageSetting" [allowSorting]="true">
   <e-columns>
     <e-column field='id' headerText='ID' textAlign='Left' width=30></e-column>
     <e-column headerText='' width='30' textAlign='Right'>
@@ -13,9 +13,9 @@
     </e-column>
     <e-column field='name' headerText='Name' width=60></e-column>
     <e-column field='assetType' headerText='Type' textAlign='Left' format='C2' width=60></e-column>
-    <e-column field='description' headerText='Description' textAlign='Left' format='C2' width=90></e-column>
     <e-column field='assetValue' headerText='Value' textAlign='Left' format='C2' width=60></e-column>
-    <e-column field='isActive' headerText='isActive' textAlign='Left' format='yMd' width=60></e-column>
+    <e-column field='createdOn' headerText='Date Created' textAlign='Left' format='yMd' width=60></e-column>
+    <e-column field='userId' headerText='Current User' textAlign='Left' format='yMd' width=60></e-column>
     <e-column headerText='' width='80' textAlign='Right'>
       <ng-template #template let-data>
         <td>
@@ -31,4 +31,73 @@
       </ng-template>
     </e-column>
   </e-columns>
-</ejs-grid>
+</ejs-grid> -->
+
+
+<table class="table table-striped  align-middle my-4 bg-white">
+  <thead class="bg-light">
+    <tr>
+      <th>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+        </div>
+      </th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Current user</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let asset of assetList">
+      <td>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        </div>
+      </td>
+      <td>
+        {{asset.id}}
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+          <img
+              [src]="asset.imageUrl"
+              alt=""
+              style="width: 45px; height: 45px;object-position: center;"
+              class="rounded object-fit-cover"
+              />
+          <div class="ms-3">
+            <p class="fw-bold mb-1">{{asset.name}}</p>
+            <p class="text-muted mb-0">{{asset.assetType}}</p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <!-- <p class="fw-normal mb-1">Software engineer</p> -->
+        <p class="mb-0">{{asset.description}}</p>
+        <p class="text-muted mb-0 small">Created on {{asset.createdOn}}</p>
+      </td>
+      <td>
+        <span class="badge rounded-pill d-inline-block" style="min-width: 70px;" [ngClass]="getStatus(asset.assetStatus!).class">{{getStatus(asset.assetStatus!).text}}</span>
+      </td>
+      <td>{{asset.userId}}</td>
+      <td>
+        <!-- <button type="button" class="btn btn-link btn-sm btn-rounded">
+          Edit
+        </button> -->
+        <button type="button" class="btn btn-link btn-sm btn-rounded"
+        (click)="sendData(asset)"
+            [routerLink]="[asset.id]">
+          View
+        </button>
+        <button type="button" class="btn btn-link btn-sm btn-rounded text-danger"
+        data-bs-toggle="modal" data-bs-target="#delete-record" (click)="deleteAsset(asset.id!, 'asset')">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+

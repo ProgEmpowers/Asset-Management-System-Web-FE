@@ -41,6 +41,7 @@ import { ContractsComponent } from './contracts/contracts.component';
 import { ContractTableComponent } from './components/tables/contract-table/contract-table.component';
 import { SendContractComponent } from './forms/send-contract/send-contract.component';
 import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
+import { AssignAssetsComponent } from './forms/assign-assets/assign-assets.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
     ContractsComponent,
     ContractTableComponent,
     SendContractComponent,
-    ViewAssetComponent
+    ViewAssetComponent,
+    AssignAssetsComponent
   ],
   imports: [
     BrowserModule,

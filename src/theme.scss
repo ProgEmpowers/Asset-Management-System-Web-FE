@@ -29,9 +29,9 @@ $hidden-text:#4d9fb8;
 
 .btn.btn-primary
 {
-  border: 1px solid $bg-dark;
+  // border: 1px solid $bg-dark;
   background-color: #198754;
-  border-color: $bg-dark;
+  // border-color: $bg-dark;
   min-width: 100px;
 }
 
@@ -39,7 +39,7 @@ $hidden-text:#4d9fb8;
 {
   color: $bg-dark;
   background-color: transparent;
-  border-color: $bg-dark;
+  // border-color: $bg-dark;
 }
 
 .btn.btn-primary:active {
@@ -48,9 +48,9 @@ $hidden-text:#4d9fb8;
 }
 
 .btn.btn-secondary {
-  background-color: transparent;
+  background-color: $bg-white;
   color: $bg-dark;
-  border-color: $bg-dark;
+  border-color: $bg-white;
 }
 
 .btn.btn-secondary:active {
