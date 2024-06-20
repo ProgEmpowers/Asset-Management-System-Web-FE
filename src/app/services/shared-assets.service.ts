@@ -3,11 +3,10 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { Asset } from '../Models/asset';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SharedAssetsService {
-
-  constructor() { }
+  constructor() {}
 
   private dataSubject = new BehaviorSubject<Asset>({});
   data$ = this.dataSubject.asObservable();

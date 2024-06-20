@@ -4,24 +4,23 @@ import { Asset } from '../../Models/asset';
 @Component({
   selector: 'app-asset-card',
   templateUrl: './asset-card.component.html',
-  styleUrl: './asset-card.component.scss'
+  styleUrl: './asset-card.component.scss',
 })
 export class AssetCardComponent {
-  @Input("id") id!:number | undefined;
-  @Input("name") name!:string | undefined;
-  @Input("model") model!:string | undefined;
-  @Input("year") year!:string | undefined;
-  @Input("imgUrl") imgUrl!:string | undefined;
+  @Input('id') id!: string | undefined;
+  @Input('name') name!: string | undefined;
+  @Input('model') model!: string | undefined;
+  @Input('year') year!: string | undefined;
+  @Input('imgUrl') imgUrl!: string | undefined;
 
-  public asset!:Asset;
-  public toggleSideBar:boolean = true;
+  public asset!: Asset;
+  public toggleSideBar: boolean = true;
 
-  constructor(){
-  }
+  constructor() {}
 
   public viewAssetInfo() {
     this.toggleSideBar = !this.toggleSideBar;
   }
 
-  @Output("isToggled") isToggled:boolean = this.toggleSideBar;
+  @Output('isToggled') isToggled: boolean = this.toggleSideBar;
 }

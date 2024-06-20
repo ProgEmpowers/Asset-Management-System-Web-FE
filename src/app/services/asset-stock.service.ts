@@ -2,14 +2,24 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, count, map } from 'rxjs';
 import { Asset } from '../Models/asset';
+import { DataStateChangeEventArgs } from '@syncfusion/ej2-angular-grids';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AssetStockService {
+export class AssetStockService extends Subject<DataStateChangeEventArgs> {
   apiurl = 'https://localhost:7095/api/Assets';
 
-  constructor(private http: HttpClient) {}
+  private dataSubject = new Subject<any>();
+  data$ = this.dataSubject.asObservable();
+
+  sendData(data: any) {
+    this.dataSubject.next(data);
+  }
+
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   // Get all assets from server
   getAssetList(): Observable<Asset[]> {
@@ -27,12 +37,12 @@ export class AssetStockService {
   }
 
   // delete an asset
-  deleteAsset(id: number): Observable<any> {
+  deleteAsset(id: string): Observable<any> {
     return this.http.delete(this.apiurl + '/' + id);
   }
 
   // update an asset
-  updateAsset(id: number, asset: Asset): Observable<any> {
+  updateAsset(id: string, asset: Asset): Observable<any> {
     return this.http.put(this.apiurl + '/' + id, asset);
   }
 }

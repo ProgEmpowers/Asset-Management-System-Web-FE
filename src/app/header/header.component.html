@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="e-section-control col-6 text-end">
+  <div class="e-section-control col-6 d-flex justify-content-end">
     <!-- To Render Menu. -->
   <ejs-menu class="top-nav-menu text-end" [items]='menuItems'></ejs-menu>
 
@@ -9,7 +9,7 @@
 
   <ng-template #showLogout>
     <span>{{user?.email}}</span>
-    <button class="btn btn-primary ms-3" (click)="onLogout()">Logout</button>
+    <button class="btn btn-primary" (click)="onLogout()">Logout</button>
   </ng-template>
 
   </div>

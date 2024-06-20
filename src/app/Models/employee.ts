@@ -1,16 +1,16 @@
 export interface Employee {
 
-  FirstName?:string;
-  LastName?:string;
-  Password?:string;
-  PhoneNumber?:string;
-  Email?:string;
-  Role?:string;
+  firstName?:string;
+  lastName?:string;
+  password?:string;
+  phoneNumber?:string;
+  email?:string;
+  role?:string;
   nic?:string;
   address?:string;
   jobPost?:string;
   isActive?:boolean;
-  dob?:string;
+  dateofBirth?:string;
   id?:number;
 
 }
