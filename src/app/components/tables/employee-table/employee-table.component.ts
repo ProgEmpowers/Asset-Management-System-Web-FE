@@ -6,6 +6,7 @@ import { EmployeeService } from '../../../services/employee.service';
 import { NgToastService } from 'ng-angular-popup';
 import { Router } from '@angular/router';
 import { DeleteRecordService } from '../../../services/delete-record.service';
+import { SharedEmployeesService } from '../../../services/shared-employees.service';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class EmployeeTableComponent implements OnInit {
     private employeeService:EmployeeService,
     private router: Router,
     private toaster: NgToastService,
-    private deleteService: DeleteRecordService
+    private deleteService: DeleteRecordService,
+    private sharedEmployeeService: SharedEmployeesService
   ) {}
     
   
@@ -58,7 +60,11 @@ export class EmployeeTableComponent implements OnInit {
     console.log(type);
   }
 
- 
+  sendData(employee:Employee) {
+    this.sharedEmployeeService.sendData(employee);
+  }
+
+
 
   public pageSetting:PageSettingsModel = {
     pageSize:7

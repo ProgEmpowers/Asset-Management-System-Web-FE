@@ -25,6 +25,24 @@ export class EmployeeService  {
      return this.http.get<Employee[]>(this.apiurl + '')
    }
 
+  // Get a single employee from server
+  // getEmployeeById(id: string): Observable<Employee> {
+  //   return this.http.get<Employee>(this.apiurl + '/' + id);
+  // }
+
+  getEmployeeById(id: string): Observable<Employee> {
+    return this.http.get<Employee>(`${this.apiurl}/employees/${id}`);
+  }
+
+  //update employee
+  // updateEmployee(id: string, employee: Employee): Observable<any> {
+  //   return this.http.put(this.apiurl + '/' + id, employee);
+  // }
+
+  updateEmployee(id: string, employee: Employee): Observable<any> {
+    return this.http.put(`${this.apiurl}/employees/${id}`, employee);
+  }
+
    // delete employee by id
   deleteEmployee(id: string) : Observable<any> {
     return this.http.delete(this.apiurl + '/' + id);

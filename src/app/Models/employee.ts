@@ -12,5 +12,6 @@ export interface Employee {
   isActive?:boolean;
   dob?:string;
   id?:number;
+  imageUrl?:string;
 
 }

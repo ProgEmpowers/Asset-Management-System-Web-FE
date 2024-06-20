@@ -1,0 +1,124 @@
+
+<div>
+  <div class="col widgets justify-content-start m-0 mt-5 mb-2">
+    <div class="row">
+      <div class="col-12">
+        <ul class="nav nav-tabs my-4">
+          <li class="nav-item">
+            <a class="nav-link" [ngClass]="{'active': isTab1Open()}" (click)="onTab1Click()">Employee Details</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [ngClass]="{'active': isTab2Open()}" (click)="onTab2Click()">Assets</a>
+          </li>
+        </ul>
+        
+        <div *ngIf="isTab1Open()" class="row w-50 mt-4 px-4">
+          <div class="row">
+            <div class="col-4">
+              <div class="d-flex">
+                <img
+                  [src]="employee.imageUrl"
+                  class="object-fill-cover border p-4 rounded"
+                  style="object-position: center"
+                  width="150rem"
+                  height="150rem"
+                  alt="Employee Image"
+                />
+              </div>
+            </div>
+            <div class="col-8 pt-4">
+              <form [formGroup]="editForm">
+                <div class="mb-3 row">
+                  <label for="FirstName" class="col-sm-4 col-form-label">First Name</label>
+                  <div class="col-sm-8">
+                    <input
+                      formControlName="FirstName"
+                      type="text"
+                      class="form-control"
+                      id="FirstName"
+                      [value]="employee.FirstName"
+                      (change)="onFormDirty()"
+                    />
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label for="LastName" class="col-sm-4 col-form-label">Last Name</label>
+                  <div class="col-sm-8">
+                    <input
+                      formControlName="LastName"
+                      type="text"
+                      class="form-control"
+                      id="LastName"
+                      [value]="employee.LastName"
+                      (change)="onFormDirty()"
+                    />
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label for="Email" class="col-sm-4 col-form-label">Email</label>
+                  <div class="col-sm-8">
+                    <input
+                      formControlName="Email"
+                      type="text"
+                      class="form-control"
+                      id="Email"
+                      [value]="employee.Email"
+                      (change)="onFormDirty()"
+                    />
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label for="PhoneNumber" class="col-sm-4 col-form-label">Phone Number</label>
+                  <div class="col-sm-8">
+                    <input
+                      formControlName="PhoneNumber"
+                      type="text"
+                      class="form-control"
+                      id="PhoneNumber"
+                      [value]="employee.PhoneNumber"
+                      (change)="onFormDirty()"
+                    />
+                  </div>
+                </div>
+                <!-- Add more fields as necessary -->
+                <div class="mb-3 row">
+                  <label for="Role" class="col-sm-4 col-form-label">Role</label>
+                  <div class="col-sm-8">
+                    <input
+                      formControlName="Role"
+                      type="text"
+                      class="form-control"
+                      id="Role"
+                      [value]="employee.Role"
+                      (change)="onFormDirty()"
+                    />
+                  </div>
+                </div>
+                <div class="my-4 row pe-0">
+                  <div class="gap-2 text-end pe-0">
+                    <button type="button" class="btn btn-primary cta" (click)="onSave()" [disabled]="!isDirty">Save changes</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="isTab2Open()" class="row w-50 mt-4 px-4">
+          <div class="my-4">
+            <div class="row">
+              <div class="col-4">
+                <span>Employee Assets</span>
+              </div>
+              <div class="col-6">
+                <!-- Placeholder for Employee Assets -->
+                <span>Assets details will be displayed here.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

@@ -21,10 +21,10 @@
       <ng-template #template let-data>
         <td>
           <div>
-            <button class="btn btn-outline btn-sm m-1" >View</button>
-            <button class="btn btn-outline btn-sm m-1" data-bs-toggle="modal" data-bs-target="#employeeModal">Edit</button>
+            <button class="btn btn-outline-info btn-sm m-1" (click)="sendData(data)"[routerLink]="[data.id]">View</button>
+            
              
-             <button class="btn btn-outline-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#delete-record" (click)="deleteEmployee(data.id, 'employee');">Delete</button>
+            <button class="btn btn-outline-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#delete-record" (click)="deleteEmployee(data.id, 'employee');">Delete</button>
 
           </div>
         </td>
