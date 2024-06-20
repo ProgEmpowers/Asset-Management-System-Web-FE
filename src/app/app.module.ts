@@ -41,6 +41,7 @@ import { ContractsComponent } from './contracts/contracts.component';
 import { ContractTableComponent } from './components/tables/contract-table/contract-table.component';
 import { SendContractComponent } from './forms/send-contract/send-contract.component';
 import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
+import { AssignAssetsComponent } from './forms/assign-assets/assign-assets.component';
 import { ViewEmployeeComponent } from './forms/view-employee/view-employee.component';
 
 @NgModule({
@@ -78,6 +79,8 @@ import { ViewEmployeeComponent } from './forms/view-employee/view-employee.compo
     ContractsComponent,
     ContractTableComponent,
     SendContractComponent,
+    ViewAssetComponent,
+    AssignAssetsComponent
     ViewAssetComponent,
     ViewEmployeeComponent
   ],

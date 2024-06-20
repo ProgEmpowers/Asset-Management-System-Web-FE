@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { SharedAssetsService } from './shared-assets.service';
+import { SharedAssetsService } from "./a";
 
-describe('SharedAssetsService', () => {
+describe("SharedAssetsService", () => {
   let service: SharedAssetsService;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('SharedAssetsService', () => {
     service = TestBed.inject(SharedAssetsService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });

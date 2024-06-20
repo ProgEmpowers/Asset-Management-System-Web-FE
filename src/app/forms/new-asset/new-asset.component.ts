@@ -16,7 +16,7 @@ export class NewAssetComponent implements OnInit {
   @ViewChild('uploadComponent') uploadComponent!: UploadComponent;
 
   defaultUrl = "https://localhost:7095/Uploads/Images/Assets/upload.png";
-  imgPath: string;
+  imgPath: string = "";
   isChanged = false;
 
   // Asset types
@@ -70,6 +70,7 @@ export class NewAssetComponent implements OnInit {
           this.toastr.success({detail:"New asset created", summary:"New asset is created successfully.", duration:5000});
           this.assetForm.reset();
           this.imgPath = this.defaultUrl;
+          this.uploadComponent.fileName = "an image to upload";
           this.reloadComponent(true);
           this.isChanged=false;
         }
