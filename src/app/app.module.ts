@@ -20,7 +20,7 @@ import { EmployeeWidgetComponent } from './components/widgets/employee-widget/em
 import { VendorsWidgetComponent } from './components/widgets/vendors-widget/vendors-widget.component';
 import { GridModule, PageService, PagerModule, PdfExportService, SortService } from '@syncfusion/ej2-angular-grids';
 import { AssetTableComponent } from './components/tables/asset-table/asset-table.component';
-import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
 import { EmployeeTableComponent } from './components/tables/employee-table/employee-table.component';
 import { VendorsTableComponent } from './components/tables/vendors-table/vendors-table.component';
 import { NotificationsTableComponent } from './components/tables/notifications-table/notifications-table.component';
@@ -42,6 +42,7 @@ import { ContractTableComponent } from './components/tables/contract-table/contr
 import { SendContractComponent } from './forms/send-contract/send-contract.component';
 import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
 import { AssignAssetsComponent } from './forms/assign-assets/assign-assets.component';
+import { authInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,11 @@ import { AssignAssetsComponent } from './forms/assign-assets/assign-assets.compo
     NgToastModule,
     ToastrModule.forRoot()
   ],
-  providers: [PageService, SortService, PdfExportService],
+  providers: [PageService, SortService, PdfExportService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: authInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
