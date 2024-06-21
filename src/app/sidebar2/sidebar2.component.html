@@ -18,7 +18,7 @@
             </li>
           </ng-container>
 
-          <ng-container *ngIf="user !== undefined && ( user?.roles?.includes('AssetManeger') || user?.roles?.includes('Admin') || user?.roles?.includes('NormalUser') )">
+          <ng-container *ngIf="user !== undefined && ( user?.roles?.includes('AssetManeger') || user?.roles?.includes('Admin') )">
             <li class="sidenav-nav-item">
               <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','assets']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">Assets</span></a>
             </li>
@@ -45,6 +45,18 @@
           <ng-container *ngIf="user !== undefined && ( user?.roles?.includes('VendorManeger') || user?.roles?.includes('Admin') )">
             <li class="sidenav-nav-item">
               <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','contracts']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">Contracts</span></a>
+            </li>
+          </ng-container>
+
+          <ng-container *ngIf="user !== undefined && ( user?.roles?.includes('AssetManeger') || user?.roles?.includes('Admin') || user?.roles?.includes('NormalUser') || user?.roles?.includes('VendorManeger'))">
+            <li class="sidenav-nav-item">
+              <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','assets']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">My Assets</span></a>
+            </li>
+          </ng-container>
+
+          <ng-container *ngIf="user !== undefined && ( user?.roles?.includes('AssetManeger') || user?.roles?.includes('Admin') || user?.roles?.includes('NormalUser') || user?.roles?.includes('VendorManeger'))">
+            <li class="sidenav-nav-item">
+              <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','assets']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">My Account</span></a>
             </li>
           </ng-container>
 
