@@ -43,6 +43,10 @@ import { SendContractComponent } from './forms/send-contract/send-contract.compo
 import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
 import { AssignAssetsComponent } from './forms/assign-assets/assign-assets.component';
 import { authInterceptor } from './interceptors/auth.interceptor';
+import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -80,7 +84,9 @@ import { authInterceptor } from './interceptors/auth.interceptor';
     ContractTableComponent,
     SendContractComponent,
     ViewAssetComponent,
-    AssignAssetsComponent
+    AssignAssetsComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -94,6 +100,8 @@ import { authInterceptor } from './interceptors/auth.interceptor';
     ReactiveFormsModule,
     FormsModule,
     NgToastModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
     ToastrModule.forRoot()
   ],
   providers: [PageService, SortService, PdfExportService, {

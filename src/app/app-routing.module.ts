@@ -9,6 +9,9 @@ import { NewAssetComponent } from './forms/new-asset/new-asset.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ContractsComponent } from './contracts/contracts.component';
 import { authGuard } from './auth/guards/auth.guard';
+import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
+import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path:"", redirectTo: "dashboard", pathMatch:'full' },
@@ -19,7 +22,10 @@ const routes: Routes = [
   { path:"contracts", component: ContractsComponent , canActivate: [authGuard] },
   { path:"vendors", component: VendorsComponent , canActivate: [authGuard] },
   { path:"notifications", component:NotificationsComponent, canActivate: [authGuard] },
-  { path:"login", component:LoginComponent}
+  { path:"login", component:LoginComponent},
+  { path:"assets/:id", component: ViewAssetComponent },
+  { path:"forget-password", component: ForgetPasswordComponent },
+  { path:"reset-password", component: ResetPasswordComponent },
 ];
 
 @NgModule({

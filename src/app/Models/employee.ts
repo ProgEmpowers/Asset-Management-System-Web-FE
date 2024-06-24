@@ -3,6 +3,7 @@ export interface Employee {
   firstName?:string;
   lastName?:string;
   password?:string;
+  confirmPassword?:string;
   phoneNumber?:string;
   email?:string;
   role?:string;
