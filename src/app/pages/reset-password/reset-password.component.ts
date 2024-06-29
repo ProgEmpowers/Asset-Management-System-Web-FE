@@ -28,7 +28,7 @@ export class ResetPasswordComponent implements OnInit{
   resetPasswordHandle(){
     this.authService.resetPassword(this.resetPassword).subscribe({
       next:(response) => {
-        this.matSnackBar.open(response.Message, 'Close',{
+        this.matSnackBar.open(response.message, 'Close',{
           duration:5000,
         });
         this.router.navigate(['/login']);
@@ -39,5 +39,16 @@ export class ResetPasswordComponent implements OnInit{
         });
       }
     })
+  }
+
+  newPasswordFieldType: string = 'password';
+  confirmPasswordFieldType: string = 'password';
+
+  toggleNewPasswordVisibility() {
+    this.newPasswordFieldType = this.newPasswordFieldType === 'password' ? 'text' : 'password';
+  }
+
+  toggleConfirmPasswordVisibility() {
+    this.confirmPasswordFieldType = this.confirmPasswordFieldType === 'password' ? 'text' : 'password';
   }
 }

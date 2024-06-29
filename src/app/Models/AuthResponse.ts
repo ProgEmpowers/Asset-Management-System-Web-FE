@@ -1,5 +1,13 @@
+// export interface AuthResponse {
+//   IsSuccess : boolean;
+//   Message : string;
+//   Token : string;
+// }
+
+
+
 export interface AuthResponse {
-  IsSuccess : boolean;
-  Message : string;
-  Token : string;
+  isSuccess: boolean;
+  message: string;
+  token: string;
 }

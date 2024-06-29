@@ -27,11 +27,11 @@ export class AppComponent implements OnInit{
     });
   }
   shouldHideSidebar(url: string): boolean {
-    return (url.includes('/login') || url.includes('/forget-password'));
+    return (url.includes('/login') || url.includes('/forget-password') || url.includes('/reset-password'));
   }
 
   shouldHideHeader(url: string): boolean {
-    return (url.includes('/login') || url.includes('/forget-password'));
+    return (url.includes('/login') || url.includes('/forget-password') || url.includes('/reset-password'));
   }
 
   closeModel() {
