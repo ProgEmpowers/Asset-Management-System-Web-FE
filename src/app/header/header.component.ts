@@ -40,7 +40,6 @@ export class HeaderComponent implements OnInit{
       this.authService.user()
       .subscribe({
         next:(response) => {
-          console.log(response);
           this.user = response;
         }
       });
@@ -51,5 +50,6 @@ export class HeaderComponent implements OnInit{
   onLogout(): void {
     this.authService.logout();
     this.router.navigateByUrl('/');
+    this.router.navigate(['/login']);
   }
 }

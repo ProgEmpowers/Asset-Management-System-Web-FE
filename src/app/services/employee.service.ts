@@ -1,11 +1,8 @@
+import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-
 import { Observable, Subject } from 'rxjs';
 import { Employee } from '../Models/employee';
-
-import { DataStateChangeEventArgs } from '@syncfusion/ej2-angular-grids';
 
 
 @Injectable({
@@ -17,9 +14,9 @@ export class EmployeeService  {
   data$ = this.dataSubject.asObservable();
 
    apiurl = "https://localhost:7229/api/User";
-   apiurl2 = "https://localhost:7229/api/Auth/register";
+   apiurl2 = 'https://localhost:7229/api/Auth/register?addAuth=true';
 
-   constructor(private http:HttpClient) { }
+   constructor(private http:HttpClient , private CookieService: CookieService) { }
 
   
    sendData(data: any) {
@@ -52,7 +49,7 @@ export class EmployeeService  {
 
   // Submit new employee to server
   createEmployee(employee: FormData) : Observable<any> {
-    console.log(employee);
+    console.log.apply("da");
     return this.http.post(this.apiurl2, employee);
   }
 

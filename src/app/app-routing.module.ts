@@ -8,20 +8,22 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { NewAssetComponent } from './forms/new-asset/new-asset.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ContractsComponent } from './contracts/contracts.component';
+import { authGuard } from './auth/guards/auth.guard';
 import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
 import { ViewEmployeeComponent } from './forms/view-employee/view-employee.component';
 
 const routes: Routes = [
   { path:"", redirectTo: "dashboard", pathMatch:'full' },
-  { path:"dashboard", component: DashboardComponent },
-  { path:"assets/new", component: NewAssetComponent},
-  { path:"assets/:id", component: ViewAssetComponent },
-  {path:"employees/:id", component: ViewEmployeeComponent},
-  { path:"assets", component: AssetsComponent },
-  { path:"employees", component: EmployeesComponent },
-  { path:"contracts", component: ContractsComponent },
-  { path:"vendors", component: VendorsComponent },
-  { path:"notifications", component:NotificationsComponent },
+  { path:"dashboard", component: DashboardComponent , canActivate: [authGuard]},
+  { path:"assets/new", component: NewAssetComponent, canActivate: [authGuard] },
+  { path:"assets", component: AssetsComponent , canActivate: [authGuard] },
+  { path:"employees", component: EmployeesComponent, canActivate: [authGuard] },
+  { path:"contracts", component: ContractsComponent , canActivate: [authGuard] },
+  { path:"vendors", component: VendorsComponent , canActivate: [authGuard] },
+  { path:"notifications", component:NotificationsComponent, canActivate: [authGuard] },
+  { path:"assets/:id", component: ViewAssetComponent, canActivate: [authGuard] },
+  {path:"employees/:id", component: ViewEmployeeComponent, canActivate: [authGuard]},
+  
   { path:"login", component:LoginComponent}
 ];
 

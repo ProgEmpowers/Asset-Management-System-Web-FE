@@ -1,19 +1,13 @@
 <div class="row fluid-container">
   <!--Sidemenu-->
-  <ejs-sidebar
-    id="default-sidebar"
-    width="250"
-    position="Left"
-    [isOpen]="true"
-    target=".main"
-  >
+  <ejs-sidebar id="default-sidebar" width="250" position="Left" [isOpen]="true" target=".main" *ngIf="showSideNav">
     <!-- <app-sidebar-menu class="sidebar-content"></app-sidebar-menu> -->
     <app-sidebar2 class="sidebar-content"></app-sidebar2>
   </ejs-sidebar>
 
   <!--Page content-->
   <div class="col p-4">
-    <div class="header-container p-1">
+    <div class="header-container p-1" *ngIf="showHeader">
       <app-header></app-header>
     </div>
     <div class="container p-1 mw-100">

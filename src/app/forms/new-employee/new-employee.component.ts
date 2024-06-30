@@ -26,6 +26,7 @@ export class NewEmployeeComponent implements OnInit {
       lastName: new FormControl("", Validators.required),
       email: new FormControl("", [Validators.required, Validators.email]),
       password: new FormControl("", Validators.required),
+      confirmpassword: new FormControl("", Validators.required),
       role: new FormControl("", Validators.required)
     })
   }
@@ -49,22 +50,15 @@ export class NewEmployeeComponent implements OnInit {
       this.employeeForm.value
     ).subscribe(
       (res) => {
-        console.log(res);
         if (res) {
           
           this.toastr.success({detail:"New employee created", summary:"New employee is created successfully.", duration:5000});
           this.employeeForm.reset();
           this.reloadComponent(true);
-          return;
         }
-      }, (err) => {
-        if (err.error.errors) {
-          let errRes = err.error.errors[""][0]
-          console.log("error:", errRes);
-          this.toastr.error({detail:"New employee creation failed", summary:errRes , duration:5000});
-          
+      }, err => {
+          this.toastr.error({detail:"New employee creation failed", summary:"New Employee is not created." , duration:5000});
         }
-      }
     )
   }
 

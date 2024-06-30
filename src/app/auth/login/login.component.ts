@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit{
     this.authService.login(this.model.value)
     .subscribe({
       next: (response) => {
-        console.log(response);
+
         //set auth cookie
         this.cookieService.set('Authorization' , `Bearer ${response.token}`,
         undefined, '/',undefined,true,'Strict');

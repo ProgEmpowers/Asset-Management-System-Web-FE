@@ -16,7 +16,7 @@ export class AuthService {
   constructor(private http : HttpClient , private cookieService: CookieService) { }
 
   login(request : LoginRequest) : Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`https://localhost:7229/api/auth/login`, {
+    return this.http.post<LoginResponse>(`http://localhost:5146/apigateway/Auth/login`, {
       email: request.email,
       password: request.password
     });
