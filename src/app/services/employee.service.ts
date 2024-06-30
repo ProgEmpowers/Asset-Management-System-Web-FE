@@ -35,7 +35,7 @@ export class EmployeeService {
     return this.http.post(this.apiurl2, employee);
   }
 
-  // Get all employees from server
+  // Get all employees from serve
   getEmployeeAssets(email: string): Observable<Asset[]> {
     return this.http.get<Asset[]>(this.apiUrl3 + "/" + email);
   }
