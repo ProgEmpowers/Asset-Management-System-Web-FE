@@ -16,6 +16,8 @@ $success-bg: #5FBC6230;
 $failed-bg: #FF1E3430;
 $border:#acb0b8;
 $hidden-text:#4d9fb8;
+$array-add:#00b35f;
+$supplyAsset: #00703c;
 
 
 .btn {
@@ -56,4 +58,37 @@ $hidden-text:#4d9fb8;
 .btn.btn-secondary:active {
   background-color: $bg-dark-hover;
   color: $text-light-default;
+}
+
+.btn.optional {
+  color: $info-title-text;
+  font-size: 16px;
+}
+
+.btn.btn-arrayAdd {
+  color: $text-white;
+  background-color: $array-add;
+}
+
+.btn-remove {
+  color: $text-white;
+  background-color: $failed;
+  border-color: none;
+  padding: 5px;
+}
+
+.required {
+  color: $failed;
+  font-size: small;
+}
+
+.supplyAssetType {
+  background-color: $supplyAsset;
+  min-width: 60px;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.otherDevices {
+  width: 120px !important;
 }

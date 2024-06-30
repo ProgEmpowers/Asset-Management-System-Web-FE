@@ -8,22 +8,12 @@
                     <h1 class="modal-title fs-5" id="vendorModalLable">Add New Vendor</h1>
                     <span class="form-text">Please Fill the form and submit.</span>
                 </div>
-                <button type="button" class="btn-close" #closeModal data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" #closeModal data-bs-dismiss="modal" aria-label="Close"
+                    (click)="onClearAll()"></button>
             </div>
             <div class="modal-body">
                 <form action="" class="" [formGroup]="vendorForm" name="newVendorForm" (ngSubmit)="submit()"
                     #newVendorForm>
-                    <!-- <div class="form-group d-flex justify-content-center mb-3">
-                        <div class="col-6 img-wrapper" [class.success]="isChanged" aria-label="asset image"
-                            title="Click here to upload vendor image.">
-                            <img [src]="imagePath" alt="" class="img-fluid" (change)="isChanged = true"
-                                (click)="triggerButtonClick()">
-                        </div>
-                        <app-upload class="d-flex p-3" #uploadComponent (onUploadFinished)="onUploadFinished($event)"
-                            style="width: unset; align-items: center;"></app-upload>
-                        <input type="text" name="vendorImage" id="vendorImage" class="form-control"
-                            formControlName="imageUrl" [value]="imagePath" *ngIf="false">
-                    </div> -->
                     <div class="row g-3 mt-2">
                         <div class="col-md">
                             <div class="form-floating">
@@ -37,16 +27,16 @@
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="number" name="vendorMobileNo" id="vendorMobileNo" class="form-control"
+                                <input type="tel" name="vendorMobileNo" id="vendorMobileNo" class="form-control"
                                     formControlName="mobileNo" [class.is-valid]="vendorForm.controls['mobileNo'].valid"
                                     [class.is-invalid]="vendorForm.controls['mobileNo'].invalid && 
                                     (vendorForm.controls['mobileNo'].touched || 
-                                    vendorForm.controls['mobileNo'].dirty)" placeholder="">
-                                <label for="vendorMobileNo"> Mobile Number</label>
+                                    vendorForm.controls['mobileNo'].dirty)"
+                                    placeholder="" onlyNumber>
                             </div>
                         </div>
                     </div>
-                    <div class="form-floating mt-4">
+                    <div class="form-floating mt-2">
                         <input type="text" name="vendorAddress" id="vendorAddress" class="form-control"
                             formControlName="address" [class.is-valid]="vendorForm.controls['address'].valid"
                             [class.is-invalid]="vendorForm.controls['address'].invalid && 
@@ -54,7 +44,7 @@
                             vendorForm.controls['address'].dirty)" placeholder="">
                         <label for="vendorAddress"> Address </label>
                     </div>
-                    <div class="row g-4 mt-1">
+                    <div class="row mt-2">
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" name="vendorEmail" id="vendorEmail" class="form-control"
@@ -65,17 +55,32 @@
                                 <label for="vendorEmail"> Email </label>
                             </div>
                         </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <select name="supplyAssetType" id="supplyAssetType" class="form-select"
-                                    formControlName="supplyAssetType"
-                                    [class.is-valid]="vendorForm.controls['supplyAssetType'].valid">
-                                    <option selected disabled value="">-Select Supply Asset Type-</option>
-                                    <option value="{{type}}" *ngFor="let type of supplyAssetTypes">
-                                        {{type}}
-                                    </option>
-                                </select>
-                                <label for="supplyAssetType"> Supply Asset Type</label>
+                    </div>
+                    <div class="col-md mt-2">
+                        <div class="form-control">
+                            <label for="supplyAssetTypes"> Supply Asset Type</label>
+                            <label for="supplyAssetTypes" class="optional">(Optional)</label>
+                            <div class="form-group col-md" formArrayName="supplyAssetTypes">
+                                <div class="mt-2 d-flex flex-row align-items-center justify-content-around"
+                                    *ngFor="let supplyAssetType of supplyAssetTypesControl; let i = index">
+                                    <div class="form-floating">
+                                        <select name="supplyAssetType" id="supplyAssetType" class="form-select"
+                                            [formControlName]="i">
+                                            <option selected disabled value="">-Select Supply Asset Type-</option>
+                                            <option value="{{type}}" *ngFor="let type of selectedSupplyAssetTypes">
+                                                {{type}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="">
+                                        <button type="button" class="btn fas fa-minus btn-remove"
+                                            (click)="onRemoveSupplyAsset(i)"></button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-arrayAdd mt-2" (click)="onAddSupplyAsset()">Add
+                                        Supplying Asset</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -85,7 +90,8 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    (click)="onClearAll()">Cancel</button>
                 <button type="submit" class="btn btn-primary" [disabled]="vendorForm.invalid"
                     (click)="submitBtn.click()" data-bs-dismiss="modal">Add</button>
             </div>
