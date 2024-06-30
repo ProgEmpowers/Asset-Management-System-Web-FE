@@ -10,4 +10,5 @@ export interface AuthResponse {
   isSuccess: boolean;
   message: string;
   token: string;
+  refreshToken: string;
 }
