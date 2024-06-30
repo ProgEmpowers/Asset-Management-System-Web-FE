@@ -43,6 +43,9 @@ import { SendContractComponent } from './forms/send-contract/send-contract.compo
 import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
 import { AssignAssetsComponent } from './forms/assign-assets/assign-assets.component';
 import { authInterceptor } from './interceptors/auth.interceptor';
+import { ViewEmployeeComponent } from './forms/view-employee/view-employee.component';
+import { AssignAssetEmployeeSideComponent } from './forms/assign-asset-employee-side/assign-asset-employee-side.component';
+
 
 @NgModule({
   declarations: [
@@ -80,7 +83,10 @@ import { authInterceptor } from './interceptors/auth.interceptor';
     ContractTableComponent,
     SendContractComponent,
     ViewAssetComponent,
-    AssignAssetsComponent
+    AssignAssetsComponent,
+    ViewAssetComponent,
+    ViewEmployeeComponent,
+    AssignAssetEmployeeSideComponent
   ],
   imports: [
     BrowserModule,

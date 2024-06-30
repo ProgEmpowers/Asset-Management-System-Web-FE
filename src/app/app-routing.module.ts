@@ -9,6 +9,8 @@ import { NewAssetComponent } from './forms/new-asset/new-asset.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ContractsComponent } from './contracts/contracts.component';
 import { authGuard } from './auth/guards/auth.guard';
+import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
+import { ViewEmployeeComponent } from './forms/view-employee/view-employee.component';
 
 const routes: Routes = [
   { path:"", redirectTo: "dashboard", pathMatch:'full' },
@@ -19,6 +21,9 @@ const routes: Routes = [
   { path:"contracts", component: ContractsComponent , canActivate: [authGuard] },
   { path:"vendors", component: VendorsComponent , canActivate: [authGuard] },
   { path:"notifications", component:NotificationsComponent, canActivate: [authGuard] },
+  { path:"assets/:id", component: ViewAssetComponent, canActivate: [authGuard] },
+  {path:"employees/:id", component: ViewEmployeeComponent, canActivate: [authGuard]},
+  
   { path:"login", component:LoginComponent}
 ];
 
