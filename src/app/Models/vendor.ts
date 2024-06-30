@@ -1,9 +1,9 @@
 export interface Vendor {
-  id: number,
+  id: string,
   name: string,
   address: string,
-  mobileNo: number,
+  mobileNo: string,
   email: string,
-  supplyAssetType: string,
+  supplyAssetTypes: string[],
   isActive: boolean
 }

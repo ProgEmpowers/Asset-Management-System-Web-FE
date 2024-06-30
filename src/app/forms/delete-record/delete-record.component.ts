@@ -43,7 +43,7 @@ export class DeleteRecordComponent implements OnInit {
 
   deleteRecord() {
     if (this.delete_type == 'vendor') {
-      // this.deleteVendor(this.delete_id);
+      this.deleteVendor(this.delete_id);
       console.log('Ready to delete vendor....');
     } else if (this.delete_type == 'employee') {
       this.deleteEmployee(this.delete_id);
@@ -57,22 +57,22 @@ export class DeleteRecordComponent implements OnInit {
     this.delete_type = '';
   }
 
-  // deleteVendor(id: number): void {
-  //   this.vendorService.deleteVendor(id).subscribe(
-  //     () => {
-  //       this.toastServ.success({ detail: "Vendor deleted successfully.", summary: "Vendor is deleted successfully from the system.", duration: 5000 });
-  //       this.vendorService.getAllVendors().subscribe(
-  //         (list) => {
-  //           this.vendors = list ?? [];
-  //           this.reloadComponent(true);
-  //         }
-  //       );
-  //     }, err => {
-  //       this.toastServ.error({ detail: "Deleting Vendor Failed.", summary: "Failed to delete vendor from the system.", duration: 5000 });
-  //     }
-  //   );
-  //   console.log("deleted-id: " + id);
-  // }
+  deleteVendor(id: string): void {
+    this.vendorService.deleteVendor(id).subscribe(
+      () => {
+        this.toastServ.success({ detail: "Vendor deleted successfully.", summary: "Vendor is deleted successfully from the system.", duration: 5000 });
+        this.vendorService.getAllVendors().subscribe(
+          (list) => {
+            this.vendors = list ?? [];
+            this.reloadComponent(true);
+          }
+        );
+      }, err => {
+        this.toastServ.error({ detail: "Deleting Vendor Failed.", summary: "Failed to delete vendor from the system.", duration: 5000 });
+      }
+    );
+    console.log("deleted-id: " + id);
+  }
 
   deleteEmployee(id: string): void {
     this.employeeService.deleteEmployee(id).subscribe(

@@ -18,6 +18,7 @@ export class VendorsTableComponent implements OnInit {
 
   public vendors?: Vendor[];
   public vendor_tHeaders = Vendor_tHeaders;
+  styleClass: string = '';
 
   vendorReload: boolean = false;
   ongoingDelete_type = '';
@@ -39,6 +40,15 @@ export class VendorsTableComponent implements OnInit {
 
   ngOnInit(): void { 
     this.getAllVendors();
+  }
+
+  assetStyle(asset: string): string  {
+    if (asset === 'Other Devices' || asset === 'Multiple Devices') {
+      this.styleClass = 'otherDevices';
+    } else {
+      this.styleClass = '';
+    }
+    return this.styleClass;
   }
 
 

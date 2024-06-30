@@ -43,6 +43,8 @@ import { SendContractComponent } from './forms/send-contract/send-contract.compo
 import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
 import { AssignAssetsComponent } from './forms/assign-assets/assign-assets.component';
 import { authInterceptor } from './interceptors/auth.interceptor';
+import { IntlTelInputModuleComponent } from './components/intl-tel-input-module/intl-tel-input-module.component';
+import { OnlyNumbersDirective } from './directives/only-numbers.directive';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,9 @@ import { authInterceptor } from './interceptors/auth.interceptor';
     ContractTableComponent,
     SendContractComponent,
     ViewAssetComponent,
-    AssignAssetsComponent
+    AssignAssetsComponent,
+    IntlTelInputModuleComponent,
+    OnlyNumbersDirective
   ],
   imports: [
     BrowserModule,
