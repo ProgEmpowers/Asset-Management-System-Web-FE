@@ -1,11 +1,12 @@
-<!-- Define grid columns -->
+<!--
+Define grid columns
 <ejs-grid [dataSource]="employeeList" [allowPaging]="true" [pageSettings]="pageSetting"
           [allowSorting]="true" [allowPdfExport]="true" [allowPdfExport]="true"  >
   <e-columns>
     <e-column field='id' headerText='ID' textAlign='Left' width=60></e-column>
 
     <e-column headerText="Name" width="130">
-      <!-- Custom template to concatenate firstName and lastName -->
+      // Custom template to concatenate firstName and lastName 
       <ng-template #template let-data>
         {{ data.firstName }} {{ data.lastName }}
       </ng-template>
@@ -33,7 +34,7 @@
     </e-column>
 </e-columns>
 </ejs-grid>
-
+-->
 
 <table class="table align-middle my-4 bg-white">
   <thead class="bg-light">
@@ -43,14 +44,15 @@
           <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
         </div>
       </th>
+      <th>User Id</th>
       <th>Name</th>
-      <th>Title</th>
-      <th>Status</th>
-      <th>Position</th>
+      <th>Contact</th>
+      <th>Address</th>
+      <!-- <th>Role</th> -->
       <th>Actions</th>
     </tr>
   </thead>
-  <tbody>
+  <!-- <tbody>
     <tr>
       <td>
         <div class="form-check">
@@ -85,7 +87,52 @@
         </button>
       </td>
     </tr>
+  </tbody> -->
+
+  <tbody>
+    <tr *ngFor="let employee of employeeList">
+      <td>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        </div>
+      </td>
+      <td>
+        {{employee.customUserId}}
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+          <img
+              src="../../assets/propic.jpg"
+              alt=""
+              style="width: 45px; height: 45px;object-position: center;"
+              class="rounded object-fit-cover"
+              />
+          <div class="ms-3">
+            <p class="text-muted mb-0">{{employee.firstName}} {{employee.lastName}}</p>
+           
+          </div>
+        </div>
+      </td>
+      <td>
+        <!-- <p class="fw-normal mb-1">Software engineer</p> -->
+        <p class="mb-0">{{employee.phoneNumber}}</p>
+        <p class="text-muted mb-0 small"> {{employee.email}}</p>
+      </td>
+      
+      <td>
+        <p class="mb-0">{{employee.address}}</p>
+      </td>
+      <td>
+        <!-- <button type="button" class="btn btn-link btn-sm btn-rounded">
+          Edit
+        </button> -->
+        <button type="button" class="btn btn-link btn-sm btn-rounded"(click)="sendData(employee)"[routerLink]="[employee.id]">View</button>
+        <button type="button" class="btn btn-link btn-sm btn-rounded text-danger"data-bs-toggle="modal" data-bs-target="#delete-record" (click)="deleteEmployee(employee.id!, 'employee')">Delete</button>
+      </td>
+    </tr>
   </tbody>
+
+
 </table>
 
 

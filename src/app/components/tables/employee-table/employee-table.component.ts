@@ -60,6 +60,7 @@ export class EmployeeTableComponent implements OnInit {
     console.log(type);
   }
 
+
   sendData(employee:Employee) {
     this.sharedEmployeeService.sendData(employee);
   }

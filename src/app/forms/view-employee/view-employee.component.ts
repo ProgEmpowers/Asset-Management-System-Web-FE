@@ -1,31 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgToastService } from 'ng-angular-popup';
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../Models/employee';
+import { UploadComponent } from '../../components/upload/upload.component';
 
 @Component({
   selector: 'app-view-employee',
   templateUrl: './view-employee.component.html',
-  styleUrl: './view-employee.component.scss',
+  styleUrls: ['./view-employee.component.scss'],
 })
 export class ViewEmployeeComponent implements OnInit {
+
+
+
+  @ViewChild('uploadComponent') uploadComponent!: UploadComponent;
+
+  defaultUrl = "https://localhost:7095/Uploads/Images/Assets/upload.png";
+  imgPath: string = "";
+  isChanged = false;
+
   id: any;
-  employee: Employee;
+  item: any;
+  employee: Employee = {};
   editForm!: FormGroup;
-  fb = new FormBuilder();
   isDirty = false;
+  fb = new FormBuilder();
 
   isTab1 = true;
   isTab2 = false;
 
+ // imgPath: string = "";
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private employeeService: EmployeeService,
-    private toast: NgToastService
+    private toast: NgToastService,
+ 
   ) {
-    this.employee = {};
+    this.item = {};
   }
 
   ngOnInit(): void {
@@ -33,15 +47,21 @@ export class ViewEmployeeComponent implements OnInit {
     this.loadEmployee(this.id);
 
     this.editForm = this.fb.group({
-      FirstName: [''],
-      LastName: [''],
-      Email: [''],
-      PhoneNumber: [''],
+      customUserId:[''],
+      firstName: [''],
+      lastName: [''],
+      jobPost:[''],
+      email: [''],
+      phoneNumber: [''],
       address: [''],
-      imageUrl: [''],
+      nic:[''],
+      dateofBirth:[''],
     });
   }
 
+  
+  
+ 
   loadEmployee(id: string) {
     this.employeeService.getEmployeeById(id).subscribe((res: Employee) => {
       this.employee = res;
@@ -50,13 +70,16 @@ export class ViewEmployeeComponent implements OnInit {
   }
 
   loadForm() {
-    Object.keys(this.editForm.controls).forEach((key) => {
-      const control = this.editForm.get(key as keyof Employee);
-      if (!control?.dirty) {
-        this.editForm.controls[key].setValue(this.employee[key as keyof Employee]);
-      } else {
-        this.isDirty = true;
-      }
+    this.editForm.patchValue({
+      customUserId:this.employee.customUserId,
+      firstName: this.employee.firstName,
+      lastName: this.employee.lastName,
+      email: this.employee.email,
+      jobPost:this.employee.jobPost,
+      phoneNumber: this.employee.phoneNumber,
+      address: this.employee.address,
+      nic:this.employee.nic,
+      dateofBirth:this.employee.dateofBirth,
     });
   }
 
@@ -68,6 +91,7 @@ export class ViewEmployeeComponent implements OnInit {
   onTab2Click() {
     this.isTab1 = false;
     this.isTab2 = true;
+   
   }
 
   onFormDirty() {
@@ -83,15 +107,36 @@ export class ViewEmployeeComponent implements OnInit {
   }
 
   onSave() {
-    this.loadForm();
-    this.employeeService.updateEmployee(this.id, this.editForm.value).subscribe({
-      next: (res) => {
-        this.toast.success({
-          detail: "Employee updated successfully",
-          summary: "Changes saved!"
-        });
-        this.isDirty = false;
-      },
-    });
+    if (this.editForm.valid) {
+      this.employeeService.updateEmployee(this.id, this.editForm.value).subscribe({
+        next: (res) => {
+          this.toast.success({
+            detail: "Employee updated successfully",
+            summary: "Changes saved!"
+          });
+          this.isDirty = false;
+        },
+        error: (err) => {
+          this.toast.error({
+            detail: "Error updating employee",
+            summary: err.message
+          });
+        }
+      });
+    }
+  }
+
+  
+
+  // Setting up the checkin button functionality
+  onAssignAsset() {
+    this.employeeService.sendData(this.id);
+    console.log(this.id);
+  }
+
+
+  triggerButtonClick() {
+    // Programmatically trigger click on the button in ChildComponent
+    this.uploadComponent.file.nativeElement.click();
   }
 }
