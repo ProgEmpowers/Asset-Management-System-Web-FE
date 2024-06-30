@@ -4,36 +4,39 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Employee } from '../Models/employee';
 
+import { DataStateChangeEventArgs } from "@syncfusion/ej2-angular-grids";
+import { Asset } from "../Models/asset";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-export class EmployeeService  {
-
-   apiurl = "https://localhost:7229/api/User";
-   apiurl2 = 'https://localhost:7229/api/Auth/register?addAuth=true';
+export class EmployeeService {
+  apiurl = "https://localhost:7229/api/User";
+  apiurl2 = 'https://localhost:7229/api/Auth/register?addAuth=true';
+  apiUrl3 = "https://localhost:7095/api/Assets/GetAssetByUserAsync";
 
    constructor(private http:HttpClient , private CookieService: CookieService) { }
 
 
 
-   // Get all employees from server
-   getEmployeeList() : Observable<Employee[]> {
-     return this.http.get<Employee[]>(this.apiurl + '')
-   }
+  // Get all employees from server
+  getEmployeeList(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.apiurl + "");
+  }
 
-   // delete employee by id
-  deleteEmployee(id: string) : Observable<any> {
-    return this.http.delete(this.apiurl + '/' + id);
+  // delete employee by id
+  deleteEmployee(id: string): Observable<any> {
+    return this.http.delete(this.apiurl + "/" + id);
   }
 
   // Submit new employee to server
-  createEmployee(employee: FormData) : Observable<any> {
-    console.log.apply("da");
+  createEmployee(employee: FormData): Observable<any> {
+    console.log(employee);
     return this.http.post(this.apiurl2, employee);
   }
+
+  // Get all employees from server
+  getEmployeeAssets(email: string): Observable<Asset[]> {
+    return this.http.get<Asset[]>(this.apiUrl3 + "/" + email);
+  }
 }
-
-
-
-

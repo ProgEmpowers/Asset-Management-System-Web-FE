@@ -5,7 +5,7 @@
 
 .widgets {
   display: flex !important;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   gap: 20px;
   width: 100%;
 }
@@ -13,6 +13,6 @@
 .widget-item {
   border-radius: 8px;
   width: 32.22%;
-  min-width: 320px;
+  min-width: 280px;
   // margin-right: 28px;
 }

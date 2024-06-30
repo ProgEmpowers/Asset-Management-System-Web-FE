@@ -31,7 +31,7 @@ $hidden-text:#4d9fb8;
 {
   // border: 1px solid $bg-dark;
   background-color: #198754;
-  // border-color: $bg-dark;
+  border-color: #198754;
   min-width: 100px;
 }
 
@@ -56,4 +56,9 @@ $hidden-text:#4d9fb8;
 .btn.btn-secondary:active {
   background-color: $bg-dark-hover;
   color: $text-light-default;
+}
+
+input[type="search"]:focus {
+  border-color: #198754 !important;
+  box-shadow: none;
 }

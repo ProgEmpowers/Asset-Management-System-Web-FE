@@ -24,6 +24,12 @@
             </li>
           </ng-container>
 
+          <ng-container *ngIf="user !== undefined && ( user?.roles?.includes('AssetManeger') || user?.roles?.includes('Admin') || user?.roles?.includes('NormalUser') )">
+            <li class="sidenav-nav-item">
+              <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','my-assets']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">My Assets</span></a>
+            </li>
+          </ng-container>
+
           <ng-container *ngIf="user !== undefined && ( user?.roles?.includes('AssetManeger') || user?.roles?.includes('Admin') || user?.roles?.includes('VendorManeger') )">
             <li class="sidenav-nav-item">
               <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','disposals']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">Disposals</span></a>

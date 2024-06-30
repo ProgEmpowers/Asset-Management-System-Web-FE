@@ -12,6 +12,8 @@ import { VendorService } from '../services/vendor.service';
 export class DashboardComponent implements OnInit {
 
   assetList: Asset[] = [];
+  freeAssets: Asset[] = [];
+  acquiredAssets: Asset[] = [];
   vendorList: Vendor[] = [];
 
   constructor(private assetService: AssetStockService, private vendorService: VendorService){

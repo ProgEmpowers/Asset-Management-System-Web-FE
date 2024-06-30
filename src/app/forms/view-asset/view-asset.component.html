@@ -1,60 +1,102 @@
 <div class="row">
-  <div class="d-flex justify-content-between">
+  <div class="d-flex flex-column flex-md-row justify-content-between">
     <h2>Asset Details</h2>
     <div class="d-flex gap-2">
-      <button type="button" class="btn btn-outline-secondary cta">
-        Dispose
-      </button>
-      <button
-        type="button"
-        class="btn btn-primary cta"
-        data-bs-toggle="modal"
-        data-bs-target="#assignAssetModal"
-        (click)="onCheckIn()"
-      >
-        Check in
-      </button>
+      <ng-container *ngIf="item.assetStatus == 1">
+        <button
+          type="button"
+          class="btn btn-outline-secondary cta"
+          data-bs-toggle="modal"
+          data-bs-target="#dispose-asset-modal"
+          (click)="onDispose()"
+        >
+          Dispose
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary cta"
+          data-bs-toggle="modal"
+          data-bs-target="#assignAssetModal"
+          (click)="onCheckIn()"
+        >
+          Check in
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="item.assetStatus == 2">
+        <button
+          type="button"
+          class="btn btn-primary cta"
+          data-bs-toggle="modal"
+          data-bs-target="#release-asset-modal"
+          (click)="onCheckOut()"
+        >
+          Check out
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="item.assetStatus == 5">
+        <div class="d-flex gap-2">
+          <select class="form-select" aria-label="Default select example" #actionSelect>
+            <option selected disabled>Actions</option>
+            <option value="restore">Restore</option>
+            <option value="repair">Repair</option>
+            <option value="sell">Sell</option>
+          </select>
+          <button
+            type="button"
+            class="btn btn-primary cta"
+            (click)="onActionSelect(actionSelect.value)"
+          >
+            Apply
+          </button>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>
 <div>
-  <div class="col widgets justify-content-start m-0 mt-5 mb-2">
+  <div class="col-12 widgets justify-content-start m-0 mt-5 mb-2">
     <div class="row">
-      <div class="col-12">
-        <div class="row w-50">
-          <div class="col-4">
+      <div class="">
+        <div class="row">
+          <div class="col-12 col-lg-2" style="min-width: 180px">
             <div class="d-flex">
               <img
                 [src]="item.imageUrl"
                 class="object-fit-cover border p-4 rounded"
-                style="object-position: center"
+                style="
+                  object-position: center;
+                  min-width: 10rem;
+                  min-height: 10rem;
+                "
                 width="150rem"
                 height="150rem"
                 alt=""
               />
             </div>
           </div>
-          <div class="col-8 pt-4">
+          <div class="col-12 col-lg-10 pt-4 text-start">
             <div class="fs-5 fw-bold">Status</div>
-            <div class="my-2">
-              <div class="row">
-                <div class="col-4">
+            <div class="">
+              <div class="">
+                <!-- <div class="">
                   <span>Availability :</span>
-                </div>
-                <div class="col-6">
+                </div> -->
+                <div class="">
                   <span
                     class="badge rounded-pill d-inline-block"
-                    style="min-width: 70px;"
-                    [ngClass]="getStatus(statusCode!).class"
-                    >{{ getStatus(statusCode!).text }}</span
+                    style="min-width: 70px"
+                    [ngClass]="getStatus(item.assetStatus!).class"
+                    >{{ getStatus(item.assetStatus!).text }}</span
                   >
                 </div>
               </div>
-              <div class="row" *ngIf="statusCode == 2">
-                <div class="col-4">
-                  <span>Assigned to :</span>
+              <div class="d-flex my-1" *ngIf="item.assetStatus == 2">
+                <div class="me-2">
+                  <span>Assigned to : </span>
                 </div>
-                <div class="col-6">
+                <div class="">
                   <span>{{ item.userId }}</span>
                 </div>
               </div>
@@ -65,7 +107,7 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              [ngClass]="{ active: isTab1Open() }"
+              [ngClass]="{ 'active': isTab1Open() }"
               (click)="onTab1Click()"
               >Primary Info</a
             >
@@ -73,7 +115,7 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              [ngClass]="{ active: isTab2Open() }"
+              [ngClass]="{ 'active': isTab2Open() }"
               (click)="onTab2Click()"
               >Vendor</a
             >
@@ -81,21 +123,23 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              [ngClass]="{ active: isTab3Open() }"
+              [ngClass]="{ 'active': isTab3Open() }"
               (click)="onTab3Click()"
               >View log</a
             >
           </li>
         </ul>
-        <div class="row w-50 mt-4 px-4" [class.isHidden]="!isTab1Open()">
+        <div class="row mt-4 px-4" [class.isHidden]="!isTab1Open()">
           <!-- <div class="fs-5 fw-bold">Primary details</div> -->
           <div class="my-4">
             <form [formGroup]="editForm">
               <div class="mb-3 row">
-                <label for="name" class="col-sm-4 col-form-label fw-bold"
+                <label
+                  for="name"
+                  class="col-sm-4 col-lg-2 col-form-label fw-bold"
                   >Name</label
                 >
-                <div class="col-sm-8">
+                <div class="col-sm-8 col-lg-10">
                   <input
                     formControlName="name"
                     type="text"
@@ -107,10 +151,10 @@
                 </div>
               </div>
               <div class="mb-3 row">
-                <label for="id" class="col-sm-4 col-form-label fw-bold"
+                <label for="id" class="col-sm-4 col-lg-2 col-form-label fw-bold"
                   >Id</label
                 >
-                <div class="col-sm-8">
+                <div class="col-sm-8 col-lg-10">
                   <input
                     formControlName="id"
                     type="text"
@@ -122,10 +166,12 @@
                 </div>
               </div>
               <div class="mb-3 row">
-                <label for="assetType" class="col-sm-4 col-form-label fw-bold"
+                <label
+                  for="assetType"
+                  class="col-sm-4 col-lg-2 col-form-label fw-bold"
                   >Type</label
                 >
-                <div class="col-sm-8">
+                <div class="col-sm-8 col-lg-10">
                   <select
                     formControlName="assetType"
                     class="form-control"
@@ -139,10 +185,12 @@
                 </div>
               </div>
               <div class="mb-3 row">
-                <label for="description" class="col-sm-4 col-form-label fw-bold"
+                <label
+                  for="description"
+                  class="col-sm-4 col-lg-2 col-form-label fw-bold"
                   >Description</label
                 >
-                <div class="col-sm-8">
+                <div class="col-sm-8 col-lg-10">
                   <textarea
                     formControlName="description"
                     rows="8"

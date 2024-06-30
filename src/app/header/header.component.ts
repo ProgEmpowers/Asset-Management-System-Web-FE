@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit{
     //   url:"/login"
     // }
   ];
-
+  
   user?: User;
 
   constructor (private authService: AuthService , private router: Router){

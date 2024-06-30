@@ -5,6 +5,7 @@ import { AssetStockService } from '../../services/asset-stock.service';
 import { Asset } from '../../Models/asset';
 import { NgToastService } from 'ng-angular-popup';
 import { AssetStatusEnum } from '../../Models/AssetStatusEnum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-assign-assets',
@@ -20,7 +21,8 @@ export class AssignAssetsComponent {
   constructor(
     private assignAssetsService: AssignAssetsService,
     private assetService: AssetStockService,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private router: Router
   ) {
     // Getting asset data to the modal
     this.assetService.data$.subscribe((data) => {
@@ -55,6 +57,7 @@ export class AssignAssetsComponent {
             detail: `Asset assigned!`,
           });
           this.selectedEmployee = '';
+          this.reloadComponent(true);
         },
         error: (err) => {
           this.toast.error({
@@ -62,5 +65,16 @@ export class AssignAssetsComponent {
           });
         },
       });
+  }
+
+  reloadComponent(self:boolean,urlToNavigateTo ?:string){
+    //skipLocationChange:true means dont update the url to / when navigating
+    console.log("Current route I am on:",this.router.url);
+    const url=self ? this.router.url :urlToNavigateTo;
+    this.router.navigateByUrl('/',{skipLocationChange:true}).then(()=>{
+      this.router.navigate([`/${url}`]).then(()=>{
+        console.log(`After navigation I am on:${this.router.url}`)
+      })
+    })
   }
 }

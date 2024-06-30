@@ -18,7 +18,13 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { AssetsWidgetComponent } from './components/widgets/assets-widget/assets-widget.component';
 import { EmployeeWidgetComponent } from './components/widgets/employee-widget/employee-widget.component';
 import { VendorsWidgetComponent } from './components/widgets/vendors-widget/vendors-widget.component';
-import { GridModule, PageService, PagerModule, PdfExportService, SortService } from '@syncfusion/ej2-angular-grids';
+import {
+  GridModule,
+  PageService,
+  PagerModule,
+  PdfExportService,
+  SortService,
+} from '@syncfusion/ej2-angular-grids';
 import { AssetTableComponent } from './components/tables/asset-table/asset-table.component';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
 import { EmployeeTableComponent } from './components/tables/employee-table/employee-table.component';
@@ -31,7 +37,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgToastModule } from 'ng-angular-popup';
 import { ToastrModule } from 'ngx-toastr';
 import { UploadComponent } from './components/upload/upload.component';
-import { DeleteRecordComponent } from './forms/delete-record/delete-record.component';
+import { DeleteRecordComponent } from './popups/delete-record/delete-record.component';
 import { LoginComponent } from './auth/login/login.component';
 import { Sidebar2Component } from './sidebar2/sidebar2.component';
 import { SentReportsComponent } from './sent-reports/sent-reports.component';
@@ -43,6 +49,15 @@ import { SendContractComponent } from './forms/send-contract/send-contract.compo
 import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
 import { AssignAssetsComponent } from './forms/assign-assets/assign-assets.component';
 import { authInterceptor } from './interceptors/auth.interceptor';
+import { ReleaseAssetComponent } from './popups/release-asset/release-asset.component';
+import { DisposeAssetComponent } from './popups/dispose-asset/dispose-asset.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
+import { DisposalsComponent } from './disposals/disposals.component';
+import { DisposalAssetTableComponent } from './components/tables/disposal-asset-table/disposal-asset-table.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { FilterAssetByStatusPipe } from './pipes/filter-asset-by-status.pipe';
+import { FilterAssetByCategoryPipe } from './pipes/filter-asset-by-category.pipe';
+import { MyAssetsComponent } from './my-assets/my-assets.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +95,16 @@ import { authInterceptor } from './interceptors/auth.interceptor';
     ContractTableComponent,
     SendContractComponent,
     ViewAssetComponent,
-    AssignAssetsComponent
+    AssignAssetsComponent,
+    ReleaseAssetComponent,
+    DisposeAssetComponent,
+    TruncatePipe,
+    DisposalsComponent,
+    DisposalAssetTableComponent,
+    FilterPipe,
+    FilterAssetByStatusPipe,
+    FilterAssetByCategoryPipe,
+    MyAssetsComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,13 +118,13 @@ import { authInterceptor } from './interceptors/auth.interceptor';
     ReactiveFormsModule,
     FormsModule,
     NgToastModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
   providers: [PageService, SortService, PdfExportService, {
     provide: HTTP_INTERCEPTORS,
     useClass: authInterceptor,
     multi: true
   }],
-  bootstrap: [AppComponent]
+
 })
-export class AppModule { }
+export class AppModule {}
