@@ -43,6 +43,9 @@ import { SendContractComponent } from './forms/send-contract/send-contract.compo
 import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
 import { AssignAssetsComponent } from './forms/assign-assets/assign-assets.component';
 import { authInterceptor } from './interceptors/auth.interceptor';
+import { ViewEmployeeComponent } from './forms/view-employee/view-employee.component';
+import { AssignAssetEmployeeSideComponent } from './forms/assign-asset-employee-side/assign-asset-employee-side.component';
+
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -85,6 +88,10 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
     ContractTableComponent,
     SendContractComponent,
     ViewAssetComponent,
+    AssignAssetsComponent,
+    ViewAssetComponent,
+    ViewEmployeeComponent,
+    AssignAssetEmployeeSideComponent,
     AssignAssetsComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,

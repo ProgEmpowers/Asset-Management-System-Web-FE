@@ -38,17 +38,20 @@ export class NewEmployeeComponent implements OnInit {
       'VendorManeger',
       'NormalUser'
     ];
+    
   }
 
   submit() : void {
     if (this.employeeForm.valid == false) {
       return;
     }
+    
     this.employeeService.createEmployee(
       this.employeeForm.value
     ).subscribe(
       (res) => {
         if (res) {
+          
           this.toastr.success({detail:"New employee created", summary:"New employee is created successfully.", duration:5000});
           this.employeeForm.reset();
           this.reloadComponent(true);
@@ -69,4 +72,6 @@ export class NewEmployeeComponent implements OnInit {
       })
     })
   }
+
+  
 }

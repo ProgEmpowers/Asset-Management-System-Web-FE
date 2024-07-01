@@ -45,4 +45,6 @@ export class AssetStockService extends Subject<DataStateChangeEventArgs> {
   updateAsset(id: string, asset: Asset): Observable<any> {
     return this.http.put(this.apiurl + '/' + id, asset);
   }
+
+
 }

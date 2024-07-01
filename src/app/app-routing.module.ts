@@ -10,6 +10,7 @@ import { NewAssetComponent } from './forms/new-asset/new-asset.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ContractsComponent } from './contracts/contracts.component';
 import { authGuard } from './auth/guards/auth.guard';
+import { ViewEmployeeComponent } from './forms/view-employee/view-employee.component';
 import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
@@ -27,7 +28,9 @@ const routes: Routes = [
   { path:"assets/:id", component: ViewAssetComponent },
   { path:"forget-password", component: ForgetPasswordComponent },
   { path:"reset-password", component: ResetPasswordComponent },
-  { path:"change-password", component: ChangePasswordComponent, canActivate: [authGuard] }
+  { path:"change-password", component: ChangePasswordComponent, canActivate: [authGuard] },
+  { path:"assets/:id", component: ViewAssetComponent, canActivate: [authGuard] },
+  {path:"employees/:id", component: ViewEmployeeComponent, canActivate: [authGuard]},
 ];
 
 @NgModule({

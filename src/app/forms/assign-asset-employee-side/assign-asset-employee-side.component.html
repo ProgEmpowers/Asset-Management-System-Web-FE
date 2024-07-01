@@ -1,0 +1,35 @@
+<!-- Modal -->
+<div class="modal fade" id="assignAssetToEmployeeModal" tabindex="-1" aria-labelledby="assignAssetToEmployeeModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+          <h1 class="modal-title fs-5" id="assignAssetModalToEmployeeLabel">Assign asset</h1>
+          <span class="form-text">Please fill the form and submit</span>
+        </div>
+        <button #closeModel type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <div>
+          <!-- Asset Type Selection -->
+           <label>Select Asset Type</label>
+          <select class="form-select mb-3" [(ngModel)]="selectedAssetType" (change)="onAssetTypeChange()">
+            
+            <option *ngFor="let type of assetTypes" [value]="type">{{ type }}</option>
+          </select>
+
+          <!-- Asset Selection -->
+          <select class="form-select" size="5" aria-label="Size 5 select" [(ngModel)]="selectedAsset">
+            <option *ngFor="let asset of filteredAssets" [value]="asset.id">{{ asset.id }} - {{asset.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="selectedAsset == null" (click)="onAssetSelected()">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
