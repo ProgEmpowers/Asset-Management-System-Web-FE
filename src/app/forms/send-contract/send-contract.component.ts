@@ -59,31 +59,21 @@ export class SendContractComponent implements OnInit {
     
   }
 
-  disableAddingAssets(): boolean {
-    return this.orderedAssetTypes().controls.length == this.orderedSupplyAssetTypes.length;
-  }
-
-  disableAddingVendors(): boolean {
-    return this.idOfVendors().controls.length == this.vendorList.length;
-  }
-
+  // Disable asset type
   disableAssetType(value: string): boolean {
     const selectedAssets = this.orderedAssetTypes().controls.map(control => control.get('orderedAsset')?.value);
     return selectedAssets.includes(value);
   }
 
-  disableVendor(value: string): boolean {
-    return this.idOfVendors().controls.some(control => control.value == value);
+  // Disable adding assets
+  disableAddingAssets(): boolean {
+    return this.orderedAssetTypes().controls.length == this.orderedSupplyAssetTypes.length;
   }
 
+  // Check if all assets are selected
   allAssetsSelected(): boolean {
     const selectedAssets = this.orderedAssetTypes().controls.map(control => control.get('orderedAsset')?.value);
     return this.orderedSupplyAssetTypes.every(asset => selectedAssets.includes(asset));
-  }
-
-  allVendorsSelected(): boolean {
-    const selectedVendors = this.idOfVendors().controls.map(control => control.value);
-    return this.vendorList.every(vendor => selectedVendors.includes(vendor.id));
   }
 
   // Get ordered asset types from the form
@@ -109,6 +99,22 @@ export class SendContractComponent implements OnInit {
   // Remove ordered asset
   onRemoveOrderedAsset(index: number) {
     this.orderedAssetTypes().removeAt(index);
+  }
+
+  // Disable vendor
+  disableAddingVendors(): boolean {
+    return this.idOfVendors().controls.length == this.vendorList.length;
+  }
+
+  // Disable vendor
+  disableVendor(value: string): boolean {
+    return this.idOfVendors().controls.some(control => control.value == value);
+  }
+
+  // Check if all vendors are selected
+  allVendorsSelected(): boolean {
+    const selectedVendors = this.idOfVendors().controls.map(control => control.value);
+    return this.vendorList.every(vendor => selectedVendors.includes(vendor.id));
   }
 
   // Get id of vendors from the form
