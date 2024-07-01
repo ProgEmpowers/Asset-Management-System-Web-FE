@@ -46,6 +46,11 @@ import { authInterceptor } from './interceptors/auth.interceptor';
 import { ViewEmployeeComponent } from './forms/view-employee/view-employee.component';
 import { AssignAssetEmployeeSideComponent } from './forms/assign-asset-employee-side/assign-asset-employee-side.component';
 
+import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +91,11 @@ import { AssignAssetEmployeeSideComponent } from './forms/assign-asset-employee-
     AssignAssetsComponent,
     ViewAssetComponent,
     ViewEmployeeComponent,
-    AssignAssetEmployeeSideComponent
+    AssignAssetEmployeeSideComponent,
+    AssignAssetsComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -100,6 +109,8 @@ import { AssignAssetEmployeeSideComponent } from './forms/assign-asset-employee-
     ReactiveFormsModule,
     FormsModule,
     NgToastModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
     ToastrModule.forRoot()
   ],
   providers: [PageService, SortService, PdfExportService, {
