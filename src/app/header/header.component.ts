@@ -1,9 +1,14 @@
 import { AuthService } from './../auth/services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { enableRipple } from '@syncfusion/ej2-base';
 import { MenuItemModel } from '@syncfusion/ej2-angular-navigations';
 import { User } from '../Models/user.model';
 import { Router } from '@angular/router';
+
+interface SidemenuToggled {
+  screenWidth: number;
+  collapsed: boolean;
+}
 
 @Component({
   selector: 'app-header',
@@ -11,27 +16,10 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit{
-  public menuItems: MenuItemModel[] = [
-    {
-      iconCss: 'far fa-bell',
+  @Output() toggleSideMenu:EventEmitter<SidemenuToggled> = new EventEmitter()
 
-    },
-    {
-      iconCss: 'far fa-user',
-        items: [
-            { text: 'My profile' },
-            { text: 'Customize' },
-            { text: 'Sign out' }
-        ]
-    }
-    //,
-    // {
-    //   iconCss: 'fas fa-user-plus',
-    //   url:"/login"
-    // }
-  ];
-  
   user?: User;
+  isCollapsed = false;
 
   constructor (private authService: AuthService , private router: Router){
 
@@ -51,5 +39,13 @@ export class HeaderComponent implements OnInit{
     this.authService.logout();
     this.router.navigateByUrl('/');
     this.router.navigate(['/login']);
+  }
+
+  onToggle() {
+    this.isCollapsed = !this.isCollapsed;
+    this.toggleSideMenu.emit({
+      collapsed:this.isCollapsed,
+      screenWidth:0
+    });
   }
 }

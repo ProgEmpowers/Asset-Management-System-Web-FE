@@ -72,7 +72,7 @@
   </div>
 </div> -->
 
-<div class="row justify-content-start">
+<div class="d-flex justify-content-start">
   <input
     class="form-control me-2 w-auto"
     type="search"
@@ -107,7 +107,7 @@
       <option value="PC">PC</option>
     </select>
   </div>
-  <button (click)="onRemoveFilters(status, category)" class="btn btn-primary w-auto" *ngIf="isFilterApplied"
+  <button (click)="onRemoveFilters(status, category)" class="btn btn-primary w-auto ms-3" *ngIf="isFilterApplied"
   >Clear filters</button>
 </div>
 

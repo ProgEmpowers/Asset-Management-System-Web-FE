@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SidebarMenuComponent } from './sidebar-menu/sidebar-menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AssetsComponent } from './assets/assets.component';
 import { EmployeesComponent } from './employees/employees.component';
@@ -58,11 +57,12 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { FilterAssetByStatusPipe } from './pipes/filter-asset-by-status.pipe';
 import { FilterAssetByCategoryPipe } from './pipes/filter-asset-by-category.pipe';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
+import { SidemenuComponent } from './sidemenu/sidemenu.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarMenuComponent,
     DashboardComponent,
     AssetsComponent,
     EmployeesComponent,
@@ -105,6 +105,7 @@ import { MyAssetsComponent } from './my-assets/my-assets.component';
     FilterAssetByStatusPipe,
     FilterAssetByCategoryPipe,
     MyAssetsComponent,
+    SidemenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -118,6 +119,7 @@ import { MyAssetsComponent } from './my-assets/my-assets.component';
     ReactiveFormsModule,
     FormsModule,
     NgToastModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
   providers: [PageService, SortService, PdfExportService, {
@@ -125,6 +127,6 @@ import { MyAssetsComponent } from './my-assets/my-assets.component';
     useClass: authInterceptor,
     multi: true
   }],
-
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

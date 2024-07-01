@@ -1,0 +1,332 @@
+<div class="sidemenu bg-dark rounded-2 p-4" [ngClass]="{'sidemenu-collapsed':isCollapsed}">
+  <div
+  class="sidemenu-logo"
+  #logoBtn
+  (click)="toggleCollapse()">
+    <img
+    @fadeIn
+    src="../../assets/corzent-logo-mark.png" alt="logo"
+    class="object-fit-cover img-fluid sidemenu-logo-mark"
+    height="100%"
+    *ngIf="isCollapsed"
+    >
+    <img
+      @fadeIn
+      class="sidemenu-logo-img img-fluid"
+      src="../../assets/corzent-logo-white.png"
+      width="100%"
+      height="100%"
+      alt="logo"
+      *ngIf="!isCollapsed"
+    />
+  </div>
+  <div class="sidemenu-content mt-5">
+    <ul class="sidenav-nav">
+      <ng-container
+        *ngIf="
+          user !== undefined &&
+          (user?.roles?.includes('NormalUser') ||
+            user?.roles?.includes('Admin') ||
+            user?.roles?.includes('AssetManeger') ||
+            user?.roles?.includes('VendorManeger'))
+        "
+      >
+        <li class="sidenav-nav-item">
+          <a
+            class="sidenav-nav-item-link"
+            aria-current="page"
+            href="#"
+            [routerLink]="['/', 'dashboard']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <i class="bx bxs-dashboard"></i>
+            <span class="sidenav-nav-item-text"
+            @fade
+            *ngIf="!isCollapsed"
+
+            >Dashboard</span>
+          </a>
+        </li>
+      </ng-container>
+
+      <ng-container
+        *ngIf="
+          user !== undefined &&
+          (user?.roles?.includes('AssetManeger') ||
+            user?.roles?.includes('Admin'))
+        "
+      >
+        <li class="sidenav-nav-item">
+          <a
+            class="sidenav-nav-item-link"
+            aria-current="page"
+            href="#"
+            [routerLink]="['/', 'assets']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <i class="bx bxs-devices"></i>
+            <span class="sidenav-nav-item-text"
+            @fade
+            *ngIf="!isCollapsed"
+            >Assets</span>
+          </a>
+        </li>
+      </ng-container>
+
+      <ng-container
+        *ngIf="
+          user !== undefined &&
+          (user?.roles?.includes('AssetManeger') ||
+            user?.roles?.includes('Admin') ||
+            user?.roles?.includes('NormalUser'))
+        "
+      >
+        <li class="sidenav-nav-item">
+          <a
+            class="sidenav-nav-item-link"
+            aria-current="page"
+            href="#"
+            [routerLink]="['/', 'my-assets']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <i class="bx bx-laptop"></i>
+            <span class="sidenav-nav-item-text"
+            @fade
+            *ngIf="!isCollapsed"
+            >My Assets</span></a
+          >
+        </li>
+      </ng-container>
+
+      <ng-container
+        *ngIf="
+          user !== undefined &&
+          (user?.roles?.includes('AssetManeger') ||
+            user?.roles?.includes('Admin') ||
+            user?.roles?.includes('VendorManeger'))
+        "
+      >
+        <li class="sidenav-nav-item">
+          <a
+            class="sidenav-nav-item-link"
+            aria-current="page"
+            href="#"
+            [routerLink]="['/', 'disposals']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <i class="bx bx-archive"></i>
+            <span class="sidenav-nav-item-text"
+            @fade
+            *ngIf="!isCollapsed"
+            >Disposals</span></a
+          >
+        </li>
+      </ng-container>
+
+      <ng-container
+        *ngIf="
+          user !== undefined &&
+          (user?.roles?.includes('AssetManeger') ||
+            user?.roles?.includes('Admin'))
+        "
+      >
+        <li class="sidenav-nav-item">
+          <a
+            class="sidenav-nav-item-link"
+            aria-current="page"
+            href="#"
+            [routerLink]="['/', 'employees']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <i class="bx bx-group"></i>
+            <span class="sidenav-nav-item-text"
+            @fade
+            *ngIf="!isCollapsed"
+            >Employees</span></a
+          >
+        </li>
+      </ng-container>
+
+      <ng-container
+        *ngIf="
+          user !== undefined &&
+          (user?.roles?.includes('VendorManeger') ||
+            user?.roles?.includes('Admin'))
+        "
+      >
+        <li class="sidenav-nav-item">
+          <a
+            class="sidenav-nav-item-link"
+            aria-current="page"
+            href="#"
+            [routerLink]="['/', 'vendors']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <i class="bx bxs-business"></i>
+            <span class="sidenav-nav-item-text"
+            @fade
+            *ngIf="!isCollapsed"
+            >Vendors</span></a
+          >
+        </li>
+      </ng-container>
+
+      <ng-container
+        *ngIf="
+          user !== undefined &&
+          (user?.roles?.includes('VendorManeger') ||
+            user?.roles?.includes('Admin'))
+        "
+      >
+        <li class="sidenav-nav-item">
+          <a
+            class="sidenav-nav-item-link"
+            aria-current="page"
+            href="#"
+            [routerLink]="['/', 'contracts']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <i class="bx bx-list-ul"></i>
+            <span class="sidenav-nav-item-text"
+            @fade
+            *ngIf="!isCollapsed"
+            >Contracts</span></a
+          >
+        </li>
+      </ng-container>
+
+      <!-- <ng-container *ngIf="user !== undefined && ( user?.roles?.includes('AssetManeger') || user?.roles?.includes('Admin') || user?.roles?.includes('NormalUser') || user?.roles?.includes('VendorManeger'))">
+        <li class="sidenav-nav-item">
+          <a class="sidenav-nav-item-link" aria-current="page" href="#" [routerLink]="['/','assets']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="sidenav-nav-item-text">My Account</span></a>
+        </li>
+      </ng-container> -->
+
+      <ng-container
+        *ngIf="
+          user !== undefined &&
+          (user?.roles?.includes('NormalUser') ||
+            user?.roles?.includes('Admin') ||
+            user?.roles?.includes('AssetManeger') ||
+            user?.roles?.includes('VendorManeger'))
+        "
+      >
+        <li class="sidenav-nav-item">
+          <a
+            class="sidenav-nav-item-link"
+            aria-current="page"
+            href="#"
+            [routerLink]="['/', 'notifications']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <i class="bx bx-bell"></i>
+            <span class="sidenav-nav-item-text"
+            @fade
+            *ngIf="!isCollapsed"
+            >Notifications</span></a
+          >
+        </li>
+      </ng-container>
+
+      <ng-container
+        *ngIf="
+          user !== undefined &&
+          (user?.roles?.includes('AssetManeger') ||
+            user?.roles?.includes('Admin'))
+        "
+      >
+        <li class="sidenav-nav-item">
+          <a
+            class="sidenav-nav-item-link"
+            aria-current="page"
+            href="#"
+            [routerLink]="['/', 'requests']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <i class="bx bx-send"></i>
+            <span class="sidenav-nav-item-text"
+            @fade
+            *ngIf="!isCollapsed"
+            >R-Requests</span></a
+          >
+        </li>
+      </ng-container>
+
+      <ng-container
+        *ngIf="user !== undefined && user?.roles?.includes('NormalUser')"
+      >
+        <li class="sidenav-nav-item">
+          <a
+            class="sidenav-nav-item-link"
+            aria-current="page"
+            href="#"
+            [routerLink]="['/', 'sentrequests']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <i class="bx bx-send"></i>
+            <span class="sidenav-nav-item-text"
+            @fade
+            *ngIf="!isCollapsed"
+            >S-Requests</span></a
+          >
+        </li>
+      </ng-container>
+
+      <ng-container
+        *ngIf="
+          user !== undefined &&
+          (user?.roles?.includes('AssetManeger') ||
+            user?.roles?.includes('Admin'))
+        "
+      >
+        <li class="sidenav-nav-item">
+          <a
+            class="sidenav-nav-item-link"
+            aria-current="page"
+            href="#"
+            [routerLink]="['/', 'reports']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <i class="bx bxs-report"></i>
+            <span class="sidenav-nav-item-text"
+            @fade
+            *ngIf="!isCollapsed"
+            >R-Reports</span></a
+          >
+        </li>
+      </ng-container>
+
+      <ng-container
+        ng-container
+        *ngIf="user !== undefined && user?.roles?.includes('NormalUser')"
+      >
+        <li class="sidenav-nav-item">
+          <a
+            class="sidenav-nav-item-link"
+            aria-current="page"
+            href="#"
+            [routerLink]="['/', 'sentreports']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <i class="bx bxs-report"></i>
+            <span class="sidenav-nav-item-text"
+            @fade
+            *ngIf="!isCollapsed"
+            >S-Reports</span></a
+          >
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</div>

@@ -17,6 +17,7 @@ const routes: Routes = [
   { path:"", redirectTo: "dashboard", pathMatch:'full' },
   { path:"dashboard", component: DashboardComponent , canActivate: [authGuard]},
   { path:"assets/new", component: NewAssetComponent, canActivate: [authGuard] },
+  { path:"assets/:id", component: ViewAssetComponent , canActivate: [authGuard] },
   { path:"assets", component: AssetsComponent , canActivate: [authGuard] },
   { path:"my-assets/:id", component:ViewAssetComponent },
   { path:"my-assets", component:MyAssetsComponent },

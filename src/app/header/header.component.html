@@ -14,9 +14,11 @@
   </div>
 </div> -->
 
-<div class="d-flex justify-content-between align-items-center px-2">
+<div class="d-flex justify-content-between align-items-center">
   <div class="d-flex">
-    <i class="fas fa-bars fs-4"></i>
+    <i class="sidemenu-toggler fas fa-bars fs-4"
+    (click)="onToggle()"
+    ></i>
   </div>
   <div class="d-flex justify-content-end align-items-center dropdown">
     <button type="button" class="btn d-flex align-items-center border-0 dropdown-toggle" style="background-color: transparent;"
