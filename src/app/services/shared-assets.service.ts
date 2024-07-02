@@ -6,6 +6,7 @@ import { Asset } from '../Models/asset';
   providedIn: 'root',
 })
 export class SharedAssetsService {
+
   constructor() {}
 
   private dataSubject = new BehaviorSubject<Asset>({});

@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AssetStockService } from '../../services/asset-stock.service';
 import { NgToastService } from 'ng-angular-popup';
 import { AssetStatusEnum } from '../../Models/AssetStatusEnum';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-view-asset',
@@ -38,14 +39,26 @@ export class ViewAssetComponent implements OnInit {
     text: '',
   };
 
+  assetList?: Asset[];
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private assetService: AssetStockService,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private sharedAssetService: SharedAssetsService
   ) {
     this.item = {};
   }
 
+  url:SafeUrl = ''
+  onCodeChange(url: SafeUrl) {
+    console.log(url);
+    this.url = url;
+  }
+
+  sendData(asset: Asset) {
+    this.sharedAssetService.sendData(asset);
+  }
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.loadAsset(this.id);
@@ -65,6 +78,10 @@ export class ViewAssetComponent implements OnInit {
       this.item = res;
       this.isAvailable(this.item.assetStatus);
     });
+  }
+
+  handleQrCodeResult(result: string) {
+    this.loadAsset(result);
   }
 
   // setting up unchanged attributes' values to previous values

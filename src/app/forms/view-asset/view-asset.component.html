@@ -21,7 +21,7 @@
   <div class="col widgets justify-content-start m-0 mt-5 mb-2">
     <div class="row">
       <div class="col-12">
-        <div class="row w-50">
+        <div class="d-flex align-items-start w-50">
           <div class="col-4">
             <div class="d-flex">
               <img
@@ -59,6 +59,16 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="">
+            <span>
+              <qrcode (qrCodeURL)="onCodeChange($event)" [width]="180" qrdata="item.id.toString()"></qrcode>
+            </span>
+          </div>
+          <div class="mt-5 pt-4">
+            <span>
+              <button type="button" class="btn btn-outline-secondary custom-button"><a [href]="url" download="Asset QR Code">Print</a></button>
+            </span>
           </div>
         </div>
         <ul class="nav nav-tabs my-4">

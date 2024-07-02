@@ -43,6 +43,7 @@ import { SendContractComponent } from './forms/send-contract/send-contract.compo
 import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
 import { AssignAssetsComponent } from './forms/assign-assets/assign-assets.component';
 import { authInterceptor } from './interceptors/auth.interceptor';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { authInterceptor } from './interceptors/auth.interceptor';
     ReactiveFormsModule,
     FormsModule,
     NgToastModule,
+    QRCodeModule,
     ToastrModule.forRoot()
   ],
   providers: [PageService, SortService, PdfExportService, {

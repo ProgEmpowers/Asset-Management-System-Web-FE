@@ -9,6 +9,7 @@ import { NewAssetComponent } from './forms/new-asset/new-asset.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ContractsComponent } from './contracts/contracts.component';
 import { authGuard } from './auth/guards/auth.guard';
+import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
 
 const routes: Routes = [
   { path:"", redirectTo: "dashboard", pathMatch:'full' },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path:"contracts", component: ContractsComponent , canActivate: [authGuard] },
   { path:"vendors", component: VendorsComponent , canActivate: [authGuard] },
   { path:"notifications", component:NotificationsComponent, canActivate: [authGuard] },
-  { path:"login", component:LoginComponent}
+  { path:"login", component:LoginComponent},
+  { path:"assets/:id", component: ViewAssetComponent },
 ];
 
 @NgModule({
