@@ -14,7 +14,6 @@ import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
 import { DisposalsComponent } from './disposals/disposals.component';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { ViewEmployeeComponent } from './forms/view-employee/view-employee.component';
-import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 

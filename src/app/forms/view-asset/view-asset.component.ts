@@ -45,8 +45,7 @@ export class ViewAssetComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private assetService: AssetStockService,
     private toast: NgToastService,
-    private sharedAssetService: SharedAssetsService
-    private toast: NgToastService,
+    private sharedAssetService: SharedAssetsService,
     private router: Router
   ) {
     this.item = {};
@@ -83,10 +82,6 @@ export class ViewAssetComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
-  }
-
-  handleQrCodeResult(result: string) {
-    this.loadAsset(result);
   }
 
   handleQrCodeResult(result: string) {
