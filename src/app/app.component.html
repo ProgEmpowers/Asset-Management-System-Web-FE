@@ -1,16 +1,18 @@
-<div class="row fluid-container">
-  <!--Sidemenu-->
-  <ejs-sidebar id="default-sidebar" width="250" position="Left" [isOpen]="true" target=".main" *ngIf="showSideNav">
-    <!-- <app-sidebar-menu class="sidebar-content"></app-sidebar-menu> -->
-    <app-sidebar2 class="sidebar-content"></app-sidebar2>
-  </ejs-sidebar>
-
+<div class="d-flex" style="width: 100%">
+  <app-sidemenu #sidemenu
+ (onToggleSidemenu)="onToggleSideMenu($event)"
+ *ngIf="showSideNav"
+ ></app-sidemenu>
   <!--Page content-->
-  <div class="col p-4">
-    <div class="header-container p-1" *ngIf="showHeader">
-      <app-header></app-header>
+  <div
+    class="d-flex flex-column px-3 py-2 body-width-expanded"
+    [ngClass]="{ 'body-width': !isSideMenuCollapsed }"
+    [class.body-full-width]="!showSideNav"
+  >
+    <div class="header-container p-2" *ngIf="showHeader">
+      <app-header (toggleSideMenu)="sidemenu.logoBtn.nativeElement.click()" ></app-header>
     </div>
-    <div class="container p-1 mw-100">
+    <div class="container px-2 my-4 mw-100">
       <router-outlet></router-outlet>
     </div>
   </div>
@@ -25,5 +27,7 @@
 <app-delete-record></app-delete-record>
 <app-send-contract></app-send-contract>
 <app-assign-assets></app-assign-assets>
+<app-release-asset></app-release-asset>
+<app-dispose-asset></app-dispose-asset>
 <app-assign-asset-employee-side></app-assign-asset-employee-side>
 <ng-toast></ng-toast>

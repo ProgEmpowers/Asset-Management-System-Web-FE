@@ -20,3 +20,10 @@
 .isHidden {
   display: none;
 }
+
+.form-select {
+  min-width: 200px;
+  height: 100%;
+  // outline: none;
+  box-shadow: none;
+}

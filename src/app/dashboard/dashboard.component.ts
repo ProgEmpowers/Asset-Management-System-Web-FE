@@ -14,6 +14,8 @@ import { EmployeeService } from '../services/employee.service';
 export class DashboardComponent implements OnInit {
 
   assetList: Asset[] = [];
+  freeAssets: Asset[] = [];
+  acquiredAssets: Asset[] = [];
   vendorList: Vendor[] = [];
   employeeList: Employee[]=[];
 

@@ -1,6 +1,14 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,ElementRef,OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationEnd, Event } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { AuthService } from './auth/services/auth.service';
+import { SidemenuComponent } from './sidemenu/sidemenu.component';
+import { User } from './Models/user.model';
+
+interface SidemenuToggled {
+  screenWidth: number;
+  collapsed: boolean;
+}
 
 @Component({
   selector: 'app-root',
@@ -8,12 +16,17 @@ import { filter } from 'rxjs/operators';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit{
+  @ViewChild('sidemenu') sidemenu!:SidemenuComponent;
+  user?:User;
+
   title = 'Frontend';
   modelOpened = true;
   showSideNav: boolean = true;
   showHeader: boolean = true;
+  isSideMenuCollapsed = false;
+  screenWidth = 0;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService:AuthService) { }
 
   ngOnInit(): void {
     this.router.events.pipe(
@@ -25,6 +38,12 @@ export class AppComponent implements OnInit{
       this.showSideNav = !this.shouldHideSidebar(url);
       this.showHeader = !this.shouldHideHeader(url);
     });
+
+    this.user = this.authService.getUser();
+    if(!this.user?.email){
+      this.showSideNav = false;
+    } else
+    this.showSideNav = true;
   }
   shouldHideSidebar(url: string): boolean {
     return (url.includes('/login') || url.includes('/forget-password') || url.includes('/reset-password'));
@@ -36,5 +55,10 @@ export class AppComponent implements OnInit{
 
   closeModel() {
     this.modelOpened = false
+  }
+
+  onToggleSideMenu(data: SidemenuToggled) {
+    this.screenWidth = data.screenWidth;
+    this.isSideMenuCollapsed = data.collapsed;
   }
 }
