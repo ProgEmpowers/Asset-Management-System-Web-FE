@@ -21,6 +21,14 @@
   display: none;
 }
 
+.custom-button {
+  border-radius : 8px; 
+}
+.custom-button a:hover {
+  color:  #f4f4f4d4 !important;
+}
+
+
 .form-select {
   min-width: 200px;
   height: 100%;

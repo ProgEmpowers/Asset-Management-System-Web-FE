@@ -48,6 +48,7 @@ import { SendContractComponent } from './forms/send-contract/send-contract.compo
 import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
 import { AssignAssetsComponent } from './forms/assign-assets/assign-assets.component';
 import { authInterceptor } from './interceptors/auth.interceptor';
+import { QRCodeModule } from 'angularx-qrcode';
 import { ReleaseAssetComponent } from './popups/release-asset/release-asset.component';
 import { DisposeAssetComponent } from './popups/dispose-asset/dispose-asset.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
@@ -134,8 +135,7 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
     ReactiveFormsModule,
     FormsModule,
     NgToastModule,
-    BrowserAnimationsModule,
-    MatSnackBarModule,
+    QRCodeModule,
     ToastrModule.forRoot()
   ],
   providers: [PageService, SortService, PdfExportService, {
