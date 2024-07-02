@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Asset } from '../../Models/asset';
 import { AssetStockService } from '../../services/asset-stock.service';
 import { NgToastService } from 'ng-angular-popup';
-import { AssetStatusEnum } from '../../Models/AssetStatusEnum';
 import { Router } from '@angular/router';
 import { UserAsset } from '../../Models/user-assets';
 
@@ -47,7 +46,7 @@ export class ReleaseAssetComponent {
           summary: 'Asset released!',
           detail: 'Asset released successfully',
         });
-        this.assetEdit_ID = "";
+        this.assetEdit_ID = '';
         this.reloadComponent(true);
       },
       error: (err) => {
