@@ -1,27 +1,21 @@
 <div class="row">
-  <div class="section-header d-flex m-0 mt-5">
-    <h5 class="d-flex"><i class="fal fa-solid fa-laptop pe-2"></i> My Assets</h5>
-    <div class="actions">
-      <button class="btn btn-secondary">View all ({{assetList.length}})</button>
-      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Create new</button>
-    </div>
-  </div>
   <div class="row">
-    <div class="card-group mt-4">
+    <div class="row mt-4">
       <app-asset-card *ngFor="let item of assetList | slice: (page-1) * pageSize : page * pageSize; "
       [id]="item.id"
       [name]="item.name"
       [model]="item.assetType"
       [imgUrl]="item.imageUrl"
+      class="col-2 m-0"
       ></app-asset-card>
     </div>
   </div>
   <div class="row m-0 mt-4">
     <ngb-pagination
-      class="d-flex justify-content-center"
+      class="d-flex justify-content-end"
       [(page)]="page"
       [pageSize]="pageSize"
-      [collectionSize]="assetList.length"
+      [collectionSize]="collectionSize"
       size="sm" >
     </ngb-pagination>
   </div>

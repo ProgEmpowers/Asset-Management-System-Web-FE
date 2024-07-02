@@ -1,5 +1,5 @@
-import { DeleteRecordService } from './../../services/delete-record.service';
-import { VendorService } from './../../services/vendor.service';
+import { DeleteRecordService } from '../../services/delete-record.service';
+import { VendorService } from '../../services/vendor.service';
 import { Component, OnInit } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
 import { Vendor } from '../../Models/vendor';
@@ -37,9 +37,7 @@ export class DeleteRecordComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    console.log('hi hi');
-  }
+  ngOnInit(): void {}
 
   deleteRecord() {
     if (this.delete_type == 'vendor') {

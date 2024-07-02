@@ -70,14 +70,14 @@
                 This is required
           </div>
           <div class="form-floating  mt-2">
-            <input formControlName="confirmpassword" type="password" class="form-control"
-            [class.is-valid]="employeeForm.controls['confirmpassword'].valid && employeeForm.controls['confirmpassword'].touched"
-            [class.is-invalid]="employeeForm.controls['password'].invalid && (employeeForm.controls['password'].touched || employeeForm.controls['password'].dirty)"
-            name="confirmpassword" id="confirmpassword" placeholder="confirmpassword">
-            <label for="confirmpassword">Confirm Password</label>
+            <input formControlName="confirmPassword" type="password" class="form-control"
+            [class.is-valid]="employeeForm.controls['confirmPassword'].valid && employeeForm.controls['confirmPassword'].touched"
+            [class.is-invalid]="employeeForm.controls['confirmPassword'].invalid && (employeeForm.controls['confirmPassword'].touched || employeeForm.controls['confirmPassword'].dirty)"
+            name="confirmPassword" id="confirmPassword" placeholder="confirmPassword">
+            <label for="confirmPassword">Confirm Password</label>
           </div>
           <div class="form-text text-danger"
-              *ngIf="employeeForm.controls['confirmpassword'].invalid && (employeeForm.controls['confirmpassword'].touched || employeeForm.controls['confirmpassword'].dirty)">
+              *ngIf="employeeForm.controls['confirmPassword'].invalid && (employeeForm.controls['confirmPassword'].touched || employeeForm.controls['confirmPassword'].dirty)">
                 This is required
           </div>
 

@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SidebarMenuComponent } from './sidebar-menu/sidebar-menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AssetsComponent } from './assets/assets.component';
 import { EmployeesComponent } from './employees/employees.component';
@@ -18,7 +17,13 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { AssetsWidgetComponent } from './components/widgets/assets-widget/assets-widget.component';
 import { EmployeeWidgetComponent } from './components/widgets/employee-widget/employee-widget.component';
 import { VendorsWidgetComponent } from './components/widgets/vendors-widget/vendors-widget.component';
-import { GridModule, PageService, PagerModule, PdfExportService, SortService } from '@syncfusion/ej2-angular-grids';
+import {
+  GridModule,
+  PageService,
+  PagerModule,
+  PdfExportService,
+  SortService,
+} from '@syncfusion/ej2-angular-grids';
 import { AssetTableComponent } from './components/tables/asset-table/asset-table.component';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
 import { EmployeeTableComponent } from './components/tables/employee-table/employee-table.component';
@@ -31,7 +36,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgToastModule } from 'ng-angular-popup';
 import { ToastrModule } from 'ngx-toastr';
 import { UploadComponent } from './components/upload/upload.component';
-import { DeleteRecordComponent } from './forms/delete-record/delete-record.component';
+import { DeleteRecordComponent } from './popups/delete-record/delete-record.component';
 import { LoginComponent } from './auth/login/login.component';
 import { Sidebar2Component } from './sidebar2/sidebar2.component';
 import { SentReportsComponent } from './sent-reports/sent-reports.component';
@@ -43,13 +48,30 @@ import { SendContractComponent } from './forms/send-contract/send-contract.compo
 import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
 import { AssignAssetsComponent } from './forms/assign-assets/assign-assets.component';
 import { authInterceptor } from './interceptors/auth.interceptor';
+import { ReleaseAssetComponent } from './popups/release-asset/release-asset.component';
+import { DisposeAssetComponent } from './popups/dispose-asset/dispose-asset.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
+import { DisposalsComponent } from './disposals/disposals.component';
+import { DisposalAssetTableComponent } from './components/tables/disposal-asset-table/disposal-asset-table.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { FilterAssetByStatusPipe } from './pipes/filter-asset-by-status.pipe';
+import { FilterAssetByCategoryPipe } from './pipes/filter-asset-by-category.pipe';
+import { MyAssetsComponent } from './my-assets/my-assets.component';
+import { SidemenuComponent } from './sidemenu/sidemenu.component';
+import { ViewEmployeeComponent } from './forms/view-employee/view-employee.component';
+import { AssignAssetEmployeeSideComponent } from './forms/assign-asset-employee-side/assign-asset-employee-side.component';
+
+import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { IntlTelInputModuleComponent } from './components/intl-tel-input-module/intl-tel-input-module.component';
 import { OnlyNumbersDirective } from './directives/only-numbers.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarMenuComponent,
     DashboardComponent,
     AssetsComponent,
     EmployeesComponent,
@@ -83,6 +105,25 @@ import { OnlyNumbersDirective } from './directives/only-numbers.directive';
     SendContractComponent,
     ViewAssetComponent,
     AssignAssetsComponent,
+    ReleaseAssetComponent,
+    DisposeAssetComponent,
+    TruncatePipe,
+    DisposalsComponent,
+    DisposalAssetTableComponent,
+    FilterPipe,
+    FilterAssetByStatusPipe,
+    FilterAssetByCategoryPipe,
+    MyAssetsComponent,
+    SidemenuComponent,
+    AssignAssetsComponent,
+    ViewAssetComponent,
+    ViewEmployeeComponent,
+    AssignAssetEmployeeSideComponent,
+    AssignAssetsComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent,
+    ChangePasswordComponent,
+    AssignAssetsComponent,
     IntlTelInputModuleComponent,
     OnlyNumbersDirective
   ],
@@ -98,6 +139,8 @@ import { OnlyNumbersDirective } from './directives/only-numbers.directive';
     ReactiveFormsModule,
     FormsModule,
     NgToastModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
     ToastrModule.forRoot()
   ],
   providers: [PageService, SortService, PdfExportService, {
@@ -107,4 +150,4 @@ import { OnlyNumbersDirective } from './directives/only-numbers.directive';
   }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
