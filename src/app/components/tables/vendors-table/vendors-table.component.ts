@@ -7,15 +7,14 @@ import { Vendor } from '../../../Models/vendor';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DeleteRecordComponent } from '../../../forms/delete-record/delete-record.component';
+import { DeleteRecordComponent } from '../../../popups/delete-record/delete-record.component';
 
 @Component({
   selector: 'app-vendors-table',
   templateUrl: './vendors-table.component.html',
-  styleUrl: './vendors-table.component.scss'
+  styleUrl: './vendors-table.component.scss',
 })
 export class VendorsTableComponent implements OnInit {
-
   public vendors?: Vendor[];
   public vendor_tHeaders = Vendor_tHeaders;
 
@@ -25,36 +24,30 @@ export class VendorsTableComponent implements OnInit {
   apiUrl = this.vendorService.apiurl;
 
   public pageSetting: PageSettingsModel = {
-    pageSize: 10
-  }
+    pageSize: 10,
+  };
 
   constructor(
     private vendorService: VendorService,
     private router: Router,
     private toastServ: NgToastService,
     private deleteService: DeleteRecordService
-  ) { 
-    
-  }
+  ) {}
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.getAllVendors();
   }
 
-
   // Get all vendors
   getAllVendors(): void {
-    this.vendorService.getAllVendors()
-      .subscribe(
-        (list) => {
-          this.vendors = list ?? [];
-        }
-      )
+    this.vendorService.getAllVendors().subscribe((list) => {
+      this.vendors = list ?? [];
+    });
   }
 
   updateVendor(id: number): void {
     this.vendorService.sendData(id);
-    console.log("vendor id to edit: " + this.vendorService.data$);
+    console.log('vendor id to edit: ' + this.vendorService.data$);
   }
 
   // sendDataToOtherComponent() {
@@ -78,7 +71,7 @@ export class VendorsTableComponent implements OnInit {
     console.log(type);
   }
 
-  print(data:number){
-    console.log(data)
+  print(data: number) {
+    console.log(data);
   }
 }

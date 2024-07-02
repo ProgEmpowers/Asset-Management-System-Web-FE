@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { UploadComponent } from '../../components/upload/upload.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AssetStockService } from '../../services/asset-stock.service';
 import { NgToastService } from 'ng-angular-popup';
 import { AssetStatusEnum } from '../../Models/AssetStatusEnum';
@@ -46,6 +46,8 @@ export class ViewAssetComponent implements OnInit {
     private assetService: AssetStockService,
     private toast: NgToastService,
     private sharedAssetService: SharedAssetsService
+    private toast: NgToastService,
+    private router: Router
   ) {
     this.item = {};
   }
@@ -67,17 +69,24 @@ export class ViewAssetComponent implements OnInit {
       name: [''],
       id: [''],
       assetType: [''],
+      assetStatus: [''],
       description: [''],
       imageUrl: [''],
       assetValue: [''],
+      userId: [''],
     });
   }
 
-  loadAsset(id: string) {
-    this.assetService.GetAssetById(id).subscribe((res) => {
-      this.item = res;
-      this.isAvailable(this.item.assetStatus);
-    });
+  async loadAsset(id: string) {
+    try {
+      this.item = await this.assetService.GetAssetById(id)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  handleQrCodeResult(result: string) {
+    this.loadAsset(result);
   }
 
   handleQrCodeResult(result: string) {
@@ -97,38 +106,40 @@ export class ViewAssetComponent implements OnInit {
   }
 
   // helper for loadAssetFn
-  isAvailable(status: number) {
-    console.log(status);
-    switch (status) {
-      case 0:
-        this.assetStatus = 'Free';
-        this.isFree = true;
-        this.statusCode = 1;
-        break;
-      case 1:
-        this.assetStatus = 'Free';
-        this.statusCode = 1;
-        break;
-      case 2:
-        this.assetStatus = 'Acquired';
-        this.statusCode = 2;
-        break;
-      case 3:
-        this.assetStatus = 'Damaged';
-        this.statusCode = 3;
-        break;
-      case 4:
-        this.assetStatus = 'Maintainence';
-        this.statusCode = 4;
-        break;
-      case 5:
-        this.assetStatus = 'Disposed';
-        this.statusCode = 5;
-        break;
-    }
-  }
+  // isAvailable(status: number) {
+  //   console.log(status);
+  //   switch (status) {
+  //     case 0:
+  //       this.assetStatus = 'Free';
+  //       this.isFree = true;
+  //       this.statusCode = 1;
+  //       break;
+  //     case 1:
+  //       this.assetStatus = 'Free';
+  //       this.isFree = true;
+  //       this.statusCode = 1;
+  //       break;
+  //     case 2:
+  //       this.assetStatus = 'Acquired';
+  //       this.statusCode = 2;
+  //       break;
+  //     case 3:
+  //       this.assetStatus = 'Damaged';
+  //       this.statusCode = 3;
+  //       break;
+  //     case 4:
+  //       this.assetStatus = 'Maintainence';
+  //       this.statusCode = 4;
+  //       break;
+  //     case 5:
+  //       this.assetStatus = 'Disposed';
+  //       this.statusCode = 5;
+  //       break;
+  //   }
+  // }
 
   // setting up the tab menu view
+
   onTab1Click() {
     this.isTab1 = true;
     this.isTab2 = false;
@@ -179,7 +190,16 @@ export class ViewAssetComponent implements OnInit {
   // Setting up the checkin button functionality
   onCheckIn() {
     this.assetService.sendData(this.id);
-    console.log(this.id);
+  }
+
+  // Setting up the checkout button functionality
+  onCheckOut() {
+    this.assetService.sendData(this.id);
+  }
+
+  // Setting up the dispose button functionality
+  onDispose() {
+    this.assetService.sendData(this.id);
   }
 
   // Setting up the status label
@@ -210,5 +230,30 @@ export class ViewAssetComponent implements OnInit {
         this.status.text = 'Free';
         return this.status;
     }
+  }
+
+  onActionSelect(action: string) {
+    switch (action) {
+      case 'restore':
+        this.restoreAsset();
+        break;
+      case 'repair':
+        break;
+      case 'sell':
+        break;
+    }
+  }
+
+  restoreAsset() {
+    this.item.assetStatus = AssetStatusEnum.Free;
+    this.assetService.updateAsset(this.item.id, this.item).subscribe({
+      next: (res) => {
+        this.toast.success({
+          detail: 'Asset restored',
+          summary: 'Asset restored successfully!',
+        });
+        this.router.navigate(['disposals']);
+      },
+    });
   }
 }

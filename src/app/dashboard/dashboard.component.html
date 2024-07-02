@@ -2,15 +2,15 @@
   <h2>Dashboard</h2>
 </div>
 <div class="">
-  <div class="col widgets justify-content-start m-0 mt-5 mb-2">
-  <app-assets-widget class="widget-item" [totalCount]="assetList.length"></app-assets-widget>
-  <app-employee-widget class="widget-item"></app-employee-widget>
-  <app-vendors-widget class="widget-item" [vTotalCount]="vendorList.length"></app-vendors-widget>
+  <div class="d-flex flex-column flex-lg-row m-0 mt-5 mb-2 gap-4">
+  <app-assets-widget class=" flex-fill"></app-assets-widget>
+  <app-employee-widget class="flex-fill" [EmployeeTotalCount]="employeeList.length"></app-employee-widget>
+  <app-vendors-widget class=" flex-fill" [vTotalCount]="vendorList.length"></app-vendors-widget>
   </div>
   <!-- <app-asset-list></app-asset-list> -->
 
-  <div class="col widgets justify-content-start m-0 mt-5 mb-2">
-    <h5 class="d-flex align-items-center p-3" style="line-height:2.25em">
+  <div class="m-0 mt-5 mb-2">
+    <h5 class="d-flex align-items-center px-3 m-0" style="line-height:2.25em">
       <i class="far fa-solid fa-bell pe-2"></i>
       <span>Notifications</span>
     </h5>

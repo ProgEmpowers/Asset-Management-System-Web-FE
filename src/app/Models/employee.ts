@@ -1,8 +1,10 @@
 export interface Employee {
 
+
   firstName?:string;
   lastName?:string;
   password?:string;
+  confirmPassword?:string;
   phoneNumber?:string;
   email?:string;
   role?:string;
@@ -11,6 +13,9 @@ export interface Employee {
   jobPost?:string;
   isActive?:boolean;
   dateofBirth?:string;
-  id?:number;
+  id?:string;
+  imageUrl?:string;
+  customUserId?:string;
+ 
 
 }
