@@ -25,7 +25,12 @@ import {
   SortService,
 } from '@syncfusion/ej2-angular-grids';
 import { AssetTableComponent } from './components/tables/asset-table/asset-table.component';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+  HttpHandler,
+} from '@angular/common/http';
 import { EmployeeTableComponent } from './components/tables/employee-table/employee-table.component';
 import { VendorsTableComponent } from './components/tables/vendors-table/vendors-table.component';
 import { NotificationsTableComponent } from './components/tables/notifications-table/notifications-table.component';
@@ -58,10 +63,14 @@ import { FilterAssetByStatusPipe } from './pipes/filter-asset-by-status.pipe';
 import { FilterAssetByCategoryPipe } from './pipes/filter-asset-by-category.pipe';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewEmployeeComponent } from './forms/view-employee/view-employee.component';
 import { AssignAssetEmployeeSideComponent } from './forms/assign-asset-employee-side/assign-asset-employee-side.component';
 
+import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +121,11 @@ import { AssignAssetEmployeeSideComponent } from './forms/assign-asset-employee-
     AssignAssetsComponent,
     ViewAssetComponent,
     ViewEmployeeComponent,
-    AssignAssetEmployeeSideComponent
+    AssignAssetEmployeeSideComponent,
+    AssignAssetsComponent,
+    ResetPasswordComponent,
+    ChangePasswordComponent,
+    ForgetPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -127,13 +140,19 @@ import { AssignAssetEmployeeSideComponent } from './forms/assign-asset-employee-
     FormsModule,
     NgToastModule,
     BrowserAnimationsModule,
+    MatSnackBarModule,
     ToastrModule.forRoot(),
   ],
-  providers: [PageService, SortService, PdfExportService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: authInterceptor,
-    multi: true
-  }],
-  bootstrap: [AppComponent]
+  providers: [
+    PageService,
+    SortService,
+    PdfExportService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: authInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
