@@ -1,9 +1,12 @@
+import { Time } from "@angular/common";
+import { orderedAssetTypes } from "./orderedAssetTypes";
+
 export interface Contract {
     id?: number;
-    assignedDate?: Date;
-    subject?: string;
-    message?: string;
-    supplyAssetType?: string;
-    idOfVendor?: number;
-    vendorName?: string;
+    assignedDate?: string;
+    time?: string;
+    optionals?: string;
+    orderedAssetTypes: orderedAssetTypes[];
+    idOfVendors: number[];
+    nameOfVendors?: string[];
 }

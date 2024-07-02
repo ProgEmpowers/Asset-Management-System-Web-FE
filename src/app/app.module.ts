@@ -66,6 +66,8 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { IntlTelInputModuleComponent } from './components/intl-tel-input-module/intl-tel-input-module.component';
+import { OnlyNumbersDirective } from './directives/only-numbers.directive';
 
 @NgModule({
   declarations: [
@@ -120,7 +122,10 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
     AssignAssetsComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    AssignAssetsComponent,
+    IntlTelInputModuleComponent,
+    OnlyNumbersDirective
   ],
   imports: [
     BrowserModule,
