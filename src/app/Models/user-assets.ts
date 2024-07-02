@@ -1,5 +1,5 @@
-export interface UserAssets {
-    userId: string;
-    assetId: number;
-    assetAssignedTime: Date; 
+export interface UserAsset {
+  userId: string;
+  assetId: number;
+  assetAssignedTime: Date;
 }

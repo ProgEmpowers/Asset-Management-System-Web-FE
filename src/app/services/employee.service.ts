@@ -3,26 +3,28 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Employee } from '../Models/employee';
-
+import { Asset } from "../Models/asset";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-export class EmployeeService  {
+export class EmployeeService {
+  apiurl = "https://localhost:7229/api/User";
+  apiurl2 = 'https://localhost:7229/api/Auth/register?addAuth=true';
+  apiUrl3 = "https://localhost:7095/api/Assets/GetAssetByUserAsync"
 
   private dataSubject = new Subject<any>();
   data$ = this.dataSubject.asObservable();
 
-   apiurl = "https://localhost:7229/api/User";
-   apiurl2 = 'https://localhost:7229/api/Auth/register?addAuth=true';
-
    constructor(private http:HttpClient , private CookieService: CookieService) { }
 
-  
+
    sendData(data: any) {
     this.dataSubject.next(data);
   }
 
+
+  // Get all employees from server
 
    // Get all employees from server
    getEmployeeList() : Observable<Employee[]> {
@@ -34,7 +36,7 @@ export class EmployeeService  {
     return this.http.get<Employee>(this.apiurl + '/' + id);
   }
 
-  
+
 
  // update employee
   updateEmployee(id: string, employee: Employee): Observable<any> {
@@ -42,20 +44,21 @@ export class EmployeeService  {
   }
 
 
-   // delete employee by id
-  deleteEmployee(id: string) : Observable<any> {
-    return this.http.delete(this.apiurl + '/' + id);
+  // delete employee by id
+  deleteEmployee(id: string): Observable<any> {
+    return this.http.delete(this.apiurl + "/" + id);
   }
 
   // Submit new employee to server
-  createEmployee(employee: FormData) : Observable<any> {
-    console.log.apply("da");
+  createEmployee(employee: FormData): Observable<any> {
+    console.log(employee);
     return this.http.post(this.apiurl2, employee);
   }
 
-  
+  // Get all employees from serve
+  getEmployeeAssets(email: string): Observable<Asset[]> {
+    return this.http.get<Asset[]>(this.apiUrl3 + "/" + email);
+  }
+
+
 }
-
-
-
-

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Asset } from '../../Models/asset';
 import { AssetStockService } from '../../services/asset-stock.service';
 
@@ -9,23 +9,16 @@ import { AssetStockService } from '../../services/asset-stock.service';
 })
 export class AssetListComponent implements OnInit{
 
-  public assetList!:Asset[];
+  @Input('assetList') assetList!:Asset[];
   public page = 1;
-  public pageSize = 4;
+  public pageSize = 6;
+  public collectionSize = 0;
 
   constructor(private assetService:AssetStockService){
 
   }
   ngOnInit(): void {
-    this.getAssets();
+    this.collectionSize = this.assetList.length;
   }
 
-  getAssets() : void {
-    this.assetService.getAssetList()
-    .subscribe(
-      (list) => {
-        this.assetList = list;
-      }
-    )
-  }
 }

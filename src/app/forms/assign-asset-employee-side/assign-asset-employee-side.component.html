@@ -15,7 +15,7 @@
           <!-- Asset Type Selection -->
            <label>Select Asset Type</label>
           <select class="form-select mb-3" [(ngModel)]="selectedAssetType" (change)="onAssetTypeChange()">
-            
+
             <option *ngFor="let type of assetTypes" [value]="type">{{ type }}</option>
           </select>
 
@@ -28,7 +28,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="selectedAsset == null" (click)="onAssetSelected()">Confirm</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="selectedAsset == null" (click)="onAssetSelectedAsync()">Confirm</button>
       </div>
     </div>
   </div>
