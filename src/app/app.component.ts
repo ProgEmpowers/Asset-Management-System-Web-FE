@@ -32,8 +32,11 @@ export class AppComponent implements OnInit{
     this.router.events.pipe(
       filter((event: Event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
-      this.showSideNav = !event.urlAfterRedirects.includes('/login');
-      this.showHeader = !event.urlAfterRedirects.includes('/login');
+      // this.showSideNav = !event.urlAfterRedirects.includes('/login');
+      // this.showHeader = !event.urlAfterRedirects.includes('/login');
+      const url = event.urlAfterRedirects;
+      this.showSideNav = !this.shouldHideSidebar(url);
+      this.showHeader = !this.shouldHideHeader(url);
     });
 
     this.user = this.authService.getUser();
@@ -41,6 +44,13 @@ export class AppComponent implements OnInit{
       this.showSideNav = false;
     } else
     this.showSideNav = true;
+  }
+  shouldHideSidebar(url: string): boolean {
+    return (url.includes('/login') || url.includes('/forget-password') || url.includes('/reset-password'));
+  }
+
+  shouldHideHeader(url: string): boolean {
+    return (url.includes('/login') || url.includes('/forget-password') || url.includes('/reset-password'));
   }
 
   closeModel() {

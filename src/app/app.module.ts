@@ -58,10 +58,14 @@ import { FilterAssetByStatusPipe } from './pipes/filter-asset-by-status.pipe';
 import { FilterAssetByCategoryPipe } from './pipes/filter-asset-by-category.pipe';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewEmployeeComponent } from './forms/view-employee/view-employee.component';
 import { AssignAssetEmployeeSideComponent } from './forms/assign-asset-employee-side/assign-asset-employee-side.component';
 
+import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +116,11 @@ import { AssignAssetEmployeeSideComponent } from './forms/assign-asset-employee-
     AssignAssetsComponent,
     ViewAssetComponent,
     ViewEmployeeComponent,
-    AssignAssetEmployeeSideComponent
+    AssignAssetEmployeeSideComponent,
+    AssignAssetsComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -127,7 +135,8 @@ import { AssignAssetEmployeeSideComponent } from './forms/assign-asset-employee-
     FormsModule,
     NgToastModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    MatSnackBarModule,
+    ToastrModule.forRoot()
   ],
   providers: [PageService, SortService, PdfExportService, {
     provide: HTTP_INTERCEPTORS,
