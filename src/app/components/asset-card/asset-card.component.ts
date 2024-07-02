@@ -10,7 +10,6 @@ export class AssetCardComponent {
   @Input('id') id!: string | undefined;
   @Input('name') name!: string | undefined;
   @Input('model') model!: string | undefined;
-  @Input('year') year!: string | undefined;
   @Input('imgUrl') imgUrl!: string | undefined;
 
   public asset!: Asset;

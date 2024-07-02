@@ -66,6 +66,7 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { MyAssesWidgetComponent } from './components/widgets/my-asses-widget/my-asses-widget.component';
 
 @NgModule({
   declarations: [
@@ -120,7 +121,8 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
     AssignAssetsComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    MyAssesWidgetComponent,
   ],
   imports: [
     BrowserModule,
