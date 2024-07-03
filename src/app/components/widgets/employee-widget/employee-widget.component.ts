@@ -19,12 +19,12 @@ export class EmployeeWidgetComponent implements OnInit  {
     this.employeeService.getEmployeeList()
     .subscribe(
       (list) => {
-        this.total = list.length-1;
+        this.total = list.length;
       }
     )
 
     this.employeeService.getUserCountInRole("admin").subscribe(res => {
-      this.admin = res-1;
+      this.admin = res;
     });
     this.employeeService.getUserCountInRole("VendorManeger").subscribe(res => {
       this.vManager = res;
