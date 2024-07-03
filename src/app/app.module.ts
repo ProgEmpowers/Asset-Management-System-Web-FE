@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -66,6 +66,7 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { MyAssesWidgetComponent } from './components/widgets/my-asses-widget/my-asses-widget.component';
 import { IntlTelInputModuleComponent } from './components/intl-tel-input-module/intl-tel-input-module.component';
 import { OnlyNumbersDirective } from './directives/only-numbers.directive';
 
@@ -123,6 +124,8 @@ import { OnlyNumbersDirective } from './directives/only-numbers.directive';
     ForgetPasswordComponent,
     ResetPasswordComponent,
     ChangePasswordComponent,
+    MyAssesWidgetComponent,
+    ChangePasswordComponent,
     AssignAssetsComponent,
     IntlTelInputModuleComponent,
     OnlyNumbersDirective
@@ -148,6 +151,7 @@ import { OnlyNumbersDirective } from './directives/only-numbers.directive';
     useClass: authInterceptor,
     multi: true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA,]
 })
 export class AppModule {}
