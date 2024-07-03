@@ -58,63 +58,65 @@
 <div>
   <div class="col-12 widgets justify-content-start m-0 mt-5 mb-2">
     <div class="row">
-      <div class="col-12">
-        <div class="d-flex align-items-start w-50">
-          <div class="col-4">
       <div class="">
-        <div class="row">
-          <div class="col-12 col-lg-2" style="min-width: 180px">
-            <div class="d-flex">
-              <img
-                [src]="item.imageUrl"
-                class="object-fit-cover border p-4 rounded"
-                style="
-                  object-position: center;
-                  min-width: 10rem;
-                  min-height: 10rem;
-                "
-                width="150rem"
-                height="150rem"
-                alt=""
-              />
-            </div>
-          </div>
-          <div class="col-12 col-lg-10 pt-4 text-start">
-            <div class="fs-5 fw-bold">Status</div>
-            <div class="">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex mx-2">
+            <div class=" d-flex col-lg-2" style="min-width: 180px">
               <div class="">
-                <!-- <div class="">
-                  <span>Availability :</span>
-                </div> -->
-                <div class="">
-                  <span
-                    class="badge rounded-pill d-inline-block"
-                    style="min-width: 70px"
-                    [ngClass]="getStatus(item.assetStatus!).class"
-                    >{{ getStatus(item.assetStatus!).text }}</span
-                  >
-                </div>
+                <img
+                  [src]="item.imageUrl"
+                  class="object-fit-cover border p-4 rounded"
+                  style="
+                    object-position: center;
+                    min-width: 10rem;
+                    min-height: 10rem;
+                  "
+                  width="150rem"
+                  height="150rem"
+                  alt=""
+                />
               </div>
-              <div class="d-flex my-1" *ngIf="item.assetStatus == 2">
-                <div class="me-2">
-                  <span>Assigned to : </span>
-                </div>
+            </div>
+            <div class="col-12 col-lg-10 pt-4 text-start">
+              <div class="fs-5 fw-bold">Status</div>
+              <div class="">
                 <div class="">
-                  <span>{{ item.userId }}</span>
+                  <!-- <div class="">
+                    <span>Availability :</span>
+                  </div> -->
+                  <div class="">
+                    <span
+                      class="badge rounded-pill d-inline-block"
+                      style="min-width: 70px"
+                      [ngClass]="getStatus(item.assetStatus!).class"
+                      >{{ getStatus(item.assetStatus!).text }}</span
+                    >
+                  </div>
+                </div>
+                <div class="d-flex my-1" *ngIf="item.assetStatus == 2">
+                  <div class="me-2">
+                    <span>Assigned to : </span>
+                  </div>
+                  <div class="">
+                    <span>{{ item.userId }}</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="">
-            <span>
-              <qrcode (qrCodeURL)="onCodeChange($event)" [width]="180" qrdata="item.id.toString()"></qrcode>
-            </span>
+          <div class="d-flex me-5">
+            <div class="">
+              <span>
+                <qrcode (qrCodeURL)="onCodeChange($event)" [width]="180" qrdata="item.id.toString()"></qrcode>
+              </span>
+            </div>
+            <div class="mt-5 pt-4">
+              <span>
+                <button type="button" class="btn btn-outline-secondary custom-button"><a [href]="url" download="Asset QR Code">Print</a></button>
+              </span>
+            </div>
           </div>
-          <div class="mt-5 pt-4">
-            <span>
-              <button type="button" class="btn btn-outline-secondary custom-button"><a [href]="url" download="Asset QR Code">Print</a></button>
-            </span>
-          </div>
+
         </div>
         <ul class="nav nav-tabs my-4">
           <li class="nav-item">
