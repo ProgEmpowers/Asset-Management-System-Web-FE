@@ -71,6 +71,9 @@ import { OnlyNumbersDirective } from './directives/only-numbers.directive';
 import { QRCodeModule } from 'angularx-qrcode';
 import { ViewVendorComponent } from './forms/view-vendor/view-vendor.component';
 import { SearchPipe } from './pipes/search/search.pipe';
+import { UserProfileComponent } from './forms/user-profile/user-profile.component';
+import { DeletedEmployeeTableComponent } from './components/tables/deleted-employee-table/deleted-employee-table.component';
+
 
 @NgModule({
   declarations: [
@@ -130,7 +133,11 @@ import { SearchPipe } from './pipes/search/search.pipe';
     IntlTelInputModuleComponent,
     OnlyNumbersDirective,
     ViewVendorComponent,
-    SearchPipe
+    SearchPipe,
+    OnlyNumbersDirective,
+    ChangePasswordComponent,
+    UserProfileComponent,
+    DeletedEmployeeTableComponent,
   ],
   imports: [
     BrowserModule,

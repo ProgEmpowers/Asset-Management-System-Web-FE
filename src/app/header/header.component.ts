@@ -41,6 +41,10 @@ export class HeaderComponent implements OnInit{
     this.router.navigate(['/login']);
   }
 
+  onMyAccount():void{
+    this.router.navigate(['/user-profile']);
+  }
+
   onToggle() {
     this.isCollapsed = !this.isCollapsed;
     this.toggleSideMenu.emit({

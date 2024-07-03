@@ -115,6 +115,9 @@
                   id="PhoneNumber"
                   (change)="onFormDirty()"
                 />
+                <div *ngIf="editForm.controls['phoneNumber'].errors?.['invalidPhoneNumber']" class="text-danger">
+                  Invalid phone number.
+                </div>
               </div>
             </div>
 
@@ -128,6 +131,9 @@
                   id="nic"
                   (change)="onFormDirty()"
                 />
+                <div *ngIf="editForm.controls['nic'].errors?.['invalidNic']" class="text-danger">
+                  Invalid NIC. 
+                </div>
               </div>
             </div>
 
@@ -155,6 +161,9 @@
                   id="dateofBirth"
                   (change)="onFormDirty()"
                 />
+                <div *ngIf="editForm.controls['dateofBirth'].errors?.['invalidDateOfBirth']" class="text-danger">
+                  Invalid date of birth. Use dd-mm-yyyy format.
+                </div>
               </div>
             </div>
 
