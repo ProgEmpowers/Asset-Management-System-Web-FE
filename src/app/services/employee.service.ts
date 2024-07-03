@@ -79,4 +79,8 @@ export class EmployeeService {
     return this.http.get<Employee[]>(`${this.apiurl}/deleted`);
   }
 
+  recoverDeletedUser(id: string): Observable<Employee> {
+    return this.http.put<Employee>(`${this.apiurl}/recoverDeletedUser/${id}`, {});
+  }
+
 }

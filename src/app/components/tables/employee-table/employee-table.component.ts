@@ -111,5 +111,27 @@ export class EmployeeTableComponent implements OnInit {
     
   }
 
+  recoverUser(userId: string) {
+    this.employeeService.recoverDeletedUser(userId).subscribe({
+      next: (res) => {
+        this.toaster.success({
+          detail: 'User Recovered',
+          summary: 'User has been successfully recovered.',
+          duration: 5000
+        });
+        this.getAllEmployee();
+        this.getDeletedEmployee();
+        // Optionally, refresh the list of users or perform other actions here
+      },
+      error: (err) => {
+        this.toaster.error({
+          detail: 'Error',
+          summary: 'Failed to recover user.',
+          duration: 5000
+        });
+      }
+    });
+  }
+
 }
 
