@@ -68,6 +68,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { IntlTelInputModuleComponent } from './components/intl-tel-input-module/intl-tel-input-module.component';
 import { OnlyNumbersDirective } from './directives/only-numbers.directive';
+import { QRCodeModule } from 'angularx-qrcode';
 import { ViewVendorComponent } from './forms/view-vendor/view-vendor.component';
 import { SearchPipe } from './pipes/search/search.pipe';
 
@@ -145,7 +146,8 @@ import { SearchPipe } from './pipes/search/search.pipe';
     NgToastModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    QRCodeModule
   ],
   providers: [PageService, SortService, PdfExportService, {
     provide: HTTP_INTERCEPTORS,
