@@ -38,7 +38,7 @@ export class SendContractComponent implements OnInit {
       ]),
     }
   );
-  this.vendorServ.getVendorList().subscribe(vendor => {
+  this.vendorServ.getAllVendors().subscribe(vendor => {
     this.vendorList = vendor ?? [];
   });
   }
@@ -183,6 +183,14 @@ export class SendContractComponent implements OnInit {
         console.log(`After navigation I am on: ${this.router.url}`)
       })
     })
+  }
+
+  putSpecificCharacter(id: number, array: any[]): string {
+    return id !== array.length - 1 ? ', ' : '';
+  }
+
+  getVendorName(id: string): string {
+    return this.vendorList.find(vendor => vendor.id == id)?.name ?? '';
   }
 
 }

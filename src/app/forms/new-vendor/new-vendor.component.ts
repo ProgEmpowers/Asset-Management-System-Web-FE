@@ -150,4 +150,8 @@ export class NewVendorComponent implements OnInit {
       })
     });
   }
+
+  getAssetName(id: string): string {
+    return this.selectedSupplyAssetTypes.find(asset => asset == id)?.valueOf() ?? '';
+  }
 }

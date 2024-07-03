@@ -69,6 +69,8 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
 import { IntlTelInputModuleComponent } from './components/intl-tel-input-module/intl-tel-input-module.component';
 import { OnlyNumbersDirective } from './directives/only-numbers.directive';
 import { QRCodeModule } from 'angularx-qrcode';
+import { ViewVendorComponent } from './forms/view-vendor/view-vendor.component';
+import { SearchPipe } from './pipes/search/search.pipe';
 import { UserProfileComponent } from './forms/user-profile/user-profile.component';
 import { DeletedEmployeeTableComponent } from './components/tables/deleted-employee-table/deleted-employee-table.component';
 
@@ -129,6 +131,9 @@ import { DeletedEmployeeTableComponent } from './components/tables/deleted-emplo
     ChangePasswordComponent,
     AssignAssetsComponent,
     IntlTelInputModuleComponent,
+    OnlyNumbersDirective,
+    ViewVendorComponent,
+    SearchPipe,
     OnlyNumbersDirective,
     ChangePasswordComponent,
     UserProfileComponent,

@@ -127,3 +127,11 @@ input[type="search"]:focus {
 .otherDevices {
   width: 120px !important;
 }
+
+.vendors {
+  background-color: $vendors !important;
+}
+
+.removed {
+  background-color: $failed !important;
+}
