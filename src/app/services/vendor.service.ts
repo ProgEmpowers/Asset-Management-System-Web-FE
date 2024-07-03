@@ -31,7 +31,7 @@ export class VendorService extends Subject<DataStateChangeEventArgs> {
     return this.http.get<Vendor[]>(this.apiurl + '/ids&names')
   }
 
-  getVendorById(id: number) : Observable<Vendor> {
+  getVendorById(id: any) : Observable<Vendor> {
     return this.http.get<Vendor>(this.apiurl + '/' + id);
   }
   
@@ -41,7 +41,7 @@ export class VendorService extends Subject<DataStateChangeEventArgs> {
   }
 
   // Update a vendor
-  updateVendor(id: number, vendor: FormData) : Observable<any> {
+  updateVendor(id: any, vendor: FormData) : Observable<any> {
     return this.http.put(this.apiurl + '/' + id, vendor);
   }
 
