@@ -46,11 +46,11 @@ export class AppComponent implements OnInit{
     this.showSideNav = true;
   }
   shouldHideSidebar(url: string): boolean {
-    return (url.includes('/login') || url.includes('/forget-password') || url.includes('/reset-password'));
+    return (url.includes('/login') || url.includes('/forget-password') || url.includes('/reset-password')|| url.includes('/change-password'));
   }
 
   shouldHideHeader(url: string): boolean {
-    return (url.includes('/login') || url.includes('/forget-password') || url.includes('/reset-password'));
+    return (url.includes('/login') || url.includes('/forget-password') || url.includes('/reset-password')|| url.includes('/change-password'));
   }
 
   closeModel() {

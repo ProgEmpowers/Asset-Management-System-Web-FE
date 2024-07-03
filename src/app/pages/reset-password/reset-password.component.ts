@@ -52,3 +52,14 @@ export class ResetPasswordComponent implements OnInit{
     this.confirmPasswordFieldType = this.confirmPasswordFieldType === 'password' ? 'text' : 'password';
   }
 }
+
+
+
+
+
+
+
+
+
+
+
