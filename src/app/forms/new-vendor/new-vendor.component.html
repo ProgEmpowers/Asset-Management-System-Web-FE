@@ -61,6 +61,10 @@
                             <label for="supplyAssetTypes"> Supply Asset Type</label>
                             <label for="supplyAssetTypes" class="optional">(Optional)</label>
                             <div class="form-group col-md" formArrayName="supplyAssetTypes">
+                                <div class="badge d-inline-block supplyAssetType m-1 p-2 align-items-center vendors" *ngFor="let asset of supplyAssetTypesControl; let id = index">
+                                    {{getAssetName(asset.value)}}
+                                    <button type="button" class="btn-close btn-close-white" (click)="onRemoveSupplyAsset(id)"></button>
+                                </div>
                                 <div class="mt-2 d-flex flex-row align-items-center justify-content-around"
                                     *ngFor="let supplyAssetType of supplyAssetTypesControl; let i = index">
                                     <div class="form-floating">

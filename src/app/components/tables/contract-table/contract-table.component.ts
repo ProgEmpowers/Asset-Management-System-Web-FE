@@ -2,7 +2,6 @@ import { ContractService } from './../../../services/contract.service';
 import { Component, OnInit } from '@angular/core';
 import { Contract } from '../../../Models/contract';
 import { Contract_tHeaders } from './contract-tHeaders';
-import { PageSettingsModel, foreignKeyData } from '@syncfusion/ej2-angular-grids';
 import { VendorService } from '../../../services/vendor.service';
 import { Vendor } from '../../../Models/vendor';
 
@@ -18,14 +17,18 @@ export class ContractTableComponent implements OnInit{
   public vendorNames: string[] = [];
   public contract_tHeaders = Contract_tHeaders;
 
-  timestamp: string = '2024-07-01T18:22:07.835689';
+  filterText: string = '';
   date: string = '';
   time: string = '';
-
-  apiUrl = this.contractServ.apiUrl;
-  public pageSetting: PageSettingsModel = {
-    pageSize: 10
-  }
+  selectedVendor: Vendor = {
+    id: '',
+    name: '',
+    address: '',
+    mobileNo: '',
+    email: '',
+    supplyAssetTypes: [],
+    isActive: false
+  };
 
   constructor(
     private contractServ: ContractService,
@@ -50,13 +53,29 @@ export class ContractTableComponent implements OnInit{
     );
   }
 
-  getVendorName(id: number): string {
+  getVendorName(id: any): string {
     let vendor = '';
-    if (this.vendors) {
-      vendor = this.vendors.find(v => v.id === id.toString())?.name ?? '';
+    this.vendors?.forEach((v) => {
+      if (v.id === id) {
+        vendor = v.name;
+      }
+    });
+    console.log('Vendor:', vendor);
+    return vendor;
+  }
+
+  changeViewClassOfVendor(id: any): string {
+    let isActive = null;
+    this.vendors?.forEach((v) => {
+      if (v.id === id) {
+        isActive = v.isActive;
+      }
+    });
+    if (isActive == false) {
+      return 'removed';
+    } else {
+      return '';
     }
-    console.log(vendor);
-    return vendor ?? '';
   }
 
   nullStringRepresent(insert: any): string {

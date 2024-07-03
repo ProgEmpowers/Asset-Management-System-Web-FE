@@ -45,14 +45,15 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <button type="button" class="btn fas fa-minus btn-remove"
+                                            <button type="button" class="btn fas fa-minus btn-remove m-2"
                                                 (click)="onRemoveOrderedAsset(i)"></button>
                                         </div>
                                     </div>
                                 </div>
                                 <div>
-                                    <button type="button" class="btn btn-arrayAdd mt-2"
-                                        (click)="onAddOrderedAsset()" [disabled]="allAssetsSelected()" [disabled]="disableAddingAssets()">Add Asset to Order</button>
+                                    <button type="button" class="btn btn-arrayAdd mt-2" (click)="onAddOrderedAsset()"
+                                        [disabled]="allAssetsSelected()" [disabled]="disableAddingAssets()">Add Asset to
+                                        Order</button>
                                 </div>
                             </div>
                         </div>
@@ -61,6 +62,10 @@
                         <div class="form-control">
                             <label for="idOfVendors">Vendors</label>
                             <div class="form-group col-md" formArrayName="idOfVendors">
+                                <div class="badge d-inline-block supplyAssetType m-1 p-2 align-items-center vendors" *ngFor="let vendor of idOfVendors().controls; let id = index">
+                                    {{getVendorName(vendor.value)}}
+                                    <button type="button" class="btn-close btn-close-white" (click)="onRemoveVendor(id)"></button>
+                                </div>
                                 <div class="" *ngFor="let idOfVendor of idOfVendors().controls; let j = index">
                                     <label for="idOfVendor" class="required">(required*)</label>
                                     <div class="mt-2 d-flex flex-row align-items-center justify-content-around">
@@ -72,18 +77,24 @@
                                                     [hidden]="disableVendor(vendor.id)"
                                                     *ngFor="let vendor of vendorList">
                                                     {{vendor.id}} -
-                                                    {{vendor.name}}</option>
+                                                    {{vendor.name}} - 
+                                                    <div *ngFor="let asset of vendor.supplyAssetTypes; let id = index">
+                                                        <div>{{asset}}{{putSpecificCharacter(id, vendor.supplyAssetTypes)}}</div>
+                                                        
+                                                    </div>
+                                                </option>
                                             </select>
                                             <label for="idOfVendor">Vendor</label>
                                         </div>
                                         <div>
-                                            <button type="button" class="btn fas fa-minus btn-remove"
-                                                (click)="onRemoveVendor(j)"></button>
+                                            <button type="button" class="btn fas fa-minus btn-remove m-2" (click)="onRemoveVendor(j)"></button>
                                         </div>
                                     </div>
                                 </div>
                                 <div>
-                                    <button type="button" class="btn btn-arrayAdd mt-2" [disabled]="allVendorsSelected()" [disabled]="disableAddingVendors()" (click)="onAddVendor()">Add
+                                    <button type="button" class="btn btn-arrayAdd mt-2"
+                                        [disabled]="allVendorsSelected()" [disabled]="disableAddingVendors()"
+                                        (click)="onAddVendor()">Add
                                         Vendor</button>
                                 </div>
                             </div>
