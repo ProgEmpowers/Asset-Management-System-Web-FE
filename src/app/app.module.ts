@@ -48,7 +48,6 @@ import { SendContractComponent } from './forms/send-contract/send-contract.compo
 import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
 import { AssignAssetsComponent } from './forms/assign-assets/assign-assets.component';
 import { authInterceptor } from './interceptors/auth.interceptor';
-import { QRCodeModule } from 'angularx-qrcode';
 import { ReleaseAssetComponent } from './popups/release-asset/release-asset.component';
 import { DisposeAssetComponent } from './popups/dispose-asset/dispose-asset.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
@@ -67,6 +66,9 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { IntlTelInputModuleComponent } from './components/intl-tel-input-module/intl-tel-input-module.component';
+import { OnlyNumbersDirective } from './directives/only-numbers.directive';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -121,7 +123,10 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
     AssignAssetsComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    AssignAssetsComponent,
+    IntlTelInputModuleComponent,
+    OnlyNumbersDirective
   ],
   imports: [
     BrowserModule,
@@ -135,8 +140,10 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
     ReactiveFormsModule,
     FormsModule,
     NgToastModule,
-    QRCodeModule,
-    ToastrModule.forRoot()
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    ToastrModule.forRoot(),
+    QRCodeModule
   ],
   providers: [PageService, SortService, PdfExportService, {
     provide: HTTP_INTERCEPTORS,

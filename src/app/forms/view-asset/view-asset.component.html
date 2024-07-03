@@ -58,10 +58,10 @@
 <div>
   <div class="col-12 widgets justify-content-start m-0 mt-5 mb-2">
     <div class="row">
-      <div class="">
+      <div class="d-flex flex-column ">
         <div class="d-flex justify-content-between">
           <div class="d-flex mx-2">
-            <div class=" d-flex col-lg-2" style="min-width: 180px">
+            <div class=" col-lg-2" style="min-width: 180px">
               <div class="">
                 <img
                   [src]="item.imageUrl"
@@ -116,144 +116,145 @@
               </span>
             </div>
           </div>
-
-        </div>
-        <ul class="nav nav-tabs my-4">
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              [ngClass]="{ 'active': isTab1Open() }"
-              (click)="onTab1Click()"
-              >Primary Info</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              [ngClass]="{ 'active': isTab2Open() }"
-              (click)="onTab2Click()"
-              >Vendor</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              [ngClass]="{ 'active': isTab3Open() }"
-              (click)="onTab3Click()"
-              >View log</a
-            >
-          </li>
-        </ul>
-        <div class="row mt-4 px-4" [class.isHidden]="!isTab1Open()">
-          <!-- <div class="fs-5 fw-bold">Primary details</div> -->
-          <div class="my-4">
-            <form [formGroup]="editForm">
-              <div class="mb-3 row">
-                <label
-                  for="name"
-                  class="col-sm-4 col-lg-2 col-form-label fw-bold"
-                  >Name</label
-                >
-                <div class="col-sm-8 col-lg-10">
-                  <input
-                    formControlName="name"
-                    type="text"
-                    class="form-control"
-                    id="name"
-                    [value]="item.name"
-                    (change)="onFormDirty()"
-                  />
-                </div>
-              </div>
-              <div class="mb-3 row">
-                <label for="id" class="col-sm-4 col-lg-2 col-form-label fw-bold"
-                  >Id</label
-                >
-                <div class="col-sm-8 col-lg-10">
-                  <input
-                    formControlName="id"
-                    type="text"
-                    class="form-control"
-                    id="id"
-                    [value]="item.id"
-                    readonly
-                  />
-                </div>
-              </div>
-              <div class="mb-3 row">
-                <label
-                  for="assetType"
-                  class="col-sm-4 col-lg-2 col-form-label fw-bold"
-                  >Type</label
-                >
-                <div class="col-sm-8 col-lg-10">
-                  <select
-                    formControlName="assetType"
-                    class="form-control"
-                    id="assetType"
-                    [value]="item.assetType"
-                    (change)="onFormDirty()"
-                  >
-                    <option value="Keyboard">Keyboard</option>
-                    <option value="Mouse">Mouse</option>
-                  </select>
-                </div>
-              </div>
-              <div class="mb-3 row">
-                <label
-                  for="description"
-                  class="col-sm-4 col-lg-2 col-form-label fw-bold"
-                  >Description</label
-                >
-                <div class="col-sm-8 col-lg-10">
-                  <textarea
-                    formControlName="description"
-                    rows="8"
-                    class="form-control"
-                    id="Description"
-                    [value]="item.description"
-                    (change)="onFormDirty()"
-                  >
-                  </textarea>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="my-4 row pe-0">
-            <div class="gap-2 text-end pe-0">
-              <button
-                type="button"
-                class="btn btn-primary cta"
-                (click)="onSave()"
-                [disabled]="!isDirty"
+        
+         </div> 
+         <div class="">
+          <ul class="nav nav-tabs my-4">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                [ngClass]="{ 'active': isTab1Open() }"
+                (click)="onTab1Click()"
+                >Primary Info</a
               >
-                Save changes
-              </button>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                [ngClass]="{ 'active': isTab2Open() }"
+                (click)="onTab2Click()"
+                >Vendor</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                [ngClass]="{ 'active': isTab3Open() }"
+                (click)="onTab3Click()"
+                >View log</a
+              >
+            </li>
+          </ul>
+          <div class="row mt-4 px-4" [class.isHidden]="!isTab1Open()">
+            <!-- <div class="fs-5 fw-bold">Primary details</div> -->
+            <div class="my-4">
+              <form [formGroup]="editForm">
+                <div class="mb-3 row">
+                  <label
+                    for="name"
+                    class="col-sm-4 col-lg-2 col-form-label fw-bold"
+                    >Name</label
+                  >
+                  <div class="col-sm-8 col-lg-10">
+                    <input
+                      formControlName="name"
+                      type="text"
+                      class="form-control"
+                      id="name"
+                      [value]="item.name"
+                      (change)="onFormDirty()"
+                    />
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label for="id" class="col-sm-4 col-lg-2 col-form-label fw-bold"
+                    >Id</label
+                  >
+                  <div class="col-sm-8 col-lg-10">
+                    <input
+                      formControlName="id"
+                      type="text"
+                      class="form-control"
+                      id="id"
+                      [value]="item.id"
+                      readonly
+                    />
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label
+                    for="assetType"
+                    class="col-sm-4 col-lg-2 col-form-label fw-bold"
+                    >Type</label
+                  >
+                  <div class="col-sm-8 col-lg-10">
+                    <select
+                      formControlName="assetType"
+                      class="form-control"
+                      id="assetType"
+                      [value]="item.assetType"
+                      (change)="onFormDirty()"
+                    >
+                      <option value="Keyboard">Keyboard</option>
+                      <option value="Mouse">Mouse</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label
+                    for="description"
+                    class="col-sm-4 col-lg-2 col-form-label fw-bold"
+                    >Description</label
+                  >
+                  <div class="col-sm-8 col-lg-10">
+                    <textarea
+                      formControlName="description"
+                      rows="8"
+                      class="form-control"
+                      id="Description"
+                      [value]="item.description"
+                      (change)="onFormDirty()"
+                    >
+                    </textarea>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="my-4 row pe-0">
+              <div class="gap-2 text-end pe-0">
+                <button
+                  type="button"
+                  class="btn btn-primary cta"
+                  (click)="onSave()"
+                  [disabled]="!isDirty"
+                >
+                  Save changes
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row w-50 mt-4 px-4" [class.isHidden]="!isTab2Open()">
+            <!-- <div class="fs-5 fw-bold">Vendor details</div> -->
+            <div class="my-4">
+              <div class="row">
+                <div class="col-4">
+                  <span>Name :</span>
+                </div>
+                <div class="col-6">
+                  <span>Lahiru (PVT) LTD</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <span>Contact :</span>
+                </div>
+                <div class="col-6">
+                  <span>0760944045</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="row w-50 mt-4 px-4" [class.isHidden]="!isTab2Open()">
-          <!-- <div class="fs-5 fw-bold">Vendor details</div> -->
-          <div class="my-4">
-            <div class="row">
-              <div class="col-4">
-                <span>Name :</span>
-              </div>
-              <div class="col-6">
-                <span>Lahiru (PVT) LTD</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-4">
-                <span>Contact :</span>
-              </div>
-              <div class="col-6">
-                <span>0760944045</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>

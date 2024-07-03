@@ -26,13 +26,13 @@ export const Vendor_tHeaders: table_options[] = [
         headerText: 'Address',
         textAlign: 'Left',
         type: 'string',
-        width: 90
+        width: 60
     },
     {
         field: 'mobileNo',
         headerText: 'Mobile No',
         textAlign: 'Left',
-        type: 'number',
+        type: 'string',
         width: 60
     },
     {
@@ -40,11 +40,11 @@ export const Vendor_tHeaders: table_options[] = [
         headerText: 'E mail',
         textAlign: 'Left',
         type: 'email',
-        width: 60
+        width: 90
     },
     {
-        field: 'supplyAssetType',
-        headerText: 'SupplyAssetType',
+        field: 'supplyAssetTypes',
+        headerText: 'SupplyAssetTypes',
         textAlign: 'Left',
         type: 'boolean',
         width: 60

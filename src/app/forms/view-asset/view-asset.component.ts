@@ -39,27 +39,20 @@ export class ViewAssetComponent implements OnInit {
     text: '',
   };
 
-  assetList?: Asset[];
+  url:SafeUrl =''
+  onCodeChange(url: SafeUrl) {
+    this.url = url;
+  }
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private assetService: AssetStockService,
     private toast: NgToastService,
-    private sharedAssetService: SharedAssetsService,
     private router: Router
   ) {
     this.item = {};
   }
 
-  url:SafeUrl = ''
-  onCodeChange(url: SafeUrl) {
-    console.log(url);
-    this.url = url;
-  }
-
-  sendData(asset: Asset) {
-    this.sharedAssetService.sendData(asset);
-  }
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.loadAsset(this.id);
@@ -82,10 +75,6 @@ export class ViewAssetComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
-  }
-
-  handleQrCodeResult(result: string) {
-    this.loadAsset(result);
   }
 
   // setting up unchanged attributes' values to previous values
