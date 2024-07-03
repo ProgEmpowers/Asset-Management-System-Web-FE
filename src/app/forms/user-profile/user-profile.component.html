@@ -1,0 +1,170 @@
+<div class="container">
+    <div class="col-4 d-flex align-items-center">
+      <img
+        src="../../assets/propic.jpg"
+        class="object-fill-cover border p-4 rounded"
+        style="object-position: center"
+        width="150rem"
+        height="150rem"
+        alt="Employee Image"
+      />
+  
+      <div class="form-group d-flex justify-content-center mb-3">
+        
+        <app-upload ></app-upload>
+      </div> 
+    </div>
+    <div class="row">
+      <label class="col-form-label" >{{user?.roles}}</label>
+    </div>
+
+  <button>Change Password</button>
+  
+    <div class="row">
+        <div  class="row w-100 mt-4 px-4">
+          <div class="col-12" >
+            <form [formGroup]="editForm" (ngSubmit)="onSave()">
+
+              <div class="mb-3 row">
+                <label for="customUserId" class="col-sm-2 col-form-label" >User Id</label>
+                <div class="col-sm-5">
+                  <input
+                    formControlName="customUserId"
+                    type="text"
+                    class="form-control"
+                    id="customUserId"
+                    readonly
+                  />
+                </div>
+              </div>
+  
+  
+              <div class="mb-3 row">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-5">
+                  <input
+                    formControlName="email"
+                    type="text"
+                    class="form-control"
+                    id="email"
+                    readonly
+                  />
+                </div>
+              </div>
+              
+          
+              
+              
+              <div class="mb-3 row">
+                <label for="FirstName" class="col-sm-2 col-form-label">First Name</label>
+                <div class="col-sm-5">
+                  <input
+                    formControlName="firstName"
+                    type="text"
+                    class="form-control"
+                    id="FirstName"
+                    (change)="onFormDirty()"
+                  />
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="LastName" class="col-sm-2 col-form-label">Last Name</label>
+                <div class="col-sm-5">
+                  <input
+                    formControlName="lastName"
+                    type="text"
+                    class="form-control"
+                    id="LastName"
+                    (change)="onFormDirty()"
+                  />
+                </div>
+              </div>
+  
+              <div class="mb-3 row">
+                <label for="jobPost" class="col-sm-2 col-form-label">Job Title</label>
+                <div class="col-sm-5">
+                  <input
+                    formControlName="jobPost"
+                    type="text"
+                    class="form-control"
+                    id="jobPost"
+                    (change)="onFormDirty()"
+                  />
+                </div>
+              </div>
+              
+              <div class="mb-3 row">
+                <label for="PhoneNumber" class="col-sm-2 col-form-label">Phone Number</label>
+                <div class="col-sm-5">
+                  <input
+                    formControlName="phoneNumber"
+                    type="text"
+                    class="form-control"
+                    id="PhoneNumber"
+                    (change)="onFormDirty()"
+                  />
+                  <div *ngIf="editForm.controls['phoneNumber'].errors?.['invalidPhoneNumber']" class="text-danger">
+                    Invalid phone number.
+                  </div>
+                </div>
+              </div>
+  
+              <div class="mb-3 row">
+                <label for="NIC" class="col-sm-2 col-form-label">NIC</label>
+                <div class="col-sm-5">
+                  <input
+                    formControlName="nic"
+                    type="text"
+                    class="form-control"
+                    id="nic"
+                    (change)="onFormDirty()"
+                  />
+                  <div *ngIf="editForm.controls['nic'].errors?.['invalidNic']" class="text-danger">
+                    Invalid NIC. 
+                  </div>
+                </div>
+              </div>
+  
+              <div class="mb-3 row">
+                <label for="address" class="col-sm-2 col-form-label">Address</label>
+                <div class="col-sm-5">
+                  <input
+                    formControlName="address"
+                    type="text"
+                    class="form-control"
+                    id="address"
+                    (change)="onFormDirty()"
+                  />
+                </div>
+              </div>
+  
+              <div class="mb-3 row">
+                <label for="dob" class="col-sm-2 col-form-label" >Date Of Birth</label>
+                <div class="col-sm-5">
+                  <input
+                    formControlName="dateofBirth"
+                    placeholder="dd-mm-yyyy"
+                    type="text"
+                    class="form-control"
+                    id="dateofBirth"
+                    (change)="onFormDirty()"
+                  />
+                  <div *ngIf="editForm.controls['dateofBirth'].errors?.['invalidDateOfBirth']" class="text-danger">
+                    Invalid date of birth. Use dd-mm-yyyy format.
+                  </div>
+                </div>
+              </div>
+  
+              <div class="my-4 row pe-0">
+                <div class="gap-2  pe-0">
+                  <button type="submit" class="btn btn-primary cta" [disabled]="!isDirty">Save changes</button>
+                </div>
+              </div> 
+            
+            </form>
+          </div>
+        </div>
+      
+    </div>
+  </div>
+  

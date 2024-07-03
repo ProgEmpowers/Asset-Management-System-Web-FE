@@ -1,42 +1,18 @@
-<!--
-Define grid columns
-<ejs-grid [dataSource]="employeeList" [allowPaging]="true" [pageSettings]="pageSetting"
-          [allowSorting]="true" [allowPdfExport]="true" [allowPdfExport]="true"  >
-  <e-columns>
-    <e-column field='id' headerText='ID' textAlign='Left' width=60></e-column>
-
-    <e-column headerText="Name" width="130">
-      // Custom template to concatenate firstName and lastName 
-      <ng-template #template let-data>
-        {{ data.firstName }} {{ data.lastName }}
-      </ng-template>
-    </e-column>
-
-    <e-column field='address' headerText='Address' textAlign='Left'  width=90></e-column>
-    <e-column field='phoneNumber' headerText='Mobile No' textAlign='Left'  width=60></e-column>
-    <e-column field='nic' headerText='NIC' textAlign='Left' width=50></e-column>
-    <e-column field='email' headerText='E mail' textAlign='Left'  width=100></e-column>
-     <e-column field='jobPost' headerText='Job Post' textAlign='Left'  width=50></e-column>
-
-    <e-column headerText='' width='100' textAlign='Right'>
-      <ng-template #template let-data>
-        <td>
-          <div>
-            <button class="btn btn-outline-info btn-sm m-1" (click)="sendData(data)"[routerLink]="[data.id]">View</button>
-            
-             
-            <button class="btn btn-outline-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#delete-record" (click)="deleteEmployee(data.id, 'employee');">Delete</button>
 
 
-          </div>
-        </td>
-      </ng-template>
-    </e-column>
-</e-columns>
-</ejs-grid>
--->
+<div class="d-flex justify-content-start">
+  <input
+    class="form-control me-2 w-auto"
+    type="search"
+    placeholder="Search here..."
+    [(ngModel)]="filterText"
+    (input)="applyFilter()"
+  /> 
+  
+</div>
 
-<table class="table align-middle my-4 bg-white">
+
+<table class="table table-striped align-middle my-4 bg-white table-hover">
   <thead class="bg-light">
     <tr>
       <th>
@@ -46,51 +22,16 @@ Define grid columns
       </th>
       <th>User Id</th>
       <th>Name</th>
-      <th>Contact</th>
-      <th>Address</th>
+      <th>Email</th>
+      <th>Role</th>
       <!-- <th>Role</th> -->
       <th>Actions</th>
     </tr>
   </thead>
-  <!-- <tbody>
-    <tr>
-      <td>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-        </div>
-      </td>
-      <td>
-        <div class="d-flex align-items-center">
-          <img
-              src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-              alt=""
-              style="width: 45px; height: 45px"
-              class="rounded-circle"
-              />
-          <div class="ms-3">
-            <p class="fw-bold mb-1">John Doe</p>
-            <p class="text-muted mb-0">john.doe.gmail.com</p>
-          </div>
-        </div>
-      </td>
-      <td>
-        <p class="fw-normal mb-1">Software engineer</p>
-        <p class="text-muted mb-0">IT department</p>
-      </td>
-      <td>
-        <span class="badge badge-success rounded-pill d-inline">Active</span>
-      </td>
-      <td>Senior</td>
-      <td>
-        <button type="button" class="btn btn-link btn-sm btn-rounded">
-          Edit
-        </button>
-      </td>
-    </tr>
-  </tbody> -->
+
 
   <tbody>
-    <tr *ngFor="let employee of employeeList">
+    <tr *ngFor="let employee of filteredEmployeeList">
       <td>
         <div class="form-check">
           <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
@@ -108,19 +49,19 @@ Define grid columns
               class="rounded object-fit-cover"
               />
           <div class="ms-3">
-            <p class="text-muted mb-0">{{employee.firstName}} {{employee.lastName}}</p>
+            <p class=" mb-0">{{employee.firstName}} {{employee.lastName}}</p>
            
           </div>
         </div>
       </td>
       <td>
         <!-- <p class="fw-normal mb-1">Software engineer</p> -->
-        <p class="mb-0">{{employee.phoneNumber}}</p>
+      
         <p class="text-muted mb-0 small"> {{employee.email}}</p>
       </td>
       
       <td>
-        <p class="mb-0">{{employee.address}}</p>
+        <p class="mb-0">{{employee.role}}</p>
       </td>
       <td>
         <!-- <button type="button" class="btn btn-link btn-sm btn-rounded">
@@ -128,6 +69,71 @@ Define grid columns
         </button> -->
         <button type="button" class="btn btn-link btn-sm btn-rounded"(click)="sendData(employee)"[routerLink]="[employee.id]">View</button>
         <button type="button" class="btn btn-link btn-sm btn-rounded text-danger"data-bs-toggle="modal" data-bs-target="#delete-record" (click)="deleteEmployee(employee.id!, 'employee')">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+
+
+</table>
+
+
+
+
+<button (click)="toggleTableVisibility()">Deleted Employees</button>
+<table *ngIf="showDeletedTable" class="table table-striped align-middle my-4 bg-white table-hover">
+  <thead class="bg-light">
+    <tr>
+      <th>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+        </div>
+      </th>
+      <th>User Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Role</th>
+      <!-- <th>Role</th> -->
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <tr *ngFor="let employee of deletedEmployeeList">
+      <td>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        </div>
+      </td>
+      <td>
+        {{employee.customUserId}}
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+          <img
+              src="../../assets/propic.jpg"
+              alt=""
+              style="width: 45px; height: 45px;object-position: center;"
+              class="rounded object-fit-cover"
+              />
+          <div class="ms-3">
+            <p class=" mb-0">{{employee.firstName}} {{employee.lastName}}</p>
+           
+          </div>
+        </div>
+      </td>
+      <td>
+        <!-- <p class="fw-normal mb-1">Software engineer</p> -->
+      
+        <p class="text-muted mb-0 small"> {{employee.email}}</p>
+      </td>
+      
+      <td>
+        <p class="mb-0">{{employee.role}}</p>
+      </td>
+      <td>
+        
+        <button type="button" class="btn btn-link btn-sm btn-rounded text-danger"data-bs-toggle="modal" data-bs-target="#delete-record" (click)="deleteEmployee(employee.id!, 'employee')">Re-Store</button>
       </td>
     </tr>
   </tbody>
