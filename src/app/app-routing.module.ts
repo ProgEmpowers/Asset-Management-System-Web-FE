@@ -16,6 +16,7 @@ import { ViewEmployeeComponent } from './forms/view-employee/view-employee.compo
 import { ViewAssetComponent } from './forms/view-asset/view-asset.component';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { ViewVendorComponent } from './forms/view-vendor/view-vendor.component';
 
 const routes: Routes = [
   { path:"", redirectTo: "dashboard", pathMatch:'full' },
@@ -37,7 +38,8 @@ const routes: Routes = [
   { path:"reset-password", component: ResetPasswordComponent },
   { path:"change-password", component: ChangePasswordComponent, canActivate: [authGuard] },
   { path:"assets/:id", component: ViewAssetComponent, canActivate: [authGuard] },
-  {path:"employees/:id", component: ViewEmployeeComponent, canActivate: [authGuard]},
+  { path:"employees/:id", component: ViewEmployeeComponent, canActivate: [authGuard]},
+  { path:"vendors/:id", component: ViewVendorComponent },
 ];
 
 @NgModule({
