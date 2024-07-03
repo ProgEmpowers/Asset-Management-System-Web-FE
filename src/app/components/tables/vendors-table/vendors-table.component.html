@@ -1,16 +1,7 @@
 <!-- Define grid columns -->
-<ejs-grid [dataSource]="vendors" [allowPaging]="true" [pageSettings]="pageSetting" [allowSorting]="true"
+<!-- <ejs-grid [dataSource]="vendors" [allowPaging]="true" [pageSettings]="pageSetting" [allowSorting]="true"
   [allowPdfExport]="true">
   <e-columns>
-    <!-- <e-column width="30" textAlign="Left">
-      <ng-template #template let-data>
-        <td>
-          <div class="image">
-            <img src="{{data.imageUrl}}" alt="{{data.imageUrl}}" width="32px"/>
-          </div>
-        </td>
-      </ng-template>
-    </e-column> -->
     <e-column *ngFor="let tHeader of vendor_tHeaders" field="{{tHeader.field}}" headerText="{{tHeader.headerText}}"
       textAlign="{{tHeader.textAlign}}" type="{{tHeader.type}}" width="{{tHeader.width}}"></e-column>
       <e-column textAlign="Right" width="80">
@@ -24,4 +15,58 @@
         </ng-template>
       </e-column>
   </e-columns>
-</ejs-grid>
+</ejs-grid> -->
+
+<table class="table table-striped table-hover align-middle my-4 bg-white">
+  <thead class="bg-light">
+    <tr>
+      <th>
+        <div class="form-check">
+          <input type="checkbox" name="flexCheckDefault" id="flexCheckDefault" class="form-check-input" />
+        </div>
+      </th>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Mobile No.</th>
+      <th>Email</th>
+      <th style="width: 400px;">Supply Asset Types</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let vendor of vendors">
+      <td>
+        <div class="form-check">
+          <input type="checkbox" name="flexCheckDefault" id="flexCheckDefault" class="form-check-input">
+        </div>
+      </td>
+      <td>
+        {{vendor.id}}
+      </td>
+      <td>
+        {{vendor.name}}
+      </td>
+      <td>
+        {{vendor.address}}
+      </td>
+      <td>
+        {{vendor.mobileNo}}
+      </td>
+      <td>
+        {{vendor.email}}
+      </td>
+      <td>
+        <div class="align-items-center justify-content-center">
+          <span *ngFor="let asset of vendor.supplyAssetTypes" [ngClass]="assetStyle(asset)"
+            class="badge d-inline-block supplyAssetType m-1 p-2 align-items-center">{{asset}}</span>
+        </div>
+      </td>
+      <td>
+        <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="modal"
+          data-bs-target="">Edit</button>
+        <button class="btn btn-outline-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#delete-record"
+          (click)="deleteVendor(vendor.id!, 'vendor')">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

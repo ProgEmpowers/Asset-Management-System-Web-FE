@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AssetStockService } from '../../services/asset-stock.service';
 import { NgToastService } from 'ng-angular-popup';
 import { AssetStatusEnum } from '../../Models/AssetStatusEnum';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-view-asset',
@@ -37,6 +38,11 @@ export class ViewAssetComponent implements OnInit {
     class: '',
     text: '',
   };
+
+  url:SafeUrl =''
+  onCodeChange(url: SafeUrl) {
+    this.url = url;
+  }
 
   constructor(
     private activatedRoute: ActivatedRoute,

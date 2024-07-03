@@ -66,6 +66,9 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { IntlTelInputModuleComponent } from './components/intl-tel-input-module/intl-tel-input-module.component';
+import { OnlyNumbersDirective } from './directives/only-numbers.directive';
+import { QRCodeModule } from 'angularx-qrcode';
 import { UserProfileComponent } from './forms/user-profile/user-profile.component';
 import { DeletedEmployeeTableComponent } from './components/tables/deleted-employee-table/deleted-employee-table.component';
 
@@ -124,6 +127,10 @@ import { DeletedEmployeeTableComponent } from './components/tables/deleted-emplo
     ForgetPasswordComponent,
     ResetPasswordComponent,
     ChangePasswordComponent,
+    AssignAssetsComponent,
+    IntlTelInputModuleComponent,
+    OnlyNumbersDirective,
+    ChangePasswordComponent,
     UserProfileComponent,
     DeletedEmployeeTableComponent,
   ],
@@ -141,7 +148,8 @@ import { DeletedEmployeeTableComponent } from './components/tables/deleted-emplo
     NgToastModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    QRCodeModule
   ],
   providers: [PageService, SortService, PdfExportService, {
     provide: HTTP_INTERCEPTORS,
