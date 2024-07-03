@@ -1,64 +1,102 @@
-<div
-  class="my-assets-widget d-flex flex-column justify-content-between justify-self-stretch p-4"
->
-  <div>
-    <div class="d-flex align-items-center gap-3">
-      <div class="my-assets-widget-icon">
-        <i class="fas fa-solid fa-laptop fs-5 p-2"></i>
+<div class="my-assets-widget d-flex justify-content-between p-4">
+  <div class="col-6 d-flex flex-column justify-self-stretch">
+    <div>
+      <div class="d-flex align-items-center gap-3">
+        <div class="my-assets-widget-icon">
+          <i class="fas fa-solid fa-laptop fs-5 p-2"></i>
+        </div>
+        <h1 class="m-0" style="min-width: fit-content">My Assets</h1>
       </div>
-      <h1 class="m-0" style="min-width: fit-content">My Assets</h1>
     </div>
-  </div>
-  <div class="d-flex justify-content-between gap-4 mt-3">
-    <div class="col-8 d-flex align-items-center gap-5 mt-4" style="height: fit-content;">
-      <div class="my-assets-widget-sub-card d-flex flex-column gap-2 p-2">
-        <span class="" style="line-height: 100% !important">Total</span>
-        <span
-          *ngIf="myAssetList.length < 10"
-          class="fs-1 m-0"
-          style="font-weight: 800; line-height: 100% !important"
-        >
-          0{{ myAssetList.length }}
-        </span>
-        <span
-          *ngIf="myAssetList.length >= 10"
-          class="fs-1 m-0"
-          style="font-weight: 800; line-height: 100% !important"
-        >
-          {{ myAssetList.length }}
-        </span>
-      </div>
-
-      <div class="d-flex flex-wrap gap-2">
-        <div class="my-assets-widget-sub-card d-flex flex-column gap-2 p-2" *ngFor="let item of assetTypeCountsArray">
-          <span class="small" style="line-height: 100% !important">{{item.type}}</span>
+    <div class="d-flex justify-content-between flex-fill gap-4 mt-3">
+      <div
+        class="d-flex align-items-center gap-5 mt-4"
+        style="height: fit-content"
+      >
+        <div class="my-assets-widget-sub-card d-flex flex-column gap-2 p-2">
+          <span class="" style="line-height: 100% !important">Total</span>
           <span
-            *ngIf="item.count < 10"
-            class="fs-3 m-0"
+            *ngIf="myAssetList.length < 10"
+            class="fs-1 m-0"
             style="font-weight: 800; line-height: 100% !important"
           >
-            0{{ item.count }}
+            0{{ myAssetList.length }}
           </span>
           <span
-            *ngIf="item.count >= 10"
-            class="fs-3 m-0"
+            *ngIf="myAssetList.length >= 10"
+            class="fs-1 m-0"
             style="font-weight: 800; line-height: 100% !important"
           >
-            {{ item.count }}
+            {{ myAssetList.length }}
           </span>
         </div>
-      </div>
 
+        <div class="d-flex flex-wrap gap-2">
+          <div
+            class="my-assets-widget-sub-card d-flex flex-column gap-2 p-2"
+            *ngFor="let item of assetTypeCountsArray"
+          >
+            <span class="small" style="line-height: 100% !important">{{
+              item.type
+            }}</span>
+            <span
+              *ngIf="item.count < 10"
+              class="fs-3 m-0"
+              style="font-weight: 800; line-height: 100% !important"
+            >
+              0{{ item.count }}
+            </span>
+            <span
+              *ngIf="item.count >= 10"
+              class="fs-3 m-0"
+              style="font-weight: 800; line-height: 100% !important"
+            >
+              {{ item.count }}
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-4 d-flex justify-content-end gap-2 flex-fill">
-      <app-asset-card
-        class="bg-light rounded-4"
-        style="width: 80%;"
-        [imgUrl]="myAssetList[0].imageUrl"
-        [id]="myAssetList[0].id"
-        [name]="myAssetList[0].name"
-        [model]="myAssetList[0].assetType"
-      ></app-asset-card>
+    <div class="d-flex gap-2 justify-self-end align-items-end flex-fill">
+      <button
+        id="showassetdata"
+        class="btn btn-outline-secondary text-white border-white my-assets-widget-btn p-3 px-4"
+        routerLink="/my-assets"
+      >
+        View All
+      </button>
+      <button
+        id="showassetdata"
+        class="btn btn-secondary my-assets-widget-btn p-3 px-4"
+        routerLink="/"
+      >
+        Request Asset
+      </button>
     </div>
+  </div>
+  <div class="col-6 d-flex justify-content-end gap-2 p-2 flex-fill">
+    <swiper-container
+      loop="true"
+      autoplay="true"
+      autoplay-delay="2000"
+      space-between="10"
+      slides-per-view="2"
+      style="width: 100%"
+    >
+      <swiper-slide
+        class="d-flex justify-content-center bg-light rounded-4"
+        style="width: fit-content !important"
+        *ngFor="let item of myAssetList"
+      >
+        <app-asset-card
+          style="width: 100%"
+          class="d-flex bg-light rounded-4"
+          [imgUrl]="item.imageUrl"
+          [id]="item.id"
+          [name]="item.name"
+          [model]="item.assetType"
+        ></app-asset-card>
+      </swiper-slide>
+    </swiper-container>
   </div>
 </div>
