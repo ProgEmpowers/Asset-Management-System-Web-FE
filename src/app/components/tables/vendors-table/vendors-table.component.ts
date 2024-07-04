@@ -19,6 +19,7 @@ export class VendorsTableComponent implements OnInit {
   public vendor_tHeaders = Vendor_tHeaders;
   styleClass: string = '';
 
+  filterText: string = '';
   vendorReload: boolean = false;
   ongoingDelete_type = '';
 
@@ -27,6 +28,9 @@ export class VendorsTableComponent implements OnInit {
   public pageSetting: PageSettingsModel = {
     pageSize: 10,
   };
+  isFilterApplied: boolean = false;
+  filterCategory: string = '';
+  filterStatus: string = '';
 
   constructor(
     private vendorService: VendorService,
@@ -48,6 +52,11 @@ export class VendorsTableComponent implements OnInit {
     return this.styleClass;
   }
 
+  navigateTo(id: string) {
+    this.vendorService.sendData(id);
+    this.router.navigate(['vendors', id]);
+  }
+
 
   // Get all vendors
   getAllVendors(): void {
@@ -56,10 +65,10 @@ export class VendorsTableComponent implements OnInit {
     });
   }
 
-  updateVendor(id: number): void {
-    this.vendorService.sendData(id);
-    console.log('vendor id to edit: ' + this.vendorService.data$);
-  }
+  // updateVendor(id: number): void {
+  //   this.vendorService.sendData(id);
+  //   console.log('vendor id to edit: ' + this.vendorService.data$);
+  // }
 
   // sendDataToOtherComponent() {
   //   this.vendorService.sendData(this.editVendor_id);
@@ -74,6 +83,11 @@ export class VendorsTableComponent implements OnInit {
   //       }
   //     )
   // }
+
+  onRemoveFilters() {
+    this.filterText = '';
+    this.isFilterApplied = false;
+  }
 
   deleteVendor(id: string, type: string): void {
     this.deleteService.sendId(id);

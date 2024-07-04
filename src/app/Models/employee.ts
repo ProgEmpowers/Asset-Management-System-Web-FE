@@ -16,6 +16,6 @@ export interface Employee {
   id?:string;
   imageUrl?:string;
   customUserId?:string;
- 
+
 
 }

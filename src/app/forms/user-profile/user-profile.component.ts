@@ -1,22 +1,26 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup,AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { NgToastService } from 'ng-angular-popup';
-import { EmployeeService } from '../../services/employee.service';
-import { Employee } from '../../Models/employee';
 import { UploadComponent } from '../../components/upload/upload.component';
+import { Employee } from '../../Models/employee';
+import { FormBuilder, FormGroup,AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { EmployeeService } from '../../services/employee.service';
+import { NgToastService } from 'ng-angular-popup';
+import { User } from '../../Models/user.model';
+import { AuthService } from '../../auth/services/auth.service';
 
 
 @Component({
-  selector: 'app-view-employee',
-  templateUrl: './view-employee.component.html',
-  styleUrls: ['./view-employee.component.scss'],
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrl: './user-profile.component.scss'
 })
-export class ViewEmployeeComponent implements OnInit {
-
-
+export class UserProfileComponent implements OnInit {
+  
 
   @ViewChild('uploadComponent') uploadComponent!: UploadComponent;
+
+  user?: User;
+  employeeId: string | undefined;
 
   defaultUrl = "https://localhost:7095/Uploads/Images/Assets/upload.png";
   imgPath: string = "";
@@ -29,23 +33,34 @@ export class ViewEmployeeComponent implements OnInit {
   isDirty = false;
   fb = new FormBuilder();
 
-  isTab1 = true;
-  isTab2 = false;
-
+  
  // imgPath: string = "";
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private employeeService: EmployeeService,
     private toast: NgToastService,
+    private authService: AuthService
  
   ) {
     this.item = {};
   }
 
   ngOnInit(): void {
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.loadEmployee(this.id);
+
+    this.authService.user()
+      .subscribe({
+        next:(response) => {
+          this.user = response;
+        }
+      });
+      this.user = this.authService.getUser();
+
+
+   // this.id = this.activatedRoute.snapshot.paramMap.get('id');
+   if (this.user?.email) {
+    this.loadEmployee(this.user.email);
+  }
 
     this.editForm = this.fb.group({
       customUserId:[''],
@@ -55,17 +70,18 @@ export class ViewEmployeeComponent implements OnInit {
       email: [''],
       phoneNumber: ['', this.phoneNumberValidator],
       address: [''],
-      nic:['', this.nicValidator],
-      dateofBirth:['', this.dateOfBirthValidator],
+      nic:['',this.nicValidator],
+      dateofBirth:['',this.dateOfBirthValidator],
     });
   }
 
   
   
  
-  loadEmployee(id: string) {
-    this.employeeService.getEmployeeById(id).subscribe((res: Employee) => {
+  loadEmployee(email: string) {
+    this.employeeService.getEmployeeByEmail(email).subscribe((res: Employee) => {
       this.employee = res;
+      this.employeeId=res.id;// Store the employee ID
       this.loadForm();
     });
   }
@@ -84,32 +100,18 @@ export class ViewEmployeeComponent implements OnInit {
     });
   }
 
-  onTab1Click() {
-    this.isTab1 = true;
-    this.isTab2 = false;
-  }
-
-  onTab2Click() {
-    this.isTab1 = false;
-    this.isTab2 = true;
-   
-  }
+  
+  
 
   onFormDirty() {
     this.isDirty = true;
   }
 
-  isTab1Open() {
-    return this.isTab1;
-  }
-
-  isTab2Open() {
-    return this.isTab2;
-  }
+ 
 
   onSave() {
-    if (this.editForm.valid) {
-      this.employeeService.updateEmployee(this.id, this.editForm.value).subscribe({
+    if (this.editForm.valid && this.employeeId) {
+      this.employeeService.updateEmployee(this.employeeId, this.editForm.value).subscribe({
         next: (res) => {
           this.toast.success({
             detail: "Employee updated successfully",
@@ -129,20 +131,13 @@ export class ViewEmployeeComponent implements OnInit {
 
   
 
-  // Setting up the checkin button functionality
-  onAssignAsset() {
-    this.employeeService.sendData(this.id);
-    console.log(this.id);
-  }
-
-
   triggerButtonClick() {
     // Programmatically trigger click on the button in ChildComponent
     this.uploadComponent.file.nativeElement.click();
   }
 
-   // Validator for phone number
-   phoneNumberValidator(control: AbstractControl): ValidationErrors | null {
+  // Validator for phone number
+  phoneNumberValidator(control: AbstractControl): ValidationErrors | null {
     const phoneNumberPattern = /^(0[1-689][0-9]{8}|07[0-9]{8})$/;
     if (control.value && !phoneNumberPattern.test(control.value)) {
       return { invalidPhoneNumber: true };
@@ -167,4 +162,5 @@ export class ViewEmployeeComponent implements OnInit {
     }
     return null;
   }
+
 }

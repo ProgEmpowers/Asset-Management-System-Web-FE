@@ -60,5 +60,27 @@ export class EmployeeService {
     return this.http.get<Asset[]>(this.apiUrl3 + "/" + email);
   }
 
+  getUserCountInRole(roleName: string): Observable<number> {
+    console.log("get");
+    return this.http.get<number>(`${this.apiurl}/count/${roleName}`);
+     
+  }
+
+
+  getEmployeeByEmail(email: string): Observable<Employee> {
+    return this.http.get<Employee>(`${this.apiurl}/GetUserByEmail/${email}`);
+  }
+
+  getEmployeeListWithRole(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(`${this.apiurl}/WithRole`);
+  }
+
+  getDeletedEmployees():Observable<Employee[]>{
+    return this.http.get<Employee[]>(`${this.apiurl}/deleted`);
+  }
+
+  recoverDeletedUser(id: string): Observable<Employee> {
+    return this.http.put<Employee>(`${this.apiurl}/recoverDeletedUser/${id}`, {});
+  }
 
 }
