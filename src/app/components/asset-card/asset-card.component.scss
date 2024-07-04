@@ -1,7 +1,8 @@
 .asset-card {
-  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .16);
+  border-radius: 20px;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
 }
 
-.asset-card:hover {
-  box-shadow: 0 4px 8px 0 rgba(-3, 0, 0, .22);
-}
+// .asset-card:hover {
+//   box-shadow: 0 4px 8px 0 rgba(-3, 0, 0, .22);
+// }

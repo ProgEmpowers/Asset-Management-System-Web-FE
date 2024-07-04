@@ -25,7 +25,12 @@ import {
   SortService,
 } from '@syncfusion/ej2-angular-grids';
 import { AssetTableComponent } from './components/tables/asset-table/asset-table.component';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+  HttpHandler,
+} from '@angular/common/http';
 import { EmployeeTableComponent } from './components/tables/employee-table/employee-table.component';
 import { VendorsTableComponent } from './components/tables/vendors-table/vendors-table.component';
 import { NotificationsTableComponent } from './components/tables/notifications-table/notifications-table.component';
@@ -66,6 +71,8 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { MyAssesWidgetComponent } from './components/widgets/my-asses-widget/my-asses-widget.component';
+import { SellAssetComponent } from './popups/sell-asset/sell-asset.component';
 import { IntlTelInputModuleComponent } from './components/intl-tel-input-module/intl-tel-input-module.component';
 import { OnlyNumbersDirective } from './directives/only-numbers.directive';
 import { QRCodeModule } from 'angularx-qrcode';
@@ -73,6 +80,7 @@ import { ViewVendorComponent } from './forms/view-vendor/view-vendor.component';
 import { SearchPipe } from './pipes/search/search.pipe';
 import { UserProfileComponent } from './forms/user-profile/user-profile.component';
 import { DeletedEmployeeTableComponent } from './components/tables/deleted-employee-table/deleted-employee-table.component';
+import { UserProfileWidgetComponent } from './components/widgets/user-profile-widget/user-profile-widget.component';
 
 
 @NgModule({
@@ -122,12 +130,14 @@ import { DeletedEmployeeTableComponent } from './components/tables/deleted-emplo
     MyAssetsComponent,
     SidemenuComponent,
     AssignAssetsComponent,
-    ViewAssetComponent,
     ViewEmployeeComponent,
     AssignAssetEmployeeSideComponent,
     AssignAssetsComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
+    ChangePasswordComponent,
+    MyAssesWidgetComponent,
+    SellAssetComponent,
     ChangePasswordComponent,
     AssignAssetsComponent,
     IntlTelInputModuleComponent,
@@ -138,6 +148,7 @@ import { DeletedEmployeeTableComponent } from './components/tables/deleted-emplo
     ChangePasswordComponent,
     UserProfileComponent,
     DeletedEmployeeTableComponent,
+    UserProfileWidgetComponent,
   ],
   imports: [
     BrowserModule,
@@ -156,11 +167,17 @@ import { DeletedEmployeeTableComponent } from './components/tables/deleted-emplo
     ToastrModule.forRoot(),
     QRCodeModule
   ],
-  providers: [PageService, SortService, PdfExportService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: authInterceptor,
-    multi: true
-  }],
-  bootstrap: [AppComponent]
+  providers: [
+    PageService,
+    SortService,
+    PdfExportService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: authInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
+  schemas: [],
 })
 export class AppModule {}
