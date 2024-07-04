@@ -13,6 +13,8 @@ import { AssetStatusEnum } from '../../Models/AssetStatusEnum';
 import { SafeUrl } from '@angular/platform-browser';
 import { User } from '../../Models/user.model';
 import { AuthService } from '../../auth/services/auth.service';
+import { VendorService } from '../../services/vendor.service';
+import { Vendor } from '../../Models/vendor';
 
 @Component({
   selector: 'app-view-asset',
@@ -29,6 +31,8 @@ export class ViewAssetComponent implements OnInit {
   assetStatus = '';
   statusCode = 0;
   isFree = false;
+  vendor?: Vendor;
+  assetTypes:string[] = []
 
   isTab1 = true;
   isTab2 = false;
@@ -39,7 +43,7 @@ export class ViewAssetComponent implements OnInit {
     text: '',
   };
 
-  url:SafeUrl =''
+  url: SafeUrl = '';
   onCodeChange(url: SafeUrl) {
     this.url = url;
   }
@@ -53,7 +57,8 @@ export class ViewAssetComponent implements OnInit {
     private assetService: AssetStockService,
     private toast: NgToastService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private vendorService: VendorService
   ) {
     this.item = {};
   }
@@ -73,6 +78,10 @@ export class ViewAssetComponent implements OnInit {
       userId: [''],
     });
 
+    this.assetService.getAssetTypes().subscribe((res) => {
+      this.assetTypes = res;
+    })
+
     this.authService.user().subscribe({
       next: (response) => {
         console.log(response);
@@ -87,6 +96,10 @@ export class ViewAssetComponent implements OnInit {
       this.item = await this.assetService.GetAssetById(id);
       this.loadForm();
       console.log(this.editForm.value);
+      this.vendorService.getVendorById(this.item.vendor).subscribe((res) => {
+        this.vendor = res;
+        console.log(this.vendor);
+      });
     } catch (error) {
       console.log(error);
     }

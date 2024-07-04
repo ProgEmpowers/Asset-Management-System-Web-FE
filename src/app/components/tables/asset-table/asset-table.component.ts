@@ -28,6 +28,7 @@ export class AssetTableComponent implements OnInit {
   filterStatus: string="";
   filterCategory: string="";
   isFilterApplied = false;
+  assetTypes:string[] = [];
 
   filters = {
     label: '',
@@ -48,6 +49,9 @@ export class AssetTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllAssets();
+    this.assetService.getAssetTypes().subscribe((res) => {
+      this.assetTypes = res;
+    })
   }
 
   getAllAssets(): void {

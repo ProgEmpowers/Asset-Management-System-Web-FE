@@ -83,6 +83,8 @@ import { DeletedEmployeeTableComponent } from './components/tables/deleted-emplo
 import { UserProfileWidgetComponent } from './components/widgets/user-profile-widget/user-profile-widget.component';
 import { EmployeeAssetTableComponent } from './components/tables/employee-asset-table/employee-asset-table.component';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
+import { AssetTypesModalComponent } from './forms/asset-types-modal/asset-types-modal.component';
+
 
 
 @NgModule({
@@ -153,6 +155,8 @@ import { UploadImageComponent } from './components/upload-image/upload-image.com
     UserProfileWidgetComponent,
     EmployeeAssetTableComponent,
     UploadImageComponent,
+    AssetTypesModalComponent,
+
   ],
   imports: [
     BrowserModule,
