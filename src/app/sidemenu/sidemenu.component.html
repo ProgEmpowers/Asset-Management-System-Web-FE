@@ -1,15 +1,16 @@
-<div class="sidemenu bg-dark rounded-2 p-4" [ngClass]="{'sidemenu-collapsed':isCollapsed}">
-  <div
-  class="sidemenu-logo"
-  #logoBtn
-  (click)="toggleCollapse()">
+<div
+  class="sidemenu bg-dark rounded-2 p-4"
+  [ngClass]="{ 'sidemenu-collapsed': isCollapsed }"
+>
+  <div class="sidemenu-logo" #logoBtn (click)="toggleCollapse()">
     <img
-    @fadeIn
-    src="../../assets/corzent-logo-mark.png" alt="logo"
-    class="object-fit-cover img-fluid sidemenu-logo-mark"
-    height="100%"
-    *ngIf="isCollapsed"
-    >
+      @fadeIn
+      src="../../assets/corzent-logo-mark.png"
+      alt="logo"
+      class="object-fit-cover img-fluid sidemenu-logo-mark"
+      height="100%"
+      *ngIf="isCollapsed"
+    />
     <img
       @fadeIn
       class="sidemenu-logo-img img-fluid"
@@ -41,11 +42,9 @@
             [routerLinkActiveOptions]="{ exact: true }"
           >
             <i class="bx bxs-dashboard"></i>
-            <span class="sidenav-nav-item-text"
-            @fade
-            *ngIf="!isCollapsed"
-
-            >Dashboard</span>
+            <span class="sidenav-nav-item-text" @fade *ngIf="!isCollapsed"
+              >Dashboard</span
+            >
           </a>
         </li>
       </ng-container>
@@ -67,10 +66,9 @@
             [routerLinkActiveOptions]="{ exact: true }"
           >
             <i class="bx bxs-devices"></i>
-            <span class="sidenav-nav-item-text"
-            @fade
-            *ngIf="!isCollapsed"
-            >Assets</span>
+            <span class="sidenav-nav-item-text" @fade *ngIf="!isCollapsed"
+              >Assets</span
+            >
           </a>
         </li>
       </ng-container>
@@ -93,10 +91,9 @@
             [routerLinkActiveOptions]="{ exact: true }"
           >
             <i class="bx bx-laptop"></i>
-            <span class="sidenav-nav-item-text"
-            @fade
-            *ngIf="!isCollapsed"
-            >My Assets</span></a
+            <span class="sidenav-nav-item-text" @fade *ngIf="!isCollapsed"
+              >My Assets</span
+            ></a
           >
         </li>
       </ng-container>
@@ -119,10 +116,9 @@
             [routerLinkActiveOptions]="{ exact: true }"
           >
             <i class="bx bx-archive"></i>
-            <span class="sidenav-nav-item-text"
-            @fade
-            *ngIf="!isCollapsed"
-            >Disposals</span></a
+            <span class="sidenav-nav-item-text" @fade *ngIf="!isCollapsed"
+              >Disposals</span
+            ></a
           >
         </li>
       </ng-container>
@@ -144,10 +140,9 @@
             [routerLinkActiveOptions]="{ exact: true }"
           >
             <i class="bx bx-group"></i>
-            <span class="sidenav-nav-item-text"
-            @fade
-            *ngIf="!isCollapsed"
-            >Employees</span></a
+            <span class="sidenav-nav-item-text" @fade *ngIf="!isCollapsed"
+              >Employees</span
+            ></a
           >
         </li>
       </ng-container>
@@ -169,10 +164,9 @@
             [routerLinkActiveOptions]="{ exact: true }"
           >
             <i class="bx bxs-business"></i>
-            <span class="sidenav-nav-item-text"
-            @fade
-            *ngIf="!isCollapsed"
-            >Vendors</span></a
+            <span class="sidenav-nav-item-text" @fade *ngIf="!isCollapsed"
+              >Vendors</span
+            ></a
           >
         </li>
       </ng-container>
@@ -194,10 +188,9 @@
             [routerLinkActiveOptions]="{ exact: true }"
           >
             <i class="bx bx-list-ul"></i>
-            <span class="sidenav-nav-item-text"
-            @fade
-            *ngIf="!isCollapsed"
-            >Contracts</span></a
+            <span class="sidenav-nav-item-text" @fade *ngIf="!isCollapsed"
+              >Contracts</span
+            ></a
           >
         </li>
       </ng-container>
@@ -227,15 +220,14 @@
             [routerLinkActiveOptions]="{ exact: true }"
           >
             <i class="bx bx-bell"></i>
-            <span class="sidenav-nav-item-text"
-            @fade
-            *ngIf="!isCollapsed"
-            >Notifications</span></a
+            <span class="sidenav-nav-item-text" @fade *ngIf="!isCollapsed"
+              >Notifications</span
+            ></a
           >
         </li>
       </ng-container>
 
-      <ng-container
+      <!-- <ng-container
         *ngIf="
           user !== undefined &&
           (user?.roles?.includes('AssetManeger') ||
@@ -258,9 +250,9 @@
             >R-Requests</span></a
           >
         </li>
-      </ng-container>
+      </ng-container> -->
 
-      <ng-container
+      <!-- <ng-container
         *ngIf="user !== undefined && user?.roles?.includes('NormalUser')"
       >
         <li class="sidenav-nav-item">
@@ -279,9 +271,9 @@
             >S-Requests</span></a
           >
         </li>
-      </ng-container>
+      </ng-container> -->
 
-      <ng-container
+      <!-- <ng-container
         *ngIf="
           user !== undefined &&
           (user?.roles?.includes('AssetManeger') ||
@@ -304,9 +296,9 @@
             >R-Reports</span></a
           >
         </li>
-      </ng-container>
+      </ng-container> -->
 
-      <ng-container
+      <!-- <ng-container
         ng-container
         *ngIf="user !== undefined && user?.roles?.includes('NormalUser')"
       >
@@ -326,7 +318,7 @@
             >S-Reports</span></a
           >
         </li>
-      </ng-container>
+      </ng-container> -->
     </ul>
   </div>
 </div>
