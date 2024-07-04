@@ -1,7 +1,7 @@
 <div class="container">
   <div class="col-4 d-flex align-items-center">
-    <img
-      src="../../assets/propic.jpg"
+    <img 
+      [src]="employee.imageUrl ? employee.imageUrl : 'https://localhost:7095/Uploads/Images/Assets/images.png' "
       class="object-fill-cover border p-4 rounded"
       style="object-position: center"
       width="150rem"
@@ -11,13 +11,10 @@
 
     <div class="form-group d-flex justify-content-center mb-3">
       
-      <app-upload ></app-upload>
+      <app-upload-image  class="d-flex p-3" (onUploadFinished)="onUploadFinished($event)"></app-upload-image>
     </div> 
   </div>
  
-  
-
-
 
 
   <div class="row">
@@ -193,16 +190,10 @@
 
 
           <div class="row">
-            <span>Relevant Employee's Asssets should display here</span>
-            <app-asset-table></app-asset-table>
+
+            <app-employee-asset-table [employeeEmail]="employee.email!"></app-employee-asset-table>
           </div>
-          <!-- <div class="row">
-            <div class="col-12">
-              <span>Assets details will be displayed here.{{employee.customUserId}}</span>
-              
-              
-            </div>
-          </div> -->
+          
 
 
         </div>

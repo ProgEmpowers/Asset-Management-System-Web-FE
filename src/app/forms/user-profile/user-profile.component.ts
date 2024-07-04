@@ -32,6 +32,7 @@ export class UserProfileComponent implements OnInit {
   editForm!: FormGroup;
   isDirty = false;
   fb = new FormBuilder();
+  router: any;
 
   
  // imgPath: string = "";
@@ -129,7 +130,16 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  
+  onUploadFinished(filePath: string) {
+    console.log("upload");
+    this.imgPath = filePath;
+    //console.log(this.imgPath);
+    
+    this.onFormDirty();
+    this.employee.imageUrl=this.imgPath;
+    console.log("hhhhhhhhhhhhh");
+    console.log(this.employee.imageUrl);
+  }
 
   triggerButtonClick() {
     // Programmatically trigger click on the button in ChildComponent
@@ -162,5 +172,6 @@ export class UserProfileComponent implements OnInit {
     }
     return null;
   }
+
 
 }

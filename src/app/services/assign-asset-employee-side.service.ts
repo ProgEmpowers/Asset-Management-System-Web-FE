@@ -32,4 +32,8 @@ export class AssignAssetEmployeeSideService {
   async assignAssetToUserAsync(userAsset: UserAsset) {
     return await lastValueFrom(this.http.post(this.userAssetUrl, userAsset));
   }
+
+  getAssetsByUserEmail(email: string): Observable<Asset[]> {
+    return this.http.get<Asset[]>(`${this.apiurl}/GetAssetByUserAsync/${email}`);
+  }
 }

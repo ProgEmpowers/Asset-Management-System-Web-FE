@@ -43,6 +43,7 @@ const routes: Routes = [
   { path:"vendors/:id", component: ViewVendorComponent },
   { path: "user-profile", component: UserProfileComponent,canActivate: [authGuard] },
 
+
 ];
 
 @NgModule({

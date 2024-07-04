@@ -73,6 +73,8 @@ import { ViewVendorComponent } from './forms/view-vendor/view-vendor.component';
 import { SearchPipe } from './pipes/search/search.pipe';
 import { UserProfileComponent } from './forms/user-profile/user-profile.component';
 import { DeletedEmployeeTableComponent } from './components/tables/deleted-employee-table/deleted-employee-table.component';
+import { EmployeeAssetTableComponent } from './components/tables/employee-asset-table/employee-asset-table.component';
+import { UploadImageComponent } from './components/upload-image/upload-image.component';
 
 
 @NgModule({
@@ -138,6 +140,8 @@ import { DeletedEmployeeTableComponent } from './components/tables/deleted-emplo
     ChangePasswordComponent,
     UserProfileComponent,
     DeletedEmployeeTableComponent,
+    EmployeeAssetTableComponent,
+    UploadImageComponent,
   ],
   imports: [
     BrowserModule,

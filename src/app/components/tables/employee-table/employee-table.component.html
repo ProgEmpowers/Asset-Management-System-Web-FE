@@ -43,7 +43,7 @@
       <td>
         <div class="d-flex align-items-center">
           <img
-              src="../../assets/propic.jpg"
+              [src]="employee.imageUrl ? employee.imageUrl : 'https://localhost:7095/Uploads/Images/Assets/images.png'"
               alt=""
               style="width: 45px; height: 45px;object-position: center;"
               class="rounded object-fit-cover"
@@ -67,7 +67,7 @@
         <!-- <button type="button" class="btn btn-link btn-sm btn-rounded">
           Edit
         </button> -->
-        <button type="button" class="btn btn-link btn-sm btn-rounded"(click)="sendData(employee)"[routerLink]="[employee.id]">View</button>
+        <button type="button" class="btn btn-link btn-sm btn-rounded"(click)="sendData(employee)" [routerLink]="[employee.id]">View</button>
         <button type="button" class="btn btn-link btn-sm btn-rounded text-danger"data-bs-toggle="modal" data-bs-target="#delete-record" (click)="deleteEmployee(employee.id!, 'employee')">Delete</button>
       </td>
     </tr>
