@@ -8,18 +8,18 @@
         height="150rem"
         alt="Employee Image"
       />
-  
+
       <div class="form-group d-flex justify-content-center mb-3">
-        
+
         <app-upload ></app-upload>
-      </div> 
+      </div>
     </div>
     <div class="row">
       <label class="col-form-label" >{{user?.roles}}</label>
     </div>
 
-  <button>Change Password</button>
-  
+  <button routerLink="change">Change Password</button>
+
     <div class="row">
         <div  class="row w-100 mt-4 px-4">
           <div class="col-12" >
@@ -37,8 +37,8 @@
                   />
                 </div>
               </div>
-  
-  
+
+
               <div class="mb-3 row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-5">
@@ -51,10 +51,10 @@
                   />
                 </div>
               </div>
-              
-          
-              
-              
+
+
+
+
               <div class="mb-3 row">
                 <label for="FirstName" class="col-sm-2 col-form-label">First Name</label>
                 <div class="col-sm-5">
@@ -79,7 +79,7 @@
                   />
                 </div>
               </div>
-  
+
               <div class="mb-3 row">
                 <label for="jobPost" class="col-sm-2 col-form-label">Job Title</label>
                 <div class="col-sm-5">
@@ -92,7 +92,7 @@
                   />
                 </div>
               </div>
-              
+
               <div class="mb-3 row">
                 <label for="PhoneNumber" class="col-sm-2 col-form-label">Phone Number</label>
                 <div class="col-sm-5">
@@ -108,7 +108,7 @@
                   </div>
                 </div>
               </div>
-  
+
               <div class="mb-3 row">
                 <label for="NIC" class="col-sm-2 col-form-label">NIC</label>
                 <div class="col-sm-5">
@@ -120,11 +120,11 @@
                     (change)="onFormDirty()"
                   />
                   <div *ngIf="editForm.controls['nic'].errors?.['invalidNic']" class="text-danger">
-                    Invalid NIC. 
+                    Invalid NIC.
                   </div>
                 </div>
               </div>
-  
+
               <div class="mb-3 row">
                 <label for="address" class="col-sm-2 col-form-label">Address</label>
                 <div class="col-sm-5">
@@ -137,7 +137,7 @@
                   />
                 </div>
               </div>
-  
+
               <div class="mb-3 row">
                 <label for="dob" class="col-sm-2 col-form-label" >Date Of Birth</label>
                 <div class="col-sm-5">
@@ -154,17 +154,17 @@
                   </div>
                 </div>
               </div>
-  
+
               <div class="my-4 row pe-0">
                 <div class="gap-2  pe-0">
                   <button type="submit" class="btn btn-primary cta" [disabled]="!isDirty">Save changes</button>
                 </div>
-              </div> 
-            
+              </div>
+
             </form>
           </div>
         </div>
-      
+
     </div>
   </div>
-  
+
