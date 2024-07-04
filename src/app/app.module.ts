@@ -81,7 +81,10 @@ import { SearchPipe } from './pipes/search/search.pipe';
 import { UserProfileComponent } from './forms/user-profile/user-profile.component';
 import { DeletedEmployeeTableComponent } from './components/tables/deleted-employee-table/deleted-employee-table.component';
 import { UserProfileWidgetComponent } from './components/widgets/user-profile-widget/user-profile-widget.component';
+import { EmployeeAssetTableComponent } from './components/tables/employee-asset-table/employee-asset-table.component';
+import { UploadImageComponent } from './components/upload-image/upload-image.component';
 import { AssetTypesModalComponent } from './forms/asset-types-modal/asset-types-modal.component';
+
 
 
 @NgModule({
@@ -150,7 +153,10 @@ import { AssetTypesModalComponent } from './forms/asset-types-modal/asset-types-
     UserProfileComponent,
     DeletedEmployeeTableComponent,
     UserProfileWidgetComponent,
+    EmployeeAssetTableComponent,
+    UploadImageComponent,
     AssetTypesModalComponent,
+
   ],
   imports: [
     BrowserModule,

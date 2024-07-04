@@ -4,6 +4,8 @@ import { enableRipple } from '@syncfusion/ej2-base';
 import { MenuItemModel } from '@syncfusion/ej2-angular-navigations';
 import { User } from '../Models/user.model';
 import { Router } from '@angular/router';
+import { Employee } from '../Models/employee';
+import { EmployeeService } from '../services/employee.service';
 
 interface SidemenuToggled {
   screenWidth: number;
@@ -21,7 +23,9 @@ export class HeaderComponent implements OnInit{
   user?: User;
   isCollapsed = false;
 
-  constructor (private authService: AuthService , private router: Router){
+  employee: Employee = {};
+
+  constructor (private authService: AuthService , private router: Router,private employeeService: EmployeeService){
 
   }
   ngOnInit(): void {
@@ -32,7 +36,19 @@ export class HeaderComponent implements OnInit{
         }
       });
       this.user = this.authService.getUser();
+      if (this.user?.email) {
+        this.loadEmployee(this.user.email);
+      }
 
+    
+
+  }
+
+  loadEmployee(email:string){
+    this.employeeService.getEmployeeByEmail(email).subscribe((res: Employee) => {
+      this.employee = res;
+      
+    });
   }
 
   onLogout(): void {

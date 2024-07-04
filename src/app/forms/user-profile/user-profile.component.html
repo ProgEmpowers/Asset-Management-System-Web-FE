@@ -1,25 +1,32 @@
 <div class="container">
     <div class="col-4 d-flex align-items-center">
-      <img
-        src="../../assets/propic.jpg"
-        class="object-fill-cover border p-4 rounded"
+
+      <div class="d-flex flex-column align-items-center">
+        <img
+        [src]="employee.imageUrl ? employee.imageUrl : 'https://localhost:7095/Uploads/Images/Assets/usericon.jpg'"
+        class="object-fit-cover border p-6 rounded-circle "
         style="object-position: center"
         width="150rem"
         height="150rem"
         alt="Employee Image"
-      />
+        />
 
-      <div class="form-group d-flex justify-content-center mb-3">
+        <div class="row" >
+          <label class="col-form-label" >{{user?.roles}}</label>
+        </div>
+  
+        <button routerLink="/change-password">Change Password</button>
 
-        <app-upload ></app-upload>
       </div>
+      
+  
+      <div class="form-group d-flex justify-content-center mb-3">
+        
+        <app-upload-image class="d-flex p-3" (onUploadFinished)="onUploadFinished($event)"></app-upload-image>
+      </div> 
     </div>
-    <div class="row">
-      <label class="col-form-label" >{{user?.roles}}</label>
-    </div>
-
-  <button routerLink="change">Change Password</button>
-
+    
+  
     <div class="row">
         <div  class="row w-100 mt-4 px-4">
           <div class="col-12" >

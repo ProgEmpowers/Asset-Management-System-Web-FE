@@ -53,6 +53,7 @@ export class ViewEmployeeComponent implements OnInit {
       lastName: [''],
       jobPost:[''],
       email: [''],
+      imageUrl:[''],
       phoneNumber: ['', this.phoneNumberValidator],
       address: [''],
       nic:['', this.nicValidator],
@@ -77,6 +78,7 @@ export class ViewEmployeeComponent implements OnInit {
       lastName: this.employee.lastName,
       email: this.employee.email,
       jobPost:this.employee.jobPost,
+      imageUrl:this.employee.imageUrl,
       phoneNumber: this.employee.phoneNumber,
       address: this.employee.address,
       nic:this.employee.nic,
@@ -108,6 +110,9 @@ export class ViewEmployeeComponent implements OnInit {
   }
 
   onSave() {
+    this.editForm.controls["imageUrl"].setValue(this.employee.imageUrl);
+    console.log(this.employee);
+    console.log(this.editForm.value);
     if (this.editForm.valid) {
       this.employeeService.updateEmployee(this.id, this.editForm.value).subscribe({
         next: (res) => {
@@ -127,7 +132,16 @@ export class ViewEmployeeComponent implements OnInit {
     }
   }
 
-  
+  onUploadFinished(filePath: string) {
+    console.log("upload");
+    this.imgPath = filePath;
+    //console.log(this.imgPath);
+    
+    this.onFormDirty();
+    this.employee.imageUrl=this.imgPath;
+    console.log("hhhhhhhhhhhhh");
+    console.log(this.employee.imageUrl);
+  }
 
   // Setting up the checkin button functionality
   onAssignAsset() {
