@@ -25,8 +25,8 @@ export class NewEmployeeComponent implements OnInit {
       firstName: new FormControl("", Validators.required),
       lastName: new FormControl("", Validators.required),
       email: new FormControl("", [Validators.required, Validators.email]),
-      password: new FormControl("", Validators.required),
-      confirmPassword: new FormControl("", Validators.required),
+      // password: new FormControl("", Validators.required),
+      // confirmPassword: new FormControl("", Validators.required),
       role: new FormControl("", Validators.required)
     })
   }
@@ -38,20 +38,20 @@ export class NewEmployeeComponent implements OnInit {
       'VendorManeger',
       'NormalUser'
     ];
-    
+
   }
 
   submit() : void {
     if (this.employeeForm.valid == false) {
       return;
     }
-    
+
     this.employeeService.createEmployee(
       this.employeeForm.value
     ).subscribe(
       (res) => {
         if (res) {
-          
+
           this.toastr.success({detail:"New employee created", summary:"New employee is created successfully.", duration:5000});
           this.employeeForm.reset();
           this.reloadComponent(true);
@@ -73,5 +73,5 @@ export class NewEmployeeComponent implements OnInit {
     })
   }
 
-  
+
 }
