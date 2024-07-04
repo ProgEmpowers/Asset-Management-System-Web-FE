@@ -20,34 +20,92 @@ import { ViewVendorComponent } from './forms/view-vendor/view-vendor.component';
 import { UserProfileComponent } from './forms/user-profile/user-profile.component';
 
 const routes: Routes = [
-  { path:"", redirectTo: "dashboard", pathMatch:'full' },
-  { path:"dashboard", component: DashboardComponent , canActivate: [authGuard]},
-  { path:"assets/new", component: NewAssetComponent, canActivate: [authGuard] },
-  { path:"assets/:id", component: ViewAssetComponent , canActivate: [authGuard] },
-  { path:"assets", component: AssetsComponent , canActivate: [authGuard] },
-  { path:"my-assets/:id", component:ViewAssetComponent },
-  { path:"my-assets", component:MyAssetsComponent },
-  { path:"disposals/:id", component: ViewAssetComponent },
-  { path:"disposals", component: DisposalsComponent },
-  { path:"employees", component: EmployeesComponent, canActivate: [authGuard] },
-  { path:"contracts", component: ContractsComponent , canActivate: [authGuard] },
-  { path:"vendors", component: VendorsComponent , canActivate: [authGuard] },
-  { path:"notifications", component:NotificationsComponent, canActivate: [authGuard] },
-  { path:"login", component:LoginComponent},
-  { path:"assets/:id", component: ViewAssetComponent },
-  { path:"forget-password", component: ForgetPasswordComponent },
-  { path:"reset-password", component: ResetPasswordComponent },
-  { path:"change-password", component: ChangePasswordComponent, canActivate: [authGuard] },
-  { path:"assets/:id", component: ViewAssetComponent, canActivate: [authGuard] },
-  { path:"employees/:id", component: ViewEmployeeComponent, canActivate: [authGuard]},
-  { path:"vendors/:id", component: ViewVendorComponent },
-  { path: "user-profile", component: UserProfileComponent,canActivate: [authGuard] },
-
-
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'assets/new',
+    component: NewAssetComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'assets/:id',
+    component: ViewAssetComponent,
+    canActivate: [authGuard],
+  },
+  { path: 'assets', component: AssetsComponent, canActivate: [authGuard] },
+  {
+    path: 'my-assets/:id',
+    component: ViewAssetComponent,
+    canActivate: [authGuard],
+  },
+  { path: 'my-assets', component: MyAssetsComponent, canActivate: [authGuard] },
+  {
+    path: 'disposals/:id',
+    component: ViewAssetComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'disposals',
+    component: DisposalsComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'employees',
+    component: EmployeesComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'contracts',
+    component: ContractsComponent,
+    canActivate: [authGuard],
+  },
+  { path: 'vendors', component: VendorsComponent, canActivate: [authGuard] },
+  {
+    path: 'notifications',
+    component: NotificationsComponent,
+    canActivate: [authGuard],
+  },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'assets/:id',
+    component: ViewAssetComponent,
+    canActivate: [authGuard],
+  },
+  { path: 'forget-password', component: ForgetPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'assets/:id',
+    component: ViewAssetComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'employees/:id',
+    component: ViewEmployeeComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'vendors/:id',
+    component: ViewVendorComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'user-profile',
+    component: UserProfileComponent,
+    canActivate: [authGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
