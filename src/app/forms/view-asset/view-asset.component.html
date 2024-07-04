@@ -6,7 +6,7 @@
         *ngIf="
           item.assetStatus == 1 &&
           (user?.roles?.includes('Admin') ||
-            user?.roles?.includes('AssetManager'))
+            user?.roles?.includes('AssetManeger'))
         "
       >
         <button
@@ -29,10 +29,7 @@
         </button>
       </ng-container>
 
-      <ng-container
-        *ngIf="
-          (item.assetStatus == 2 && item.userId == user?.email)"
-      >
+      <ng-container *ngIf="item.assetStatus == 2 && item.userId == user?.email">
         <button
           type="button"
           class="btn btn-primary cta"
@@ -98,10 +95,10 @@
 <div>
   <div class="col-12 widgets justify-content-start m-0 mt-5 mb-2">
     <div class="row">
-      <div class="d-flex flex-column ">
+      <div class="d-flex flex-column">
         <div class="d-flex justify-content-between">
           <div class="d-flex mx-2">
-            <div class=" col-lg-2" style="min-width: 180px">
+            <div class="col-lg-2" style="min-width: 180px">
               <div class="">
                 <img
                   [src]="item.imageUrl"
@@ -147,23 +144,31 @@
           <div class="d-flex me-5">
             <div class="">
               <span>
-                <qrcode (qrCodeURL)="onCodeChange($event)" [width]="180" qrdata="item.id.toString()"></qrcode>
+                <qrcode
+                  (qrCodeURL)="onCodeChange($event)"
+                  [width]="180"
+                  qrdata="item.id.toString()"
+                ></qrcode>
               </span>
             </div>
             <div class="mt-5 pt-4">
               <span>
-                <button type="button" class="btn btn-outline-secondary custom-button"><a [href]="url" download="Asset QR Code">Print</a></button>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary custom-button"
+                >
+                  <a [href]="url" download="Asset QR Code">Print</a>
+                </button>
               </span>
             </div>
           </div>
-
-         </div>
-         <div class="">
+        </div>
+        <div class="">
           <ul class="nav nav-tabs my-4">
             <li class="nav-item">
               <a
                 class="nav-link"
-                [ngClass]="{ 'active': isTab1Open() }"
+                [ngClass]="{ active: isTab1Open() }"
                 (click)="onTab1Click()"
                 >Primary Info</a
               >
@@ -171,7 +176,7 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                [ngClass]="{ 'active': isTab2Open() }"
+                [ngClass]="{ active: isTab2Open() }"
                 (click)="onTab2Click()"
                 >Vendor</a
               >
@@ -179,7 +184,7 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                [ngClass]="{ 'active': isTab3Open() }"
+                [ngClass]="{ active: isTab3Open() }"
                 (click)="onTab3Click()"
                 >View log</a
               >
@@ -204,16 +209,18 @@
                       [value]="item.name"
                       (change)="onFormDirty()"
                       [readOnly]="user?.roles?.includes('NormalUser')"
-                    [class.is-invalid]="
-                      editForm.controls['name'].invalid &&
-                      editForm.controls['name'].touched &&
+                      [class.is-invalid]="
+                        editForm.controls['name'].invalid &&
+                        editForm.controls['name'].touched &&
                         editForm.controls['name'].dirty
-                    "
+                      "
                     />
                   </div>
                 </div>
                 <div class="mb-3 row">
-                  <label for="id" class="col-sm-4 col-lg-2 col-form-label fw-bold"
+                  <label
+                    for="id"
+                    class="col-sm-4 col-lg-2 col-form-label fw-bold"
                     >Id</label
                   >
                   <div class="col-sm-8 col-lg-10">
@@ -235,24 +242,24 @@
                   >
                   <div class="col-sm-8 col-lg-10">
                     <input
-                    formControlName="assetType"
-                    type="text"
-                    class="form-control"
-                    id="assetType"
-                    [value]="item.assetType"
-                    readonly
-                    *ngIf="user?.roles?.includes('NormalUser')"
-                  />
-                  <select
-                  formControlName="assetType"
-                  class="form-control"
-                  id="assetType"
-                  [value]="item.assetType"
-                  (change)="onFormDirty()"
-                  *ngIf="!user?.roles?.includes('NormalUser')"
-                >
-                      <option value="Keyboard">Keyboard</option>
-                      <option value="Mouse">Mouse</option>
+                      formControlName="assetType"
+                      type="text"
+                      class="form-control"
+                      id="assetType"
+                      [value]="item.assetType"
+                      readonly
+                      *ngIf="user?.roles?.includes('NormalUser')"
+                    />
+                    <select
+                      formControlName="assetType"
+                      class="form-control"
+                      id="assetType"
+                      [value]="item.assetType"
+                      (change)="onFormDirty()"
+                      *ngIf="!user?.roles?.includes('NormalUser')"
+                    >
+                      <option [value]="type" *ngFor="let type of assetTypes">{{type}}</option>
+
                     </select>
                   </div>
                 </div>
@@ -271,11 +278,11 @@
                       [value]="item.description"
                       (change)="onFormDirty()"
                       [readOnly]="user?.roles?.includes('NormalUser')"
-                    [class.is-invalid]="
-                      editForm.controls['description'].invalid &&
-                      editForm.controls['description'].touched &&
+                      [class.is-invalid]="
+                        editForm.controls['description'].invalid &&
+                        editForm.controls['description'].touched &&
                         editForm.controls['description'].dirty
-                    "
+                      "
                     >
                     </textarea>
                   </div>
@@ -283,8 +290,9 @@
               </form>
             </div>
             <div class="my-4 row pe-0">
-              <div class="gap-2 text-end pe-0"
-              *ngIf="!user?.roles?.includes('NormalUser')"
+              <div
+                class="gap-2 text-end pe-0"
+                *ngIf="!user?.roles?.includes('NormalUser')"
               >
                 <button
                   type="button"
@@ -305,20 +313,29 @@
                   <span>Name :</span>
                 </div>
                 <div class="col-6">
-                  <span>Lahiru (PVT) LTD</span>
+                  <span>{{vendor?.name}}</span>
                 </div>
               </div>
               <div class="row">
                 <div class="col-4">
-                  <span>Contact :</span>
+                  <span>Email :</span>
                 </div>
                 <div class="col-6">
-                  <span>0760944045</span>
+                  <span>{{vendor?.email}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <span>Mobile :</span>
+                </div>
+                <div class="col-6">
+                  <span>{{vendor?.mobileNo}}</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
     </div>
   </div>
 </div>

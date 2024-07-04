@@ -1,0 +1,52 @@
+<div
+  class="modal fade"
+  id="assetTypeModal"
+  tabindex="-1"
+  aria-labelledby="assetTypeModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+          <h2 class="modal-title fs-5" id="assetTypeModal">Add Asset Types</h2>
+        </div>
+        <button
+          type="button"
+          class="btn-close"
+          #closeModal
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="assetTypeInput" placeholder="Add a type" required
+        (input)="onInput()"
+        [class.is-invalid]="isEmpty"
+        >
+        <span
+        *ngIf="isEmpty"
+        class="text-danger">Please input a type</span>
+
+        <div class="mt-4" *ngIf="assetTypes.length > 0">
+          <div class="fw-bold">Available Types</div>
+          <div class="d-flex flex-column mt-1">
+            <span *ngFor="let item of assetTypes">
+              {{item}}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="submit" class="btn btn-primary"
+        (click)="onSave()"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

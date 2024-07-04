@@ -12,6 +12,7 @@ export interface Asset {
   assetStatus?: AssetStatusEnum;
   dateCreated?: string;
   userId?: string;
+  vendor?:string
 }
 
 // public int Id { get; set; }

@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { Asset } from '../../Models/asset';
 import { UploadComponent } from '../../components/upload/upload.component';
+import { VendorService } from '../../services/vendor.service';
+import { Vendor } from '../../Models/vendor';
 
 @Component({
   selector: 'app-new-asset',
@@ -19,6 +21,8 @@ export class NewAssetComponent implements OnInit {
   imgPath: string = "";
   isChanged = false;
 
+  vendors:Vendor[] = []
+
   // Asset types
   assetTypes:string[] = [];
 
@@ -28,7 +32,8 @@ export class NewAssetComponent implements OnInit {
   constructor(
     private assetService: AssetStockService,
     private router: Router,
-    private toastr: NgToastService
+    private toastr: NgToastService,
+    private vendorService:VendorService
   ){
     this.imgPath = this.defaultUrl;
     this.assetForm = new FormGroup({
@@ -37,18 +42,19 @@ export class NewAssetComponent implements OnInit {
       imageUrl: new FormControl(this.imgPath, Validators.required),
       description: new FormControl("", Validators.required),
       assetValue: new FormControl("", Validators.required),
+      vendor: new FormControl("", Validators.required),
     })
   }
 
 
   ngOnInit(): void {
-    this.assetTypes = [
-      'PC',
-      'Monitor',
-      'Keyboard',
-      'Mouse',
-      'Scanner'
-    ];
+    this.assetService.getAssetTypes().subscribe((res) => {
+      this.assetTypes = res;
+    })
+
+    this.vendorService.getVendorList().subscribe((res) => {
+      this.vendors = res;
+    })
   }
 
   onUploadFinished(event: any) {
