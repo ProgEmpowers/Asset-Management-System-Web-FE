@@ -1,0 +1,105 @@
+<!-- sell Asset Modal -->
+
+<div
+  class="modal fade"
+  id="sell-asset-modal"
+  tabindex="-1"
+  aria-labelledby="sell-asset-modal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+          <h2 class="modal-title fs-5" id="sell-asset-modal">Sell Asset</h2>
+        </div>
+        <button
+          type="button"
+          class="btn-close"
+          #closeModal
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="updateForm" name="updateForm" *ngIf="receivedData" #disposalForm>
+          <div class="form-floating">
+            <!-- Max chars allowed is 5 -->
+            <input
+              formControlName="name"
+              type="text"
+              class="form-control"
+              [class.is-valid]="updateForm.controls['name'].valid && updateForm.controls['name'].touched"
+              [class.is-invalid]="
+                updateForm.controls['name'].invalid &&
+                (updateForm.controls['name'].touched ||
+                  updateForm.controls['name'].dirty)
+              "
+              id="assetName"
+              name="assetName"
+              placeholder="Keyboard"
+            />
+            <label for="assetName">Asset name</label>
+          </div>
+
+          <div class="form-floating mt-2">
+            <textarea
+              formControlName="description"
+              class="form-control"
+              name="description"
+              id="description"
+              cols="30"
+              rows="4"
+              placeholder="Type here..."
+              style="height: 100px"
+              [class.is-valid]="updateForm.controls['description'].valid && updateForm.controls['description'].touched"
+              [class.is-invalid]="
+                updateForm.controls['description'].invalid &&
+                (updateForm.controls['description'].touched ||
+                  updateForm.controls['description'].dirty)
+              "
+
+            ></textarea>
+            <label for="description">Description</label>
+          </div>
+
+          <div class="form-floating mt-2">
+            <!-- Max chars allowed is 5 -->
+            <input
+              formControlName="price"
+              type="text"
+              class="form-control"
+              [class.is-valid]="updateForm.controls['price'].valid && updateForm.controls['price'].dirty"
+              [class.is-invalid]="
+                updateForm.controls['price'].invalid &&
+                (updateForm.controls['price'].touched ||
+                  updateForm.controls['price'].dirty)
+              "
+              id="price"
+              name="price"
+              placeholder="price"
+            />
+            <label for="price">Price</label>
+          </div>
+          <div class="form-text text-danger"
+          *ngIf="updateForm.hasError('required', 'price') &&  (updateForm.controls['price'].touched ||
+                  updateForm.controls['price'].dirty)"
+          >Please set a price to sell!</div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          No
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [attr.data-bs-dismiss]="updateForm.valid?'modal':''"
+          (click)="onClick()"
+        >
+          Yes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

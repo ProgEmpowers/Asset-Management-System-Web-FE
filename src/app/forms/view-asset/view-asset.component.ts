@@ -1,6 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { SharedAssetsService } from '../../services/shared-assets.service';
-import { Asset } from '../../Models/asset';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -13,6 +11,8 @@ import { AssetStockService } from '../../services/asset-stock.service';
 import { NgToastService } from 'ng-angular-popup';
 import { AssetStatusEnum } from '../../Models/AssetStatusEnum';
 import { SafeUrl } from '@angular/platform-browser';
+import { User } from '../../Models/user.model';
+import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
   selector: 'app-view-asset',
@@ -44,11 +44,16 @@ export class ViewAssetComponent implements OnInit {
     this.url = url;
   }
 
+  user?: User;
+  @ViewChild('repair') repair!: ElementRef;
+  @ViewChild('sell') sell!: ElementRef;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private assetService: AssetStockService,
     private toast: NgToastService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.item = {};
   }
@@ -58,20 +63,30 @@ export class ViewAssetComponent implements OnInit {
     this.loadAsset(this.id);
 
     this.editForm = this.fb.group({
-      name: [''],
+      name: ['', Validators.required],
       id: [''],
       assetType: [''],
       assetStatus: [''],
-      description: [''],
+      description: ['', Validators.required],
       imageUrl: [''],
       assetValue: [''],
       userId: [''],
     });
+
+    this.authService.user().subscribe({
+      next: (response) => {
+        console.log(response);
+        this.user = response;
+      },
+    });
+    this.user = this.authService.getUser();
   }
 
   async loadAsset(id: string) {
     try {
-      this.item = await this.assetService.GetAssetById(id)
+      this.item = await this.assetService.GetAssetById(id);
+      this.loadForm();
+      console.log(this.editForm.value);
     } catch (error) {
       console.log(error);
     }
@@ -160,14 +175,24 @@ export class ViewAssetComponent implements OnInit {
 
   onSave() {
     this.loadForm();
-    this.assetService.updateAsset(this.id, this.editForm.value).subscribe({
-      next: (res) => {
-        this.toast.success({
-          detail: 'Asset updated successfully',
-          summary: 'Changes saved!',
-        });
-        this.isDirty = false;
-      },
+    if (this.editForm.valid && this.editForm.dirty) {
+      this.assetService.updateAsset(this.id, this.editForm.value).subscribe({
+        next: (res) => {
+          this.toast.success({
+            detail: 'Asset updated successfully',
+            summary: 'Changes saved!',
+          });
+          this.isDirty = false;
+          this.reloadComponent(true);
+        },
+      });
+    }
+  }
+
+  markAsDrity() {
+    const controls = Object.keys(this.editForm.controls);
+    controls.forEach((key) => {
+      this.editForm.controls[key].markAsDirty();
     });
   }
 
@@ -222,10 +247,21 @@ export class ViewAssetComponent implements OnInit {
         this.restoreAsset();
         break;
       case 'repair':
+        this.assetService.sendData(this.id);
+        this.repair.nativeElement.click();
         break;
       case 'sell':
+        this.sell.nativeElement.click();
         break;
     }
+  }
+
+  onSell() {
+    this.assetService.sendData(this.id);
+  }
+
+  onRepair() {
+    this.assetService.sendData(this.id);
   }
 
   restoreAsset() {
@@ -238,6 +274,17 @@ export class ViewAssetComponent implements OnInit {
         });
         this.router.navigate(['disposals']);
       },
+    });
+  }
+
+  reloadComponent(self: boolean, urlToNavigateTo?: string) {
+    //skipLocationChange:true means dont update the url to / when navigating
+    console.log('Current route I am on:', this.router.url);
+    const url = self ? this.router.url : urlToNavigateTo;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([`/${url}`]).then(() => {
+        console.log(`After navigation I am on:${this.router.url}`);
+      });
     });
   }
 }

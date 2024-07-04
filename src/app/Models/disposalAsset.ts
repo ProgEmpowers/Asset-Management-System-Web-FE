@@ -1,17 +1,6 @@
 import { AssetStatusEnum } from "./AssetStatusEnum";
+import { Asset } from "./asset";
 
-export interface DisposalAsset {
-  id?:string;
-  imageUrl?: string;
-  name?: string | undefined;
-  assetType?:string;
-  description?:string;
-  qrCode?:string;
-  isActive?:boolean;
-  assetValue?:number;
-  assetStatus ?:AssetStatusEnum;
-  createdOn?:string;
-  userId?:string;
+export interface DisposalAsset extends Asset {
   price?:string;
-
 }

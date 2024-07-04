@@ -12,6 +12,7 @@ export class EmployeeService {
   apiurl = "https://localhost:7229/api/User";
   apiurl2 = "https://localhost:7229/api/Auth/register?addAuth=true";
   apiUrl3 = "https://localhost:7095/api/Assets/GetAssetByUserAsync";
+  apiUrl4 = "https://localhost:7229/api/User/GetUserByEmail";
 
   private dataSubject = new Subject<any>();
   data$ = this.dataSubject.asObservable();

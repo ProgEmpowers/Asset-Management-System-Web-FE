@@ -41,14 +41,8 @@ export class DashboardComponent implements OnInit {
   }
 
   getUser() : void {
-    this.authService.user()
-      .subscribe({
-        next:(response) => {
-          console.log(response);
-          this.user = response;
-        }
-      });
       this.user = this.authService.getUser();
+      console.log(this.user)
   }
 
   getEmployees() : void {

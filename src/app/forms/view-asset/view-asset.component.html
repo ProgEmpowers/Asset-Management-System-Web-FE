@@ -2,7 +2,13 @@
   <div class="d-flex flex-column flex-md-row justify-content-between">
     <h2>Asset Details</h2>
     <div class="d-flex gap-2">
-      <ng-container *ngIf="item.assetStatus == 1">
+      <ng-container
+        *ngIf="
+          item.assetStatus == 1 &&
+          (user?.roles?.includes('Admin') ||
+            user?.roles?.includes('AssetManager'))
+        "
+      >
         <button
           type="button"
           class="btn btn-outline-secondary cta"
@@ -23,7 +29,10 @@
         </button>
       </ng-container>
 
-      <ng-container *ngIf="item.assetStatus == 2">
+      <ng-container
+        *ngIf="
+          (item.assetStatus == 2 && item.userId == user?.email)"
+      >
         <button
           type="button"
           class="btn btn-primary cta"
@@ -35,9 +44,19 @@
         </button>
       </ng-container>
 
-      <ng-container *ngIf="item.assetStatus == 5">
+      <ng-container
+        *ngIf="
+          item.assetStatus == 5 &&
+          (user?.roles?.includes('Admin') ||
+            user?.roles?.includes('VendorManager'))
+        "
+      >
         <div class="d-flex gap-2">
-          <select class="form-select" aria-label="Default select example" #actionSelect>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            #actionSelect
+          >
             <option selected disabled>Actions</option>
             <option value="restore">Restore</option>
             <option value="repair">Repair</option>
@@ -49,6 +68,27 @@
             (click)="onActionSelect(actionSelect.value)"
           >
             Apply
+          </button>
+          <button
+            #repair
+            type="button"
+            class="d-none"
+            (click)="onRepair()"
+            aria-hidden="true"
+            data-bs-target=""
+          >
+            Repair
+          </button>
+          <button
+            #sell
+            type="button"
+            class="d-none"
+            aria-hidden="true"
+            data-bs-toggle="modal"
+            data-bs-target="#sell-asset-modal"
+            (click)="onSell()"
+          >
+            Sell
           </button>
         </div>
       </ng-container>
@@ -116,8 +156,8 @@
               </span>
             </div>
           </div>
-        
-         </div> 
+
+         </div>
          <div class="">
           <ul class="nav nav-tabs my-4">
             <li class="nav-item">
@@ -163,6 +203,12 @@
                       id="name"
                       [value]="item.name"
                       (change)="onFormDirty()"
+                      [readOnly]="user?.roles?.includes('NormalUser')"
+                    [class.is-invalid]="
+                      editForm.controls['name'].invalid &&
+                      editForm.controls['name'].touched &&
+                        editForm.controls['name'].dirty
+                    "
                     />
                   </div>
                 </div>
@@ -188,13 +234,23 @@
                     >Type</label
                   >
                   <div class="col-sm-8 col-lg-10">
-                    <select
-                      formControlName="assetType"
-                      class="form-control"
-                      id="assetType"
-                      [value]="item.assetType"
-                      (change)="onFormDirty()"
-                    >
+                    <input
+                    formControlName="assetType"
+                    type="text"
+                    class="form-control"
+                    id="assetType"
+                    [value]="item.assetType"
+                    readonly
+                    *ngIf="user?.roles?.includes('NormalUser')"
+                  />
+                  <select
+                  formControlName="assetType"
+                  class="form-control"
+                  id="assetType"
+                  [value]="item.assetType"
+                  (change)="onFormDirty()"
+                  *ngIf="!user?.roles?.includes('NormalUser')"
+                >
                       <option value="Keyboard">Keyboard</option>
                       <option value="Mouse">Mouse</option>
                     </select>
@@ -214,6 +270,12 @@
                       id="Description"
                       [value]="item.description"
                       (change)="onFormDirty()"
+                      [readOnly]="user?.roles?.includes('NormalUser')"
+                    [class.is-invalid]="
+                      editForm.controls['description'].invalid &&
+                      editForm.controls['description'].touched &&
+                        editForm.controls['description'].dirty
+                    "
                     >
                     </textarea>
                   </div>
@@ -221,12 +283,14 @@
               </form>
             </div>
             <div class="my-4 row pe-0">
-              <div class="gap-2 text-end pe-0">
+              <div class="gap-2 text-end pe-0"
+              *ngIf="!user?.roles?.includes('NormalUser')"
+              >
                 <button
                   type="button"
                   class="btn btn-primary cta"
                   (click)="onSave()"
-                  [disabled]="!isDirty"
+                  [disabled]="editForm.invalid && editForm.dirty"
                 >
                   Save changes
                 </button>

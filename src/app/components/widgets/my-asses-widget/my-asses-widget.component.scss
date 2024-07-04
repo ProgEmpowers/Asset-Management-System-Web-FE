@@ -1,10 +1,10 @@
 @import '../../../../theme.scss';
 
 .my-assets-widget {
-  background-image: linear-gradient(to top, #5f72bd 0%, #9b23ea 100%);
+  background-image: linear-gradient(to right, #FFE2E6 0%, #F4E8FF 100%);
   border-radius: 20px;
   box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-  color: $text-white;
+  color: $text-default;
 
   .my-assets-widget-icon {
 
@@ -14,7 +14,7 @@
     align-items: center;
     border-radius: 10px;
     color: $text-white;
-    background-color: rgba(255, 255, 255, 0.186);
+    background-color: #FA5A7D;
   }
 
   .my-assets-widget-sub-card {
