@@ -60,12 +60,28 @@
             <label for="description">Description</label>
           </div>
 
-          <div class="form-floating  mt-2">
-            <input formControlName="assetValue" type="number" class="form-control" min="0"
-            [class.is-valid]="assetForm.controls['assetValue'].valid && assetForm.controls['assetValue'].touched"
-            [class.is-invalid]="assetForm.controls['assetValue'].invalid && (assetForm.controls['assetValue'].touched || assetForm.controls['assetValue'].dirty)"
-            name="buyingPrice" id="buyingPrice" placeholder="i.e. 500.00">
-            <label for="buyingPrice">Buying price</label>
+          <div class="row g-2 pt-2">
+            <div class="col form-floating">
+              <select formControlName="vendor" class="form-select"
+              [class.is-valid]="assetForm.controls['vendor'].valid"
+              name="vendor" id="vendor"
+
+              required>
+                <option selected disabled value="">-Select vendor-</option>
+                <option value="{{vendor.id}}" *ngFor="let vendor of vendors">
+                  {{vendor.id}} - {{vendor.name}}
+                </option>
+              </select>
+              <label for="vendor">Vendor</label>
+            </div>
+
+            <div class="col form-floating">
+              <input formControlName="assetValue" type="number" class="form-control" min="0"
+              [class.is-valid]="assetForm.controls['assetValue'].valid && assetForm.controls['assetValue'].touched"
+              [class.is-invalid]="assetForm.controls['assetValue'].invalid && (assetForm.controls['assetValue'].touched || assetForm.controls['assetValue'].dirty)"
+              name="buyingPrice" id="buyingPrice" placeholder="i.e. 500.00">
+              <label for="buyingPrice">Buying price</label>
+            </div>
           </div>
 
           <button type="submit" #submitBtn style="display: none;">Submit</button>

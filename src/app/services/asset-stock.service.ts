@@ -4,6 +4,7 @@ import { Observable, Subject, count, lastValueFrom, map } from "rxjs";
 import { Asset } from "../Models/asset";
 import { DataStateChangeEventArgs } from "@syncfusion/ej2-angular-grids";
 import { UserAsset } from "../Models/user-assets";
+import { AssetType } from "../Models/AssetType";
 
 @Injectable({
   providedIn: "root",
@@ -15,7 +16,8 @@ export class AssetStockService extends Subject<DataStateChangeEventArgs> {
   apiurl3 = "https://localhost:7095/api/Assets/GetTotalNoOfAssetsAsync";
   apiUrl4 = "https://localhost:7229/api/User/AssignAssetAsync/";
   apiUrl5 = "https://localhost:7229/api/User/ReleaseAsset";
-
+  apiTypesUrl = "https://localhost:7095/api/Assets/types";
+  createTypeUrl = "https://localhost:7095/api/Assets/AddAssetType/";
 
   private dataSubject = new Subject<any>();
   data$ = this.dataSubject.asObservable();
@@ -77,13 +79,21 @@ export class AssetStockService extends Subject<DataStateChangeEventArgs> {
     return await lastValueFrom(this.http.put(this.apiurl + "/" + id, asset));
   }
 
-  assignAsset(userAsset:UserAsset) {
+  assignAsset(userAsset: UserAsset) {
     return this.http.post<UserAsset>(this.apiUrl4, userAsset);
   }
 
-  releaseAsset(userAsset:UserAsset) {
+  releaseAsset(userAsset: UserAsset) {
     return this.http.delete<any>(this.apiUrl5, {
-      body:userAsset
+      body: userAsset,
     });
+  }
+
+  getAssetTypes() {
+    return this.http.get<string[]>(this.apiTypesUrl);
+  }
+
+  addAssetTypes(type:AssetType) {
+    return this.http.post<AssetType>(this.createTypeUrl, type);
   }
 }
