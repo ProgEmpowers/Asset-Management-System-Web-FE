@@ -63,6 +63,11 @@ export class AssetStockService extends Subject<DataStateChangeEventArgs> {
     return this.http.delete(this.apiurl + "/" + id);
   }
 
+  // delete an asset
+  async deleteAssetAsync(id: string) {
+    return await lastValueFrom(this.http.delete(this.apiurl + "/" + id));
+  }
+
   // update an asset
   updateAsset(id: string, asset: Asset): Observable<any> {
     return this.http.put(this.apiurl + "/" + id, asset);

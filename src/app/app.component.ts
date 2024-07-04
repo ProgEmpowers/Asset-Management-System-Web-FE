@@ -13,7 +13,7 @@ interface SidemenuToggled {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit{
   @ViewChild('sidemenu') sidemenu!:SidemenuComponent;
@@ -46,11 +46,11 @@ export class AppComponent implements OnInit{
     this.showSideNav = true;
   }
   shouldHideSidebar(url: string): boolean {
-    return (url.includes('/login') || url.includes('/forget-password') || url.includes('/reset-password'));
+    return (url.includes('/login') || url.includes('/forget-password') || url.includes('/reset-password')|| url.includes('/change-password'));
   }
 
   shouldHideHeader(url: string): boolean {
-    return (url.includes('/login') || url.includes('/forget-password') || url.includes('/reset-password'));
+    return (url.includes('/login') || url.includes('/forget-password') || url.includes('/reset-password')|| url.includes('/change-password'));
   }
 
   closeModel() {

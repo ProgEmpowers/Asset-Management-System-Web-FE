@@ -1,0 +1,29 @@
+@import '../../../../theme.scss';
+
+.my-assets-widget {
+  background-image: linear-gradient(to right, #FFE2E6 0%, #F4E8FF 100%);
+  border-radius: 20px;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  color: $text-default;
+
+  .my-assets-widget-icon {
+
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: $text-white;
+    background-color: #FA5A7D;
+  }
+
+  .my-assets-widget-sub-card {
+    // color: $text-default;
+    // background-color: rgba(255, 255, 255, 1);
+  }
+
+  .my-assets-widget-btn {
+    border-radius: 10px !important;
+
+  }
+}

@@ -1,8 +1,8 @@
-import { CookieService } from 'ngx-cookie-service';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { Employee } from '../Models/employee';
+import { CookieService } from "ngx-cookie-service";
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable, Subject } from "rxjs";
+import { Employee } from "../Models/employee";
 import { Asset } from "../Models/asset";
 
 @Injectable({
@@ -10,39 +10,35 @@ import { Asset } from "../Models/asset";
 })
 export class EmployeeService {
   apiurl = "https://localhost:7229/api/User";
-  apiurl2 = 'https://localhost:7229/api/Auth/register?addAuth=true';
-  apiUrl3 = "https://localhost:7095/api/Assets/GetAssetByUserAsync"
+  apiurl2 = "https://localhost:7229/api/Auth/register?addAuth=true";
+  apiUrl3 = "https://localhost:7095/api/Assets/GetAssetByUserAsync";
+  apiUrl4 = "https://localhost:7229/api/User/GetUserByEmail";
 
   private dataSubject = new Subject<any>();
   data$ = this.dataSubject.asObservable();
 
-   constructor(private http:HttpClient , private CookieService: CookieService) { }
+  constructor(private http: HttpClient, private CookieService: CookieService) {}
 
-
-   sendData(data: any) {
+  sendData(data: any) {
     this.dataSubject.next(data);
   }
 
-
   // Get all employees from server
 
-   // Get all employees from server
-   getEmployeeList() : Observable<Employee[]> {
-     return this.http.get<Employee[]>(this.apiurl + '')
-   }
+  // Get all employees from server
+  getEmployeeList(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.apiurl + "");
+  }
 
- // Get a single employee from server
+  // Get a single employee from server
   getEmployeeById(id: string): Observable<Employee> {
-    return this.http.get<Employee>(this.apiurl + '/' + id);
+    return this.http.get<Employee>(this.apiurl + "/" + id);
   }
 
-
-
- // update employee
+  // update employee
   updateEmployee(id: string, employee: Employee): Observable<any> {
-    return this.http.put(this.apiurl + '/' + id, employee);
+    return this.http.put(this.apiurl + "/" + id, employee);
   }
-
 
   // delete employee by id
   deleteEmployee(id: string): Observable<any> {
@@ -63,7 +59,7 @@ export class EmployeeService {
   getUserCountInRole(roleName: string): Observable<number> {
     console.log("get");
     return this.http.get<number>(`${this.apiurl}/count/${roleName}`);
-     
+
   }
 
 

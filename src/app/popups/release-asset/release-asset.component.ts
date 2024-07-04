@@ -47,7 +47,7 @@ export class ReleaseAssetComponent {
           detail: 'Asset released successfully',
         });
         this.assetEdit_ID = '';
-        this.reloadComponent(true);
+        this.router.navigate(["/my-assets"])
       },
       error: (err) => {
         this.toast.error({

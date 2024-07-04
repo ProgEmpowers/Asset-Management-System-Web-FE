@@ -1,0 +1,45 @@
+<div class="widget-card d-flex flex-column flex-fill p-3">
+  <div class="d-flex p-2" style="line-height: 1.5em">
+    <div
+      class="widget-icon-wrapper d-flex align-items-center"
+      style="line-height: 2.25em"
+    >
+      <div class="widget-icon">
+        <i class="fas fa-solid fa-user"></i>
+      </div>
+      <span class="fs-3"><strong>My Profile</strong></span>
+    </div>
+  </div>
+  <div class="e-card-content p-2" style="line-height: 2.25em">
+    <div class="d-flex flex-column gap-2">
+      <div class="d-flex justify-content-center">
+        <img
+          src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+          alt=""
+          style="width: 80px; height: 80px"
+          class="rounded-circle me-2"
+        />
+      </div>
+      <div class="d-flex flex-column align-items-center gap-1">
+        <span class="fw-bold" style="line-height: normal"
+          >{{ user?.firstName }} {{ user?.lastName }}</span
+        >
+        <span class="small text-secondary" style="line-height: normal">{{
+          user?.email
+        }}</span>
+        <span class="small text-secondary" style="line-height: normal">{{
+          user?.customUserId
+        }}</span>
+      </div>
+      <div class="d-flex justify-content-center">
+        <button
+        id="showassetdata"
+        class="btn btn-secondary widget-button"
+        routerLink="/employees"
+      >
+        View Profile
+      </button>
+      </div>
+    </div>
+  </div>
+</div>
