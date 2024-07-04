@@ -1,17 +1,17 @@
-import { AssetStatusEnum } from "./AssetStatusEnum";
+import { AssetStatusEnum } from './AssetStatusEnum';
 
 export interface Asset {
-  id?:string;
+  id?: string;
   imageUrl?: string;
   name?: string | undefined;
-  assetType?:string;
-  description?:string;
-  qrCode?:string;
-  isActive?:boolean;
-  assetValue?:number;
-  assetStatus ?:AssetStatusEnum;
-  createdOn?:string;
-  userId?:string;
+  assetType?: string;
+  description?: string;
+  qrCode?: string;
+  isActive?: boolean;
+  assetValue?: number;
+  assetStatus?: AssetStatusEnum;
+  dateCreated?: string;
+  userId?: string;
 }
 
 // public int Id { get; set; }
